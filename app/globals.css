@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0b1426;
+}
+
+.bg-navy-grad {
+  background: radial-gradient(120% 80% at 20% 20%, #1a2b47 0%, #0b1426 60%, #070d1a 100%);
+}
+
+.text-silver-grad {
+  background: linear-gradient(180deg, #ffffff 0%, #c7cbd3 60%, #8a8f9b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html,
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container-x {
+  @apply mx-auto w-full max-w-container px-6 md:px-10;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-extrabold tracking-wide text-brand-dark uppercase;
+}
+
+.section-eyebrow {
+  @apply mb-4 block h-8 w-[2px] bg-brand-orange;
+}
+
+.section-divider {
+  @apply mx-auto h-10 w-[2px] bg-brand-orange;
+}
+
+.btn-pill {
+  @apply inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wider text-brand-dark shadow-[0_8px_24px_rgba(0,0,0,0.08)];
+}
+
+.btn-orange {
+  @apply inline-flex items-center gap-3 rounded-full bg-brand-orange py-3 pl-6 pr-2 text-xs font-bold uppercase tracking-[0.25em] text-white shadow-[0_10px_24px_rgba(199,109,74,0.45)] transition hover:bg-brand-orangeDeep;
+}
+
+.btn-orange:active {
+  transform: translateY(3px) scale(0.97);
+  box-shadow: 0 4px 10px rgba(199, 109, 74, 0.3);
+}
+
+.btn-circle {
+  @apply inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-orange text-white;
+}
+
+/* ── 3-D depth utilities ─────────────────────────────── */
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-14px); }
+}
+
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+/* Layered depth shadow */
+.shadow-3d {
+  box-shadow:
+    0 2px 4px  rgba(0, 0, 0, 0.06),
+    0 8px 16px rgba(0, 0, 0, 0.09),
+    0 24px 48px rgba(0, 0, 0, 0.07);
+}
+
+/* Bike wheel spoke spin */
+@keyframes wheel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-wheel-slow {
+  animation: wheel-spin 12s linear infinite;
+  transform-origin: center;
+}
+
+/* Glassmorphism panel */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}

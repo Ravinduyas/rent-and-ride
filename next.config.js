@@ -1,11 +1,8 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "plus.unsplash.com" },
-    ],
-  },
+  output: "export",
+  basePath: "/rent-and-ride",   // ← must match repo name exactly
+  images: { unoptimized: true },
+  trailingSlash: true,
 };
 
-module.exports = nextConfig;
+export default nextConfig;

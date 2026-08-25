@@ -4,6 +4,7 @@ import Categories from "@/components/Categories";
 import Services from "@/components/Services";
 import Weligama from "@/components/Weligama";
 import Testimonials from "@/components/Testimonials";
+import Location from "@/components/Location";
 import Newsletter from "@/components/Newsletter";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Weligama />
       <Services />
       <Testimonials />
+      <Location />
       <Newsletter />
     </>
   );

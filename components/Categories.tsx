@@ -5,7 +5,6 @@ import { FaMotorcycle, FaBicycle } from "react-icons/fa";
 import { MdElectricRickshaw, MdElectricScooter } from "react-icons/md";
 import { HiArrowRight } from "react-icons/hi";
 import Link from "next/link";
-import Image from "next/image";
 import AnimateIn from "./AnimateIn";
 
 const CATS = [

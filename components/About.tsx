@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
 import AnimateIn from "./AnimateIn";
+import { asset } from "@/lib/asset";
 
 export default function About() {
   return (
@@ -50,9 +51,10 @@ export default function About() {
           <AnimateIn variant="fadeRight" delay={0.15} className="h-full">
             <div className="relative h-full min-h-[320px] w-full overflow-hidden rounded-3xl">
               <Image
-                src="/about-illustration.png"
+                src={asset("/about-illustration.png")}
                 alt="Rider illustration"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain"
               />
             </div>

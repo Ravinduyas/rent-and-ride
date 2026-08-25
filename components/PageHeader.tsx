@@ -31,7 +31,7 @@ export default function PageHeader({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to top, rgba(11,20,38,0.95) 0%, rgba(11,20,38,0.6) 50%, rgba(11,20,38,0.25) 100%)",
+                "linear-gradient(to top, rgba(11,38,26,0.95) 0%, rgba(11,38,26,0.6) 50%, rgba(11,38,26,0.25) 100%)",
             }}
           />
         </div>

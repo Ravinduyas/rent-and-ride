@@ -30,10 +30,10 @@ export default function Weligama() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(11,20,38,0) 35%, rgba(11,20,38,0.65) 72%, rgba(11,20,38,1) 100%)",
+                "linear-gradient(to right, rgba(11,38,26,0) 35%, rgba(11,38,26,0.65) 72%, rgba(11,38,26,1) 100%)",
             }}
           />
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0B1426] to-transparent md:hidden" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0B261A] to-transparent md:hidden" />
         </AnimateIn>
 
         {/* Right — copy */}

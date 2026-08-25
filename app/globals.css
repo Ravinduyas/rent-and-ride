@@ -4,11 +4,11 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0b1426;
+  --foreground: #0b261a;
 }
 
 .bg-navy-grad {
-  background: radial-gradient(120% 80% at 20% 20%, #1a2b47 0%, #0b1426 60%, #070d1a 100%);
+  background: radial-gradient(120% 80% at 20% 20%, #15462e 0%, #0b261a 60%, #06160f 100%);
 }
 
 .text-silver-grad {

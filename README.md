@@ -38,5 +38,3 @@ tailwind.config.ts # brand palette: yellow / orange / dark
 ## Customising images
 
 The mockup photos come from Unsplash via `next/image`. Replace the `src` props in `Hero.tsx`, `About.tsx`, and `Services.tsx` with your own salon assets (drop them in `public/` and use `/your-image.jpg`).
-# rent-and-ride
-# rent-and-ride

@@ -11,8 +11,8 @@ export default function Hero() {
     >
       <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=2400&q=80"
-          alt="Rider on a motorbike"
+          src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=2400&q=80"
+          alt="Motorbike ready for a coastal ride"
           fill
           priority
           sizes="100vw"
@@ -22,12 +22,21 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background: [
-              "linear-gradient(to bottom, transparent 60%, rgba(7,13,26,0.55) 100%)",
-              "linear-gradient(95deg, #0B1426 0%, #0B1426 38%, rgba(11,20,38,0.92) 48%, rgba(11,20,38,0.55) 60%, rgba(11,20,38,0.18) 75%, rgba(11,20,38,0) 88%)",
+              "linear-gradient(to bottom, transparent 60%, rgba(6,22,15,0.55) 100%)",
+              "linear-gradient(95deg, #0B261A 0%, #0B261A 38%, rgba(11,38,26,0.92) 48%, rgba(11,38,26,0.55) 60%, rgba(11,38,26,0.18) 75%, rgba(11,38,26,0) 88%)",
             ].join(", "),
           }}
         />
       </div>
+
+      {/* Green gradient blending into the hero's bottom edge */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-48 md:h-64"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(11,38,26,0) 0%, rgba(11,38,26,0.45) 45%, rgba(11,38,26,0.8) 75%, #0B261A 100%)",
+        }}
+      />
 
       <div className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-brand-orange/20 blur-3xl" />
       <div className="pointer-events-none absolute left-[42%] top-24 hidden h-3 w-3 rounded-full bg-brand-orange md:block" />

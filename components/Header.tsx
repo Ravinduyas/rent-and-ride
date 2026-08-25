@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import { asset } from "@/lib/asset";
 
 const NAV = [
   { label: "Home", href: "/" },
@@ -32,9 +33,9 @@ export default function Header() {
     <header className="absolute inset-x-0 top-0 z-30">
       <div className="container-x flex items-center justify-between py-5">
         <Link href="/" className="flex items-center gap-3">
-          <span className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-brand-navy shadow-[0_8px_22px_rgba(11,20,38,0.35)] ring-1 ring-brand-silver/40">
+          <span className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-brand-navy shadow-[0_8px_22px_rgba(11,38,26,0.35)] ring-1 ring-brand-silver/40">
             <Image
-              src="/logo.svg"
+              src={asset("/logo.svg")}
               alt="Rent & Ride Weligama"
               fill
               className="object-contain p-1"

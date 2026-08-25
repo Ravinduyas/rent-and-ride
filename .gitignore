@@ -4,3 +4,6 @@ out
 .env*
 .DS_Store
 *.log
+
+# TypeScript build info
+tsconfig.tsbuildinfo

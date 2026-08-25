@@ -8,6 +8,7 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import AnimateIn from "./AnimateIn";
+import { asset } from "@/lib/asset";
 
 const LINKS = [
   { label: "Home", href: "/" },
@@ -37,7 +38,7 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <span className="relative h-14 w-14 overflow-hidden rounded-full bg-brand-navyDeep ring-1 ring-brand-silver/30">
                   <Image
-                    src="/logo.svg"
+                    src={asset("/logo.svg")}
                     alt="Rent & Ride Weligama"
                     fill
                     className="object-contain p-1"

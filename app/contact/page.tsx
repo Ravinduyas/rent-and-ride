@@ -99,10 +99,11 @@ export default function ContactPage() {
           <AnimateIn variant="fadeUp">
             <div className="aspect-[16/7] overflow-hidden rounded-3xl border border-brand-line">
               <iframe
-                title="Rent & Ride location"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=79.8410%2C6.9100%2C79.8710%2C6.9320&layer=mapnik"
+                title="Rent & Ride Weligama location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3968.186148125993!2d80.44692727551238!3d5.969082129356663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae11500045c2d49%3A0x57fb73ada527d340!2sRent%20%26%20Ride%20Weligama%F0%9F%9B%B5!5e0!3m2!1sen!2slk!4v1780003161696!5m2!1sen!2slk"
                 className="h-full w-full"
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
           </AnimateIn>

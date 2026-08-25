@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VARIANTS = {
   fadeUp: {
@@ -48,15 +48,29 @@ export default function AnimateIn({
   duration?: number;
   className?: string;
 }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+  const [mountVisible, setMountVisible] = useState(false);
+
+  // Safety net for above-the-fold content (e.g. the hero CTAs): on mobile the
+  // IntersectionObserver behind useInView can attach after the first paint and
+  // miss elements already in the viewport, leaving them stuck at opacity:0.
+  // If the element is in view on mount, reveal it immediately.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setMountVisible(true);
+    }
+  }, []);
 
   return (
     <motion.div
       ref={ref}
       variants={VARIANTS[variant]}
       initial="hidden"
-      animate={inView ? "show" : "hidden"}
+      animate={inView || mountVisible ? "show" : "hidden"}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
       style={{ transformPerspective: 900 }}
       className={className}

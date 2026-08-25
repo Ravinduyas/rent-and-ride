@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { asset } from "@/lib/asset";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   title: "Rent & Ride Weligama — Bike and Three Wheel Rentals",
   description:
     "Bike, scooter and three wheeler rentals in Weligama, on Sri Lanka's south coast. Daily and weekly rates, doorstep delivery, fully insured rides.",
-  icons: { icon: "/logo.svg" },
+  icons: { icon: asset("/logo.svg") },
 };
 
 export default function RootLayout({

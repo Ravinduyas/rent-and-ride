@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="font-sans bg-white text-brand-dark">
+      <body className="font-sans bg-brand-cream text-brand-dark">
         <Header />
         <main className="relative min-h-screen">
           <PageTransition>{children}</PageTransition>

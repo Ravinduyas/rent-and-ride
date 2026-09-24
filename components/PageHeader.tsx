@@ -16,69 +16,61 @@ export default function PageHeader({
   image?: string;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-grad">
+    <section className="relative isolate min-h-[420px] overflow-hidden bg-brand-ink md:min-h-[480px]">
       {image && (
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={image}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(11,38,26,0.95) 0%, rgba(11,38,26,0.6) 50%, rgba(11,38,26,0.25) 100%)",
-            }}
-          />
-        </div>
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="-z-10 object-cover object-center"
+        />
       )}
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(38,34,20,0.6) 0%, rgba(38,34,20,0.4) 50%, rgba(38,34,20,0.6) 100%)",
+        }}
+      />
 
-      <div className="pointer-events-none absolute -left-32 -top-20 h-72 w-72 rounded-full bg-brand-orange/15 blur-3xl" />
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-80 w-80 rounded-full bg-brand-silver/10 blur-3xl" />
+      <div className="container-x flex min-h-[420px] flex-col items-center justify-center pb-24 pt-32 text-center md:min-h-[480px] md:pb-28">
+        <AnimateIn variant="fadeUp" delay={0.1}>
+          <h1 className="max-w-2xl text-[30px] font-bold leading-[1.2] text-white md:text-[44px]">
+            {title}
+          </h1>
+        </AnimateIn>
 
-      <div className="container-x relative grid min-h-[640px] grid-cols-1 items-end pb-16 pt-32 md:min-h-[720px] md:pb-20 md:pt-40">
-        <div>
-          <AnimateIn variant="fadeLeft" delay={0.1}>
-            <span className="mb-4 block h-8 w-[2px] bg-brand-orange" />
-            <h1 className="text-3xl font-extrabold uppercase tracking-wide md:text-5xl">
-              <span className="text-silver-grad">{title}</span>
-            </h1>
+        {subtitle && (
+          <AnimateIn variant="fadeUp" delay={0.25}>
+            <p className="mt-5 max-w-xl text-sm leading-7 text-white/90 [text-shadow:0_1px_12px_rgba(38,34,20,0.55)]">
+              {subtitle}
+            </p>
           </AnimateIn>
+        )}
 
-          {subtitle && (
-            <AnimateIn variant="fadeUp" delay={0.25}>
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-brand-silver/80">
-                {subtitle}
-              </p>
-            </AnimateIn>
-          )}
-
-          {crumbs && crumbs.length > 0 && (
-            <AnimateIn variant="fadeIn" delay={0.4}>
-              <nav
-                aria-label="Breadcrumb"
-                className="mt-8 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-brand-silver/70"
-              >
-                {crumbs.map((c, i) => (
-                  <span key={c.label} className="flex items-center gap-2">
-                    {c.href ? (
-                      <Link href={c.href} className="hover:text-brand-orange">
-                        {c.label}
-                      </Link>
-                    ) : (
-                      <span className="text-white">{c.label}</span>
-                    )}
-                    {i < crumbs.length - 1 && <span>/</span>}
-                  </span>
-                ))}
-              </nav>
-            </AnimateIn>
-          )}
-        </div>
+        {crumbs && crumbs.length > 0 && (
+          <AnimateIn variant="fadeIn" delay={0.4}>
+            <nav
+              aria-label="Breadcrumb"
+              className="mt-7 flex flex-wrap items-center justify-center gap-2 text-xs text-white/60"
+            >
+              {crumbs.map((c, i) => (
+                <span key={c.label} className="flex items-center gap-2">
+                  {c.href ? (
+                    <Link href={c.href} className="hover:text-white">
+                      {c.label}
+                    </Link>
+                  ) : (
+                    <span className="text-white">{c.label}</span>
+                  )}
+                  {i < crumbs.length - 1 && <span aria-hidden="true">/</span>}
+                </span>
+              ))}
+            </nav>
+          </AnimateIn>
+        )}
       </div>
     </section>
   );

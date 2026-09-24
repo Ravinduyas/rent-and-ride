@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { HiArrowRight, HiOutlinePaperAirplane } from "react-icons/hi";
 import AnimateIn from "./AnimateIn";
 
 export default function Newsletter() {
@@ -17,54 +16,37 @@ export default function Newsletter() {
   }
 
   return (
-    <section id="offers" className="relative overflow-hidden bg-white py-20 md:py-28">
-      <HiOutlinePaperAirplane
-        className="pointer-events-none absolute right-6 top-12 hidden text-brand-line md:block"
-        size={220}
-      />
+    <section id="offers" className="py-16 md:py-24">
+      <div className="container-x">
+        <AnimateIn variant="fadeUp">
+          <div className="card-soft mx-auto max-w-3xl px-8 py-12 text-center md:px-14">
+            <h2 className="section-title">Get rental deals first</h2>
+            <p className="section-sub mx-auto max-w-md">
+              Long-stay discounts, new arrivals and seasonal touring routes —
+              no spam, just rides.
+            </p>
 
-      <div className="container-x relative grid grid-cols-1 gap-10 md:grid-cols-2">
-        <AnimateIn variant="fadeLeft">
-          <div>
-            <span className="section-eyebrow" />
-            <h2 className="section-title leading-tight">
-              Get Rental
-              <br />
-              Deals First
-            </h2>
-          </div>
-        </AnimateIn>
-
-        <AnimateIn variant="fadeRight" delay={0.15} className="flex flex-col justify-center">
-          <p className="mb-6 max-w-md text-sm leading-7 text-brand-muted">
-            Drop your email and we&apos;ll send you long-term rental
-            discounts, new arrivals and seasonal touring routes — no
-            spam, just rides.
-          </p>
-
-          <form
-            onSubmit={handleSubmit}
-            className="flex w-full max-w-lg items-center gap-3 border-t border-b border-brand-line/80 py-2"
-          >
-            <span className="block h-6 w-[2px] bg-brand-orange" />
-            <input
-              type="email"
-              required
-              placeholder="Enter Your Email ID"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 bg-transparent px-2 py-2 text-sm text-brand-dark placeholder:text-brand-muted focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="flex items-center gap-3 rounded-full bg-brand-orange py-2 pl-5 pr-2 text-xs font-bold uppercase tracking-[0.25em] text-white shadow-[0_10px_24px_rgba(199,109,74,0.45)]"
+            <form
+              onSubmit={handleSubmit}
+              className="mx-auto mt-8 flex w-full max-w-md flex-col gap-3 sm:flex-row"
             >
-              {sent ? "Sent" : "Send"}
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-brand-orange">
-                <HiArrowRight />
-              </span>
-            </button>
-          </form>
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                required
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 rounded-full border border-brand-line bg-white px-5 py-3.5 text-sm text-brand-dark placeholder:text-brand-muted focus:border-brand-orange focus:outline-none"
+              />
+              <button type="submit" className="btn-orange shrink-0">
+                {sent ? "Subscribed" : "Subscribe"}
+              </button>
+            </form>
+          </div>
         </AnimateIn>
       </div>
     </section>

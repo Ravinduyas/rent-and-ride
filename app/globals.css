@@ -3,19 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #0b261a;
-}
-
-.bg-navy-grad {
-  background: radial-gradient(120% 80% at 20% 20%, #15462e 0%, #0b261a 60%, #06160f 100%);
-}
-
-.text-silver-grad {
-  background: linear-gradient(180deg, #ffffff 0%, #c7cbd3 60%, #8a8f9b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  --background: #f7f3ea;
+  --foreground: #2e2a1c;
 }
 
 html,
@@ -29,58 +18,128 @@ body {
   @apply mx-auto w-full max-w-container px-6 md:px-10;
 }
 
+/* ── Section headings ─────────────────────────────────── */
+
+/* Headings are set in sentence case and carry the brand orange; the
+   previous uppercase/letter-spaced treatment is gone. */
 .section-title {
-  @apply text-3xl md:text-4xl font-extrabold tracking-wide text-brand-dark uppercase;
+  @apply text-[28px] font-bold leading-[1.18] text-brand-orange md:text-[42px];
 }
 
-.section-eyebrow {
-  @apply mb-4 block h-8 w-[2px] bg-brand-orange;
+.section-sub {
+  @apply mt-4 text-sm leading-7 text-brand-muted;
 }
 
+/* Retired: pages still render the eyebrow bar, which this design has no
+   slot for. Kept as a no-op so no markup has to be hunted down. */
+.section-eyebrow,
 .section-divider {
-  @apply mx-auto h-10 w-[2px] bg-brand-orange;
+  @apply hidden;
 }
 
-.btn-pill {
-  @apply inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wider text-brand-dark shadow-[0_8px_24px_rgba(0,0,0,0.08)];
-}
+/* ── Buttons ──────────────────────────────────────────── */
 
 .btn-orange {
-  @apply inline-flex items-center gap-3 rounded-full bg-brand-orange py-3 pl-6 pr-2 text-xs font-bold uppercase tracking-[0.25em] text-white shadow-[0_10px_24px_rgba(199,109,74,0.45)] transition hover:bg-brand-orangeDeep;
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-orange px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(238,91,43,0.3)] transition hover:bg-brand-orangeDeep;
 }
 
 .btn-orange:active {
-  transform: translateY(3px) scale(0.97);
-  box-shadow: 0 4px 10px rgba(199, 109, 74, 0.3);
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 4px 10px rgba(238, 91, 43, 0.28);
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-3 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:text-brand-amber;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-line bg-white px-7 py-3.5 text-sm font-semibold text-brand-dark transition hover:border-brand-orange hover:text-brand-orange;
 }
 
 .btn-circle {
-  @apply inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-orange text-white;
+  @apply inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-orange text-white shadow-[0_8px_20px_rgba(238,91,43,0.35)] transition hover:bg-brand-orangeDeep;
 }
 
-/* ── 3-D depth utilities ─────────────────────────────── */
+/* ── Surfaces ─────────────────────────────────────────── */
+
+.card {
+  @apply rounded-3xl border border-brand-line bg-white;
+}
+
+.card-soft {
+  @apply rounded-3xl bg-white shadow-[0_10px_40px_rgba(46,42,28,0.06)];
+}
+
+/* The cream body panel that laps over the bottom of a photo banner. */
+.panel-cream {
+  @apply relative z-10 -mt-10 rounded-t-[2.5rem] bg-brand-cream md:-mt-14 md:rounded-t-[3rem];
+}
+
+/* Warm dark gradient — replaces the old navy one behind legacy markup. */
+.bg-navy-grad {
+  background: radial-gradient(120% 80% at 20% 20%, #4c4633 0%, #37321f 60%, #262214 100%);
+}
+
+.text-silver-grad {
+  background: linear-gradient(180deg, #ffffff 0%, #f1ece0 60%, #d8d1c0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Carousels ────────────────────────────────────────── */
+
+/* Softens the left/right ends of a track so cards trail off the edge
+   instead of being cut, as in the destination and review rows. */
+.fade-edges-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 14%,
+    #000 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 14%,
+    #000 86%,
+    transparent 100%
+  );
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Motion ───────────────────────────────────────────── */
 
 @keyframes float-y {
-  0%, 100% { transform: translateY(0px);  }
-  50%       { transform: translateY(-14px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .animate-float {
   animation: float-y 5s ease-in-out infinite;
 }
 
-/* Layered depth shadow */
-.shadow-3d {
-  box-shadow:
-    0 2px 4px  rgba(0, 0, 0, 0.06),
-    0 8px 16px rgba(0, 0, 0, 0.09),
-    0 24px 48px rgba(0, 0, 0, 0.07);
-}
-
-/* Bike wheel spoke spin */
 @keyframes wheel-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-wheel-slow {
@@ -88,10 +147,23 @@ body {
   transform-origin: center;
 }
 
-/* Glassmorphism panel */
+.shadow-3d {
+  box-shadow:
+    0 2px 4px rgba(46, 42, 28, 0.05),
+    0 8px 16px rgba(46, 42, 28, 0.07),
+    0 24px 48px rgba(46, 42, 28, 0.06);
+}
+
 .glass {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-wheel-slow {
+    animation: none;
+  }
 }

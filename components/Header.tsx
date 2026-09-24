@@ -9,11 +9,10 @@ import { asset } from "@/lib/asset";
 
 const NAV = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { label: "Bikes", href: "/bikes" },
   { label: "Three Wheelers", href: "/three-wheelers" },
   { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+  { label: "About Us", href: "/about" },
 ];
 
 export default function Header() {
@@ -21,44 +20,35 @@ export default function Header() {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname?.startsWith(href);
-
-  // Every page banner is now navy → always use silver text in the header.
-  const onDark = true;
-  const wordmark = "text-white";
-  const wordmarkSub = "text-brand-silver/70";
-  const navText = "text-brand-silver hover:text-brand-orange";
+    href === "/" ? pathname === "/" : Boolean(pathname?.startsWith(href));
 
   return (
     <header className="absolute inset-x-0 top-0 z-30">
-      <div className="container-x flex items-center justify-between py-5">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-brand-navy shadow-[0_8px_22px_rgba(11,38,26,0.35)] ring-1 ring-brand-silver/40">
+      <div className="container-x flex items-center justify-between py-6">
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white/15 ring-1 ring-white/30">
             <Image
               src={asset("/logo.svg")}
-              alt="Rent & Ride Weligama"
+              alt=""
               fill
               className="object-contain p-1"
               priority
             />
           </span>
-          <span className="flex flex-col leading-none">
-            <span className={`text-xl font-extrabold tracking-[0.18em] ${wordmark}`}>
-              RENT&amp;RIDE
-            </span>
-            <span className={`mt-1 text-[10px] font-medium tracking-[0.5em] ${wordmarkSub}`}>
-              WELIGAMA
-            </span>
+          <span className="text-xl font-bold tracking-tight text-white">
+            Rent &amp; Ride
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className={`text-xs font-semibold uppercase tracking-[0.2em] transition ${
-                isActive(item.href) ? "text-brand-orange" : navText
+              className={`text-sm transition ${
+                isActive(item.href)
+                  ? "font-semibold text-white underline decoration-2 underline-offset-[10px]"
+                  : "font-normal text-white/80 hover:text-white"
               }`}
             >
               {item.label}
@@ -66,33 +56,35 @@ export default function Header() {
           ))}
         </nav>
 
+        <Link
+          href="/contact"
+          className="hidden rounded-full bg-brand-orange px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(238,91,43,0.35)] transition hover:bg-brand-orangeDeep lg:inline-flex"
+        >
+          Get Started
+        </Link>
+
         <button
           aria-label="Toggle menu"
+          aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className={`md:hidden rounded-full p-2 ${
-            onDark
-              ? "bg-white/10 text-brand-silver ring-1 ring-brand-silver/30"
-              : "bg-white/70 text-brand-navy"
-          }`}
+          className="rounded-full bg-white/15 p-2 text-white ring-1 ring-white/25 lg:hidden"
         >
-          {open ? <HiX size={22} /> : <HiMenu size={22} />}
+          {open ? <HiX size={20} /> : <HiMenu size={20} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden">
-          <div className="container-x flex flex-col gap-3 pb-6">
-            {NAV.map((item) => (
+        <div className="lg:hidden">
+          <div className="container-x flex flex-col gap-2 pb-6">
+            {[...NAV, { label: "Contact", href: "/contact" }].map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-lg px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] ${
+                className={`rounded-xl px-4 py-3 text-sm font-medium backdrop-blur-sm ${
                   isActive(item.href)
                     ? "bg-brand-orange text-white"
-                    : onDark
-                    ? "bg-white/10 text-brand-silver ring-1 ring-brand-silver/20"
-                    : "bg-white/80 text-brand-navy"
+                    : "bg-white/15 text-white ring-1 ring-white/20"
                 }`}
               >
                 {item.label}

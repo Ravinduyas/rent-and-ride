@@ -9,16 +9,27 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          orange: "#C76D4A",
-          orangeDeep: "#A85332",
-          dark: "#0B261A",
-          navy: "#0B261A",
-          navyDeep: "#06160F",
-          navyLight: "#15462E",
-          silver: "#C7CBD3",
-          silverLight: "#E8EBF0",
-          muted: "#7A7A85",
-          line: "#E6E6E6",
+          // Warm cream + bright orange, per the landing page design.
+          orange: "#EE5B2B",
+          orangeDeep: "#D2481C",
+          orangeSoft: "#FBEAE1",
+          amber: "#F2B33D",
+          cream: "#F7F3EA",
+          creamDeep: "#EFE8D9",
+          ink: "#37321F",
+          inkDeep: "#262214",
+          inkSoft: "#4C4633",
+          dark: "#2E2A1C",
+          muted: "#8E887A",
+          line: "#E7E0D2",
+
+          // Legacy keys kept so older markup keeps rendering, repointed
+          // from the previous navy/silver scheme onto the warm palette.
+          navy: "#37321F",
+          navyDeep: "#262214",
+          navyLight: "#4C4633",
+          silver: "#E8E2D5",
+          silverLight: "#F1ECE0",
         },
       },
       fontFamily: {
@@ -26,6 +37,10 @@ const config: Config = {
       },
       maxWidth: {
         container: "1200px",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+        "5xl": "2.75rem",
       },
     },
   },

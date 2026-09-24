@@ -5,6 +5,17 @@
 :root {
   --background: #f2eada;
   --foreground: #2e2a1c;
+
+  /* How far the cream body laps up over the banner photo above it. The hero's
+     scroll button keys off the same value so it keeps straddling the seam
+     however far the panel rides up. */
+  --panel-lap: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --panel-lap: 7rem;
+  }
 }
 
 html,
@@ -72,7 +83,8 @@ body {
 
 /* The cream body panel that laps over the bottom of a photo banner. */
 .panel-cream {
-  @apply relative z-10 -mt-10 rounded-t-[2.5rem] bg-brand-cream md:-mt-14 md:rounded-t-[3rem];
+  @apply relative z-10 rounded-t-[2.5rem] bg-brand-cream md:rounded-t-[3rem];
+  margin-top: calc(var(--panel-lap) * -1);
 }
 
 /* Warm dark gradient — replaces the old navy one behind legacy markup. */

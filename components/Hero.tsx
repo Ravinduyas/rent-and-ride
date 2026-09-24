@@ -23,7 +23,11 @@ export default function Hero() {
           }}
         />
 
-        <div className="container-x flex min-h-[620px] flex-col items-center justify-center pb-28 pt-32 text-center md:min-h-[720px] md:pb-36">
+        {/* Bottom padding tracks the lap so the CTAs always clear the panel. */}
+        <div
+          style={{ paddingBottom: "calc(var(--panel-lap) + 3.5rem)" }}
+          className="container-x flex min-h-[620px] flex-col items-center justify-center pt-32 text-center md:min-h-[720px]"
+        >
           <AnimateIn variant="fadeUp" delay={0.1}>
             <h1 className="max-w-4xl text-[32px] font-bold leading-[1.18] text-white md:text-[50px]">
               Find the next ride to explore
@@ -54,11 +58,13 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Straddles the cream panel's rounded top edge, as in the design. */}
+      {/* Sits centred on the cream panel's rounded top edge. Offsetting by the
+          same --panel-lap the panel uses keeps it on the seam. */}
       <a
         href="#popular"
         aria-label="Skip to popular rides"
-        className="absolute bottom-0 right-6 z-20 flex h-14 w-14 translate-y-1/2 items-center justify-center rounded-full bg-brand-amber text-brand-ink shadow-[0_12px_28px_rgba(242,179,61,0.45)] transition hover:bg-[#e8a92f] md:right-16"
+        style={{ bottom: "var(--panel-lap)" }}
+        className="absolute right-6 z-20 flex h-14 w-14 translate-y-1/2 items-center justify-center rounded-full bg-brand-amber text-brand-ink shadow-[0_12px_28px_rgba(242,179,61,0.45)] transition hover:bg-[#e8a92f] md:right-16"
       >
         <HiArrowDown size={20} />
       </a>

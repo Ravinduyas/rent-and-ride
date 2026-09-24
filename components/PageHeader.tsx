@@ -35,7 +35,11 @@ export default function PageHeader({
         }}
       />
 
-      <div className="container-x flex min-h-[420px] flex-col items-center justify-center pb-24 pt-32 text-center md:min-h-[480px] md:pb-28">
+      {/* Bottom padding tracks the lap so the breadcrumbs clear the panel. */}
+      <div
+        style={{ paddingBottom: "calc(var(--panel-lap) + 2.5rem)" }}
+        className="container-x flex min-h-[420px] flex-col items-center justify-center pt-32 text-center md:min-h-[480px]"
+      >
         <AnimateIn variant="fadeUp" delay={0.1}>
           <h1 className="max-w-2xl text-[30px] font-bold leading-[1.2] text-white md:text-[44px]">
             {title}

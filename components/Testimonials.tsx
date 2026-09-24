@@ -1,7 +1,13 @@
 import { FaStar } from "react-icons/fa";
 import AnimateIn from "./AnimateIn";
 
-const REVIEWS = [
+type Review = {
+  name: string;
+  origin: string;
+  text: string;
+};
+
+const REVIEWS: Review[] = [
   {
     name: "Marco Bianchi",
     origin: "Italy",
@@ -40,6 +46,41 @@ function initials(name: string) {
     .toUpperCase();
 }
 
+function ReviewCard({
+  review,
+  duplicate = false,
+}: {
+  review: Review;
+  duplicate?: boolean;
+}) {
+  return (
+    <li
+      aria-hidden={duplicate || undefined}
+      className="w-[260px] shrink-0 rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(46,42,28,0.06)] md:w-[290px]"
+    >
+      <div className="flex gap-1">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <FaStar key={i} size={12} className="text-brand-amber" />
+        ))}
+      </div>
+
+      <p className="mt-4 text-[13px] leading-6 text-brand-muted">{review.text}</p>
+
+      <div className="mt-6 flex items-center gap-3">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-orangeSoft text-[11px] font-bold text-brand-orange">
+          {initials(review.name)}
+        </span>
+        <div>
+          <p className="text-[13px] font-semibold text-brand-dark">
+            {review.name}
+          </p>
+          <p className="text-[11px] text-brand-muted">{review.origin}</p>
+        </div>
+      </div>
+    </li>
+  );
+}
+
 export default function Testimonials() {
   return (
     <section className="py-16 md:py-24">
@@ -52,35 +93,16 @@ export default function Testimonials() {
       </div>
 
       <AnimateIn variant="fadeUp" delay={0.15}>
-        <div className="fade-edges-x mt-12">
-          <ul className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-[max(1.5rem,calc((100vw-1100px)/2))] pb-4">
+        {/* Scrolls on its own; pauses on hover or keyboard focus. */}
+        <div className="fade-edges-x marquee no-scrollbar mt-12">
+          <ul className="marquee-track flex gap-5 pb-4">
             {REVIEWS.map((r) => (
-              <li
-                key={r.name}
-                className="w-[260px] shrink-0 snap-center rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(46,42,28,0.06)] md:w-[290px]"
-              >
-                <div className="flex gap-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <FaStar key={i} size={12} className="text-brand-amber" />
-                  ))}
-                </div>
-
-                <p className="mt-4 text-[13px] leading-6 text-brand-muted">
-                  {r.text}
-                </p>
-
-                <div className="mt-6 flex items-center gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-orangeSoft text-[11px] font-bold text-brand-orange">
-                    {initials(r.name)}
-                  </span>
-                  <div>
-                    <p className="text-[13px] font-semibold text-brand-dark">
-                      {r.name}
-                    </p>
-                    <p className="text-[11px] text-brand-muted">{r.origin}</p>
-                  </div>
-                </div>
-              </li>
+              <ReviewCard key={r.name} review={r} />
+            ))}
+            {/* Second copy makes the loop seamless; it repeats content that
+                has already been announced, so it stays out of the a11y tree. */}
+            {REVIEWS.map((r) => (
+              <ReviewCard key={`${r.name}-loop`} review={r} duplicate />
             ))}
           </ul>
         </div>

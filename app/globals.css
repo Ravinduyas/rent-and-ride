@@ -108,6 +108,49 @@ body {
   );
 }
 
+/* Continuous auto-scrolling row. The track carries two copies of the list and
+   shifts by exactly one copy's width, so copy 2 lands where copy 1 began and
+   the loop has no visible seam.
+
+   The half-gap correction matters: a track of 2n cards has 2n-1 gaps, so -50%
+   of its width falls half a gap short of one full copy. `--marquee-gap` must
+   match the track's own gap utility. */
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  --marquee-gap: 1.25rem; /* matches gap-5 */
+  width: max-content;
+  animation: marquee-x var(--marquee-duration, 40s) linear infinite;
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - (var(--marquee-gap) / 2)));
+  }
+}
+
+/* Let people stop it to actually read a card. */
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  /* Without the animation the second copy is unreachable, so hand scrolling
+     back to the reader. */
+  .marquee {
+    overflow-x: auto;
+  }
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

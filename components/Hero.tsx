@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HiPlay, HiArrowDown } from "react-icons/hi";
+import { HiPlay } from "react-icons/hi";
 import AnimateIn from "./AnimateIn";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative">
+    // Pinned to the top so the cream body scrolls up over it. Sticky rather
+    // than fixed: it stays in flow, so no spacer is needed and it releases
+    // naturally at the end of <main>.
+    <section id="home" className="sticky top-0">
       <div className="relative isolate min-h-[620px] overflow-hidden md:min-h-[720px]">
         <Image
           src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=2400&q=80"
@@ -58,16 +61,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Sits centred on the cream panel's rounded top edge. Offsetting by the
-          same --panel-lap the panel uses keeps it on the seam. */}
-      <a
-        href="#popular"
-        aria-label="Skip to popular rides"
-        style={{ bottom: "var(--panel-lap)" }}
-        className="absolute right-6 z-20 flex h-14 w-14 translate-y-1/2 items-center justify-center rounded-full bg-brand-amber text-brand-ink shadow-[0_12px_28px_rgba(242,179,61,0.45)] transition hover:bg-[#e8a92f] md:right-16"
-      >
-        <HiArrowDown size={20} />
-      </a>
     </section>
   );
 }

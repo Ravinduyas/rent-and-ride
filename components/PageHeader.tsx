@@ -16,7 +16,8 @@ export default function PageHeader({
   image?: string;
 }) {
   return (
-    <section className="relative isolate min-h-[420px] overflow-hidden bg-brand-ink md:min-h-[480px]">
+    // Pinned like the home hero, so the cream body scrolls up over it.
+    <section className="sticky top-0 isolate min-h-[420px] overflow-hidden bg-brand-ink md:min-h-[480px]">
       {image && (
         <Image
           src={image}

@@ -12,6 +12,7 @@ import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import SectionHead, { Accent } from "@/components/SectionHead";
+import { PHOTOS } from "@/data/photos";
 
 const PRINCIPLES = [
   {
@@ -31,21 +32,29 @@ const PRINCIPLES = [
 const PEOPLE = [
   {
     Icon: FaCommentDots,
+    image: PHOTOS.workshop,
+    alt: "The workbench and tool board at the garage",
     title: "Whoever answers the phone",
     body: "Your enquiry doesn't go to a call centre. It reaches the same small team that hands over the keys, which is why the answers tend to be specific.",
   },
   {
     Icon: FaWrench,
+    image: PHOTOS.mechanic,
+    alt: "A mechanic working on a motorbike",
     title: "The mechanics",
     body: "They see every vehicle between rentals and sign it off before it goes out. They're also the ones who come to you if something needs fixing on the road.",
   },
   {
     Icon: FaTruck,
+    image: PHOTOS.scooterCoast,
+    alt: "A rider on the coast road",
     title: "The delivery riders",
     body: "They bring the vehicle to you and collect it afterwards, which means they know the coast road, the shortcuts and which stretches to avoid after dark.",
   },
   {
     Icon: FaHandshake,
+    image: PHOTOS.helmetPrep,
+    alt: "A helmet being cleaned before it goes out",
     title: "The handover",
     body: "Whoever gives you the keys walks you round the vehicle, runs through the controls and rides out with you if you'd like the company.",
   },

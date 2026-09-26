@@ -30,6 +30,11 @@ export const PHOTOS = {
   /** Mechanic crouched over a motorbike with a tool roll spread out. */
   mechanic: u("photo-1636761358757-0a616eb9e17e"),
 
+  /** Workshop interior: tool board, workbench, a bike under warm red light. */
+  workshop: u("photo-1649399337655-95831ce49281"),
+  /** Someone sat in a workshop cleaning a helmet, bike alongside. */
+  helmetPrep: u("photo-1578474005126-89909099fed6"),
+
   /** Row of red and green tuktuks nose-on, local plate visible. */
   tuktukRow: u("photo-1668515977101-61f7abd7a122"),
   /** Two people talking beside a red motorbike at golden hour. */

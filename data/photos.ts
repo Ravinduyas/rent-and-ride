@@ -30,6 +30,11 @@ export const PHOTOS = {
   /** Mechanic crouched over a motorbike with a tool roll spread out. */
   mechanic: u("photo-1636761358757-0a616eb9e17e"),
 
+  /** Row of red and green tuktuks nose-on, local plate visible. */
+  tuktukRow: u("photo-1668515977101-61f7abd7a122"),
+  /** Two people talking beside a red motorbike at golden hour. */
+  talkingByBike: u("photo-1764605514179-dcf0c4d69634"),
+
   /** Dark motorbike in a garage — also used by the vehicle listings. */
   motorbike: u("photo-1558981403-c5f9899a28bc"),
   /** White pedal bike against a dark wall. */

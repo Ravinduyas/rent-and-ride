@@ -21,27 +21,37 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
     `&type=${encodeURIComponent(vehicle.type)}`;
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-[0_10px_30px_rgba(46,42,28,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(46,42,28,0.12)]">
-      <div className="relative m-3 aspect-[4/3] overflow-hidden rounded-2xl">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_rgba(46,42,28,0.14)]">
+      {/* Photo runs to the card edges rather than sitting inset, and carries
+          the two things people scan for: what it is, and what it costs. */}
+      <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={vehicle.image}
           alt={vehicle.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition duration-500 group-hover:scale-105"
+          className="object-cover transition duration-700 group-hover:scale-[1.07]"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-[11px] font-medium text-brand-dark backdrop-blur-sm">
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/45 to-transparent"
+        />
+
+        <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-medium text-brand-dark backdrop-blur-sm">
           {vehicle.type}
         </span>
+
+        <p className="absolute bottom-4 left-4 flex items-baseline gap-1 rounded-full bg-brand-orange px-4 py-1.5 text-white shadow-[0_8px_20px_rgba(238,91,43,0.4)]">
+          <span className="text-[17px] font-bold">${vehicle.pricePerDay}</span>
+          <span className="text-[11px] font-medium opacity-90">/ day</span>
+        </p>
       </div>
 
-      <div className="flex flex-1 flex-col px-6 pb-6 pt-2">
-        <h3 className="text-[15px] font-semibold text-brand-dark">
+      <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
+        <h3 className="text-[17px] font-semibold leading-tight text-brand-dark">
           {vehicle.name}
         </h3>
 
-        {/* Seats and gearbox are structured fields, so they get icons.
-            Everything else is a free-form tag and reads better as a chip. */}
         <dl className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-brand-muted">
           {vehicle.seats && (
             <div className="flex items-center gap-1.5">
@@ -72,29 +82,18 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           </ul>
         )}
 
-        <div className="mt-auto flex items-center justify-between gap-3 border-t border-brand-line pt-5">
-          <p className="text-brand-dark">
-            <span className="text-xl font-bold text-brand-orange">
-              ${vehicle.pricePerDay}
-            </span>
-            <span className="ml-1 text-xs text-brand-muted">/ day</span>
-          </p>
-
-          <Link
-            href={bookHref}
-            /* Every card's link says "Book", so name the vehicle for anyone
-               listening to the links rather than looking at them. */
-            aria-label={`Book the ${vehicle.name}`}
-            className="inline-flex items-center gap-1.5 rounded-full bg-brand-orange px-5 py-2 text-xs font-semibold text-white transition hover:bg-brand-orangeDeep"
-          >
-            Book
-            <HiArrowRight
-              size={12}
-              aria-hidden="true"
-              className="transition-transform group-hover:translate-x-0.5"
-            />
-          </Link>
-        </div>
+        {/* The ::after stretches this link over the whole card, so the card is
+            clickable without nesting a second link inside it. */}
+        <Link
+          href={bookHref}
+          aria-label={`Book the ${vehicle.name}`}
+          className="mt-auto flex items-center justify-between gap-3 border-t border-brand-line pt-5 text-[13px] font-semibold text-brand-dark transition after:absolute after:inset-0 after:content-[''] group-hover:text-brand-orange"
+        >
+          Book this one
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-cream text-brand-orange transition duration-300 group-hover:bg-brand-orange group-hover:text-white">
+            <HiArrowRight size={13} />
+          </span>
+        </Link>
       </div>
     </article>
   );

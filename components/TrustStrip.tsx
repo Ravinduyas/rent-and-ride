@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import {
   FaShieldAlt,
   FaTruckPickup,
@@ -18,6 +19,14 @@ const INCLUDED = [
   { Icon: FaRegCalendarCheck, label: "Free cancellation" },
 ];
 
+/* Sets per copy. The marquee shifts by exactly one copy, so a copy has to be
+   wider than the viewport or a gap appears at the wrap. Five short items fall
+   well short of that on their own: two sets measure ~1960px, which only just
+   clears a 1920px screen, so three keeps ultrawide displays covered too. */
+const SETS_PER_COPY = 3;
+
+const TRACK = Array.from({ length: SETS_PER_COPY * 2 }).flatMap(() => INCLUDED);
+
 export default function TrustStrip() {
   return (
     <section className="pt-14 md:pt-16">
@@ -27,23 +36,38 @@ export default function TrustStrip() {
             Every rental includes
           </p>
         </AnimateIn>
+      </div>
 
-        <AnimateIn variant="fadeUp" delay={0.15}>
-          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 md:justify-between">
-            {INCLUDED.map(({ Icon, label }) => (
+      <AnimateIn variant="fadeUp" delay={0.15}>
+        <div className="fade-edges-x marquee mt-8">
+          <ul
+            className="marquee-track flex items-center gap-12"
+            style={
+              {
+                "--marquee-gap": "3rem",
+                // Duration is distance/speed: one copy is ~2900px, so this
+                // works out at a readable ~45px/s.
+                "--marquee-duration": "65s",
+              } as CSSProperties
+            }
+          >
+            {TRACK.map(({ Icon, label }, i) => (
               <li
-                key={label}
-                className="flex items-center gap-2.5 text-brand-muted"
+                key={`${label}-${i}`}
+                /* Only the first set is announced; the rest exist to make
+                   the loop seamless. */
+                aria-hidden={i >= INCLUDED.length || undefined}
+                className="flex shrink-0 items-center gap-2.5 text-brand-muted"
               >
                 <Icon size={18} className="shrink-0 opacity-70" />
-                <span className="text-xs font-medium md:text-[13px]">
+                <span className="whitespace-nowrap text-xs font-medium md:text-[13px]">
                   {label}
                 </span>
               </li>
             ))}
           </ul>
-        </AnimateIn>
-      </div>
+        </div>
+      </AnimateIn>
     </section>
   );
 }

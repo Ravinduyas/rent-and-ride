@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 import { FaWrench, FaHandshake, FaCommentDots, FaTruck } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
-import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import SectionHead, { Accent } from "@/components/SectionHead";
@@ -211,8 +210,6 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
-
-        <Newsletter />
       </div>
     </>
   );

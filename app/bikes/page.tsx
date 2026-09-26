@@ -1,7 +1,6 @@
 import { FaRoute, FaCity, FaMountain } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
 import VehicleCard from "@/components/VehicleCard";
-import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
@@ -138,8 +137,6 @@ export default function BikesPage() {
           accent="the bikes"
           items={FAQS}
         />
-
-        <Newsletter />
       </div>
     </>
   );

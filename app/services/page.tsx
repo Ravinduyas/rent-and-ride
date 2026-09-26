@@ -7,7 +7,6 @@ import {
   FaIdCard,
 } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
-import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
@@ -189,8 +188,6 @@ export default function ServicesPage() {
             </AnimateIn>
           </div>
         </section>
-
-        <Newsletter />
       </div>
     </>
   );

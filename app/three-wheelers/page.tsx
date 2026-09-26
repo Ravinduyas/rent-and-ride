@@ -1,7 +1,6 @@
 import { FaUmbrella, FaUsers, FaSuitcaseRolling, FaBoxOpen } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
 import VehicleCard from "@/components/VehicleCard";
-import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
@@ -146,8 +145,6 @@ export default function ThreeWheelersPage() {
           accent="three wheelers"
           items={FAQS}
         />
-
-        <Newsletter />
       </div>
     </>
   );

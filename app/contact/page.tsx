@@ -2,6 +2,46 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
 import AnimateIn from "@/components/AnimateIn";
+import FeatureGrid from "@/components/FeatureGrid";
+import Faq from "@/components/Faq";
+
+const NEXT_STEPS = [
+  {
+    title: "We read it properly",
+    body: "Your message reaches the team at the garage, not an inbox nobody watches. If something in it needs clarifying, we'll ask rather than guess.",
+  },
+  {
+    title: "We check what's free",
+    body: "We look at what's actually available for your dates and, if what you asked for is already out, we'll tell you what else would work instead.",
+  },
+  {
+    title: "We reply with a plan",
+    body: "You get the vehicle we'd suggest, what it costs for your dates, and how we'd get it to you — enough to decide on, without having to chase us.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "What should I include in my message?",
+    a: "Your dates, roughly where you'll be, and how many of you there are. That's usually enough for us to come back with something concrete rather than a list of questions.",
+  },
+  {
+    q: "I'd rather send a message than fill in a form.",
+    a: "That's fine — WhatsApp us or call the number above, whichever suits. It reaches the same people, and we don't mind which way you get in touch.",
+  },
+  {
+    q: "Can I just turn up at the garage?",
+    a: "You're welcome to. Messaging ahead means we can have something ready and waiting for you, but plenty of people simply walk in and we sort it out there.",
+  },
+  {
+    q: "I'm not sure what I need yet.",
+    a: "Then describe the trip rather than the vehicle. Tell us where you want to go and who's coming, and we'll suggest what fits — that conversation is the useful part.",
+  },
+  {
+    q: "Do you take bookings for dates a long way out?",
+    a: "Yes, and it's sensible during the busier months. Get in touch with your dates and we'll let you know what we can hold for you.",
+  },
+];
 
 const DETAILS = [
   {
@@ -82,6 +122,15 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
+
+        <FeatureGrid
+          title="What happens after you send it"
+          items={NEXT_STEPS}
+          cols={3}
+          numbered
+        />
+
+        <Faq title="Before you get in touch" items={FAQS} />
 
         {/* Map */}
         <section className="pb-16 md:pb-24">

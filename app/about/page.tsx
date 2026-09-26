@@ -6,9 +6,49 @@ import {
   FaMapMarkedAlt,
   FaHeadset,
 } from "react-icons/fa";
+import { FaWrench, FaHandshake, FaCommentDots, FaTruck } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
 import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
+import FeatureGrid from "@/components/FeatureGrid";
+
+const PRINCIPLES = [
+  {
+    title: "Fix it before it's a problem",
+    body: "A bike that's nearly due a service goes into the workshop, not back out on hire. It costs us a day and saves someone a breakdown a long way from anywhere.",
+  },
+  {
+    title: "Keep the counter short",
+    body: "Nobody flies halfway around the world to read a rental agreement. We keep the paperwork to what's genuinely needed and explain the rest in plain language.",
+  },
+  {
+    title: "Say so when we can't",
+    body: "If a vehicle isn't right for your route, or we haven't got what you asked for, you'll hear that from us rather than discovering it on the road.",
+  },
+];
+
+const PEOPLE = [
+  {
+    Icon: FaCommentDots,
+    title: "Whoever answers the phone",
+    body: "Your enquiry doesn't go to a call centre. It reaches the same small team that hands over the keys, which is why the answers tend to be specific.",
+  },
+  {
+    Icon: FaWrench,
+    title: "The mechanics",
+    body: "They see every vehicle between rentals and sign it off before it goes out. They're also the ones who come to you if something needs fixing on the road.",
+  },
+  {
+    Icon: FaTruck,
+    title: "The delivery riders",
+    body: "They bring the vehicle to you and collect it afterwards, which means they know the coast road, the shortcuts and which stretches to avoid after dark.",
+  },
+  {
+    Icon: FaHandshake,
+    title: "The handover",
+    body: "Whoever gives you the keys walks you round the vehicle, runs through the controls and rides out with you if you'd like the company.",
+  },
+];
 
 const VALUES = [
   {
@@ -126,6 +166,21 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        <FeatureGrid
+          title="How we work"
+          intro="Three habits that shape most of what we do."
+          items={PRINCIPLES}
+          cols={3}
+          numbered
+        />
+
+        <FeatureGrid
+          title="Who you'll actually deal with"
+          intro="It's a small operation, so the people below are usually the same handful of faces."
+          items={PEOPLE}
+          cols={4}
+        />
 
         {/* Stats */}
         <section className="pb-8">

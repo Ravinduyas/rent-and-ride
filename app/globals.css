@@ -163,6 +163,17 @@ body {
   }
 }
 
+/* <details> accordions: drop the native disclosure triangle so the custom
+   toggle is the only affordance. */
+.faq-item > summary {
+  list-style: none;
+}
+
+.faq-item > summary::-webkit-details-marker,
+.faq-item > summary::marker {
+  display: none;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

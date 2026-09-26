@@ -1,8 +1,52 @@
+import { FaRoute, FaCity, FaMountain } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
 import VehicleCard from "@/components/VehicleCard";
 import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
+import FeatureGrid from "@/components/FeatureGrid";
+import Faq from "@/components/Faq";
 import { BIKES } from "@/data/vehicles";
+
+const PROFILES = [
+  {
+    Icon: FaCity,
+    title: "Short hops around town",
+    body: "Beach, market, dinner and back. An automatic scooter is the least effort here — light to park, easy in traffic, and nothing to think about but the throttle.",
+  },
+  {
+    Icon: FaRoute,
+    title: "Days out along the coast",
+    body: "Once you're covering real distance, a geared bike earns its keep. Steadier at speed on the main road, and far more comfortable after an hour in the saddle.",
+  },
+  {
+    Icon: FaMountain,
+    title: "Heading inland and uphill",
+    body: "The climbs into tea country ask more of a bike than the flat coast road does. Take something with torque to spare, and tell us your route so we can check it over first.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "What's the difference between a scooter and a motorbike here?",
+    a: "Scooters are automatic — twist and go, nothing to change. Motorbikes are geared, which takes a little practice but gives you more control on hills and at speed. If you're unsure, start on a scooter.",
+  },
+  {
+    q: "Can two people ride on one bike?",
+    a: "On most of them, yes. Say so when you book and we'll make sure you get a bike with a comfortable pillion seat and a second helmet.",
+  },
+  {
+    q: "Is the bike I pick the exact one I get?",
+    a: "We'll match you to the model you've chosen wherever we can. If it's already out, we'll offer you the closest thing we have and check you're happy before anything is confirmed.",
+  },
+  {
+    q: "What condition are the bikes in?",
+    a: "Every vehicle is checked over and serviced between rentals. If anything doesn't feel right when you take it out, bring it straight back and we'll swap it.",
+  },
+  {
+    q: "Can I take a bike to the other side of the island?",
+    a: "Plenty of riders do. Let us know roughly where you're headed so we can talk through the route with you and make sure the bike is up to it.",
+  },
+];
 
 export const metadata = {
   title: "Bikes — Rent & Ride",
@@ -54,6 +98,18 @@ export default function BikesPage() {
             </div>
           </div>
         </section>
+
+        <FeatureGrid
+          title="Which one suits your trip?"
+          intro="The right bike depends less on the badge than on where you're taking it. A rough guide:"
+          items={PROFILES}
+          cols={3}
+        />
+
+        <Faq
+          title="About the bikes"
+          items={FAQS}
+        />
 
         <Newsletter />
       </div>

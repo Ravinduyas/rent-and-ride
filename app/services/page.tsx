@@ -9,6 +9,46 @@ import {
 import PageHeader from "@/components/PageHeader";
 import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
+import FeatureGrid from "@/components/FeatureGrid";
+import Faq from "@/components/Faq";
+
+const STAGES = [
+  {
+    title: "Before you arrive",
+    body: "We'll talk through what you're planning, suggest a vehicle that fits it, and sort the paperwork and any permit you need — so there's nothing left to arrange once you land.",
+  },
+  {
+    title: "While you're out riding",
+    body: "Route advice when you want it and a phone line that's answered when you need it. If something goes wrong on the road, getting you moving again is our problem, not yours.",
+  },
+  {
+    title: "When you hand it back",
+    body: "Drop it at the garage or have us collect it, wherever you've ended up. We check it over with you there and then, so nothing comes up afterwards.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "Do I have to come to the garage to collect a vehicle?",
+    a: "Only if you'd like to. We deliver to hotels, airports and stations, and we'll collect from wherever you finish. Tell us your plans and we'll work around them.",
+  },
+  {
+    q: "Can I drop the vehicle somewhere other than where I picked it up?",
+    a: "Often, yes — one-way drops are something we arrange regularly. Mention it when you enquire so we can confirm it for the route you have in mind.",
+  },
+  {
+    q: "What does roadside assistance actually cover?",
+    a: "The usual mishaps — a flat tyre, a dead battery, a key that's gone missing. Call us and we'll get someone out to you rather than leaving you to find a mechanic yourself.",
+  },
+  {
+    q: "Can you help with a local riding permit?",
+    a: "Yes, and it's worth asking early. Bring your licence and tell us what you hold, and we'll take you through what's needed.",
+  },
+  {
+    q: "Do you rent to people who aren't tourists?",
+    a: "Of course. Plenty of our vehicles go out to people living and working locally on longer arrangements. Get in touch and tell us what you need.",
+  },
+];
 
 const SERVICES = [
   {
@@ -138,6 +178,16 @@ export default function ServicesPage() {
             </ol>
           </div>
         </section>
+
+        <FeatureGrid
+          title="We're with you for the whole trip"
+          intro="Not just the hour you spend picking the thing up."
+          items={STAGES}
+          cols={3}
+          numbered
+        />
+
+        <Faq title="Common questions" items={FAQS} />
 
         {/* CTA strip */}
         <section className="pb-16 md:pb-20">

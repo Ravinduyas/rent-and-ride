@@ -1,8 +1,57 @@
+import { FaUmbrella, FaUsers, FaSuitcaseRolling, FaBoxOpen } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
 import VehicleCard from "@/components/VehicleCard";
 import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
+import FeatureGrid from "@/components/FeatureGrid";
+import Faq from "@/components/Faq";
 import { TUKTUKS } from "@/data/vehicles";
+
+const USE_CASES = [
+  {
+    Icon: FaUsers,
+    title: "Travelling as a group",
+    body: "A back seat means nobody gets left behind and nobody has to ride solo. It's the difference between one trip together and a convoy of scooters.",
+  },
+  {
+    Icon: FaUmbrella,
+    title: "Riding through the rain",
+    body: "The wet season arrives fast and leaves just as quickly. A roof turns a downpour from the end of your plans into something you sit out and carry on through.",
+  },
+  {
+    Icon: FaSuitcaseRolling,
+    title: "Moving with luggage",
+    body: "Backpacks, surfboard bags and a week's shopping all fit in ways they never will on two wheels. Handy on the day you change accommodation.",
+  },
+  {
+    Icon: FaBoxOpen,
+    title: "Carrying more than people",
+    body: "Our cargo models trade the back seat for a flat bed, which is what you want for a market run or moving anything awkward.",
+  },
+];
+
+const FAQS = [
+  {
+    q: "Is a three wheeler hard to drive?",
+    a: "It's closer to a motorbike than a car — handlebars, not a steering wheel — but it doesn't lean and it won't fall over. Most people have the hang of it within a few minutes. We'll take you out for a practice run before you leave.",
+  },
+  {
+    q: "Do I need a different licence for one?",
+    a: "The requirements aren't the same as for a two-wheeler. Tell us what licence you hold when you enquire and we'll let you know exactly what you need before you commit to anything.",
+  },
+  {
+    q: "How many people can travel in one?",
+    a: "The back seat is built for a small group, with the driver up front. Tell us how many of you there are and we'll point you at a model that fits everyone comfortably.",
+  },
+  {
+    q: "Are they slower than a bike?",
+    a: "Yes, and that's rather the point. They're built for pottering along the coast road with the sides open, not for covering ground quickly. Plan a little more time than you would on two wheels.",
+  },
+  {
+    q: "Can I take one on a long trip?",
+    a: "You can, and some people do exactly that. Talk to us about your route first so we can suggest a model suited to the distance and check it over properly beforehand.",
+  },
+];
 
 export const metadata = {
   title: "Three Wheelers — Rent & Ride",
@@ -54,6 +103,15 @@ export default function ThreeWheelersPage() {
             </div>
           </div>
         </section>
+
+        <FeatureGrid
+          title="When a tuktuk beats a bike"
+          intro="Two wheels aren't always the answer. These are the trips people come back for a three wheeler for:"
+          items={USE_CASES}
+          cols={4}
+        />
+
+        <Faq title="About three wheelers" items={FAQS} />
 
         <Newsletter />
       </div>

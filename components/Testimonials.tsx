@@ -1,5 +1,6 @@
 import { FaStar } from "react-icons/fa";
 import AnimateIn from "./AnimateIn";
+import SectionHead, { Accent } from "./SectionHead";
 
 type Review = {
   name: string;
@@ -56,7 +57,8 @@ function ReviewCard({
   return (
     <li
       aria-hidden={duplicate || undefined}
-      className="w-[260px] shrink-0 rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(46,42,28,0.06)] md:w-[290px]"
+      /* Cream, not white: this section's background is white. */
+      className="w-[260px] shrink-0 rounded-2xl bg-brand-cream p-6 md:w-[290px]"
     >
       <div className="flex gap-1">
         {Array.from({ length: 5 }).map((_, i) => (
@@ -83,13 +85,17 @@ function ReviewCard({
 
 export default function Testimonials() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="bg-white py-20 md:py-28">
       <div className="container-x">
-        <AnimateIn variant="fadeUp">
-          <h2 className="section-title text-center">
-            Loved by riders from over forty countries
-          </h2>
-        </AnimateIn>
+        <SectionHead
+          eyebrow="Riders"
+          title={
+            <>
+              Loved by riders from <Accent>forty countries</Accent>
+            </>
+          }
+          intro="What people tell us after they hand the keys back."
+        />
       </div>
 
       <AnimateIn variant="fadeUp" delay={0.15}>

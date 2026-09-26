@@ -4,6 +4,7 @@ import { HiArrowRight } from "react-icons/hi";
 import { FaMotorcycle, FaBicycle } from "react-icons/fa";
 import { MdElectricRickshaw, MdElectricScooter } from "react-icons/md";
 import AnimateIn from "./AnimateIn";
+import SectionHead, { Accent } from "./SectionHead";
 import { PHOTOS } from "@/data/photos";
 
 const CATEGORIES = [
@@ -43,24 +44,32 @@ const CATEGORIES = [
 
 export default function FleetPreview() {
   return (
-    <section className="py-16 md:py-24">
+    /* White panel: the surrounding sections are cream, so this breaks the run. */
+    <section className="bg-white py-20 md:py-28">
       <div className="container-x">
-        <AnimateIn variant="fadeUp">
-          <h2 className="section-title text-center">
-            Something for every kind of trip
-          </h2>
-          <p className="section-sub mx-auto max-w-lg text-center">
-            Four ways to get around the south coast. Not sure which suits you?
-            Tell us where you're headed and we'll point you at the right one.
-          </p>
-        </AnimateIn>
+        <SectionHead
+          eyebrow="The fleet"
+          title={
+            <>
+              Something for every <Accent>kind of trip</Accent>
+            </>
+          }
+          intro="Four ways to get around the south coast. Not sure which suits you? Tell us where you're headed and we'll point you at the right one."
+        />
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Alternate cards drop down a step, so the row reads as a composition
+            rather than four identical boxes on a line. */}
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map(({ Icon, image, alt, label, body, href }, i) => (
-            <AnimateIn key={label} variant="fadeUp" delay={(i % 4) * 0.1}>
+            <AnimateIn
+              key={label}
+              variant="fadeUp"
+              delay={(i % 4) * 0.1}
+              className={i % 2 === 1 ? "lg:mt-14" : ""}
+            >
               <Link
                 href={href}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-[0_10px_30px_rgba(46,42,28,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(46,42,28,0.1)]"
+                className="group flex h-full flex-col overflow-hidden rounded-3xl bg-brand-cream shadow-[0_10px_30px_rgba(46,42,28,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(46,42,28,0.12)]"
               >
                 <div className="relative m-3 aspect-[4/3] overflow-hidden rounded-2xl">
                   <Image

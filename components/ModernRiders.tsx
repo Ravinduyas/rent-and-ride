@@ -7,6 +7,7 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import AnimateIn from "./AnimateIn";
+import SectionHead, { Accent } from "./SectionHead";
 
 const FEATURES = [
   { Icon: FaMotorcycle, label: "Browse our fleet" },
@@ -17,12 +18,13 @@ const FEATURES = [
 
 export default function ModernRiders() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="overflow-hidden py-20 md:py-28">
       <div className="container-x grid grid-cols-1 items-center gap-14 md:grid-cols-2 md:gap-16">
-        {/* Photo with the overlapping quote card */}
+        {/* Photo runs off the left edge of the page on wide screens, so the
+            composition escapes the container instead of sitting inside it. */}
         <AnimateIn variant="fadeLeft">
-          <div className="relative pb-14 pr-6 md:pb-16">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
+          <div className="relative pb-14 pr-6 md:pb-16 lg:-ml-24 xl:-ml-40">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl lg:rounded-l-none">
               <Image
                 src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=1200&q=80"
                 alt="Riders planning a route together"
@@ -43,10 +45,16 @@ export default function ModernRiders() {
         {/* Copy */}
         <AnimateIn variant="fadeRight" delay={0.1}>
           <div>
-            <h2 className="section-title max-w-md">
-              Rent &amp; Ride for modern riders
-            </h2>
-            <p className="section-sub max-w-md">
+            <SectionHead
+              eyebrow="Why us"
+              layout="stack"
+              title={
+                <>
+                  Built for <Accent>modern riders</Accent>
+                </>
+              }
+            />
+            <p className="mt-5 max-w-md text-sm leading-7 text-brand-muted">
               Our local crew keeps every bike serviced, insured and ready to go
               — so you can build the trip you actually want, backed by people
               who ride these roads daily.

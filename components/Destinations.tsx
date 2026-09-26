@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import AnimateIn from "./AnimateIn";
+import SectionHead, { Accent } from "./SectionHead";
 import { DESTINATIONS } from "@/data/destinations";
 
 const COUNT = DESTINATIONS.length;
@@ -27,17 +28,17 @@ export default function Destinations() {
   const active = DESTINATIONS[index];
 
   return (
-    <section id="popular" className="py-16 md:py-24">
+    <section id="popular" className="py-20 md:py-28">
       <div className="container-x">
-        <AnimateIn variant="fadeUp">
-          <h2 className="section-title mx-auto max-w-2xl text-center">
-            Recommended popular rides
-          </h2>
-          <p className="section-sub mx-auto max-w-md text-center">
-            See the beauty of the south coast easily and safely with Rent
-            &amp; Ride.
-          </p>
-        </AnimateIn>
+        <SectionHead
+          eyebrow="Where people ride"
+          title={
+            <>
+              Popular runs from <Accent>the garage</Accent>
+            </>
+          }
+          intro="See the beauty of the south coast easily and safely with Rent & Ride."
+        />
       </div>
 
       <AnimateIn variant="fadeUp" delay={0.15}>

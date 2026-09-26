@@ -62,7 +62,10 @@ export default function Home() {
         <HowItWorks />
         <Testimonials />
         <Faq
+          layout="split"
+          eyebrow="Before you book"
           title="Questions riders ask us"
+          accent="riders ask us"
           intro="The things people check before booking. Anything else, just message us — we answer every enquiry ourselves."
           items={FAQS}
         />

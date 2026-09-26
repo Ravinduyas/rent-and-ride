@@ -12,6 +12,7 @@ export default function Faq({
   layout = "center",
   eyebrow = "FAQ",
   accent,
+  background = "cream",
 }: {
   title: string;
   intro?: string;
@@ -19,12 +20,17 @@ export default function Faq({
   layout?: "center" | "split";
   eyebrow?: string;
   accent?: string;
+  background?: "cream" | "white";
 }) {
   const rows = (
     <div className="space-y-3">
       {items.map((item, i) => (
         <AnimateIn key={item.q} variant="fadeUp" delay={i * 0.06}>
-          <FaqRow q={item.q} a={item.a} />
+          <FaqRow
+            q={item.q}
+            a={item.a}
+            surface={background === "white" ? "cream" : "white"}
+          />
         </AnimateIn>
       ))}
     </div>
@@ -41,7 +47,9 @@ export default function Faq({
       : { lead: title, tail: "" };
 
     return (
-      <section className="py-20 md:py-28">
+      <section
+        className={`py-20 md:py-28 ${background === "white" ? "bg-white" : ""}`}
+      >
         <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHead

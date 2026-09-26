@@ -85,7 +85,10 @@ function ReviewCard({
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-20 md:py-28">
+    /* overflow-x-clip for the same reason as the carousel: the reveal on the
+       full-bleed track animates rotateX under a perspective and paints wider
+       than the viewport until it settles. */
+    <section className="overflow-x-clip bg-white py-20 md:py-28">
       <div className="container-x">
         <SectionHead
           eyebrow="Riders"

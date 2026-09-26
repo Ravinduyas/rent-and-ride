@@ -11,6 +11,7 @@ import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
+import { Accent } from "@/components/SectionHead";
 
 const STAGES = [
   {
@@ -119,75 +120,53 @@ export default function ServicesPage() {
       />
 
       <div className="panel-cream">
-        {/* Services grid */}
-        <section className="py-16 md:py-24">
-          <div className="container-x">
-            <AnimateIn variant="fadeUp">
-              <h2 className="section-title text-center">
-                Everything we take care of
-              </h2>
-              <p className="section-sub mx-auto max-w-md text-center">
-                Beyond handing you the keys, here&apos;s what comes with a Rent
-                &amp; Ride booking.
-              </p>
-            </AnimateIn>
-
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {SERVICES.map(({ Icon, title, body }, i) => (
-                <AnimateIn key={title} variant="fadeUp" delay={(i % 3) * 0.1}>
-                  <div className="h-full rounded-3xl bg-white p-7 shadow-[0_10px_30px_rgba(46,42,28,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(46,42,28,0.1)]">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-orangeSoft text-brand-orange">
-                      <Icon size={18} />
-                    </span>
-                    <h3 className="mt-5 text-[15px] font-semibold text-brand-dark">
-                      {title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-brand-muted">
-                      {body}
-                    </p>
-                  </div>
-                </AnimateIn>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* How it works */}
-        <section className="pb-16 md:pb-24">
-          <div className="container-x">
-            <AnimateIn variant="fadeUp">
-              <h2 className="section-title text-center">How it works</h2>
-            </AnimateIn>
-
-            <ol className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {STEPS.map((s, i) => (
-                <AnimateIn key={s.title} variant="fadeUp" delay={i * 0.12}>
-                  <li className="relative h-full rounded-3xl bg-white p-7 pt-9 shadow-[0_10px_30px_rgba(46,42,28,0.06)]">
-                    <span className="absolute -top-4 left-7 flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange text-xs font-bold text-white shadow-[0_8px_18px_rgba(238,91,43,0.35)]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="text-[15px] font-semibold text-brand-dark">
-                      {s.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-brand-muted">
-                      {s.body}
-                    </p>
-                  </li>
-                </AnimateIn>
-              ))}
-            </ol>
-          </div>
-        </section>
+        <FeatureGrid
+          eyebrow="What's included"
+          title={
+            <>
+              Everything we <Accent>take care of</Accent>
+            </>
+          }
+          intro="Beyond handing you the keys, here's what comes with a Rent & Ride booking."
+          items={SERVICES}
+          cols={3}
+        />
 
         <FeatureGrid
-          title="We're with you for the whole trip"
+          eyebrow="The process"
+          title={
+            <>
+              From enquiry to <Accent>open road</Accent>
+            </>
+          }
+          intro="Four steps, and none of them involve queuing at a counter."
+          items={STEPS}
+          cols={4}
+          numbered
+          background="white"
+        />
+
+        <FeatureGrid
+          eyebrow="Support"
+          title={
+            <>
+              With you for <Accent>the whole trip</Accent>
+            </>
+          }
           intro="Not just the hour you spend picking the thing up."
           items={STAGES}
           cols={3}
           numbered
+          background="dark"
         />
 
-        <Faq title="Common questions" items={FAQS} />
+        <Faq
+          layout="split"
+          eyebrow="Questions"
+          title="Common questions"
+          accent="questions"
+          items={FAQS}
+        />
 
         {/* CTA strip */}
         <section className="pb-16 md:pb-20">

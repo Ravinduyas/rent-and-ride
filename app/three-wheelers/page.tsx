@@ -5,6 +5,7 @@ import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
+import SectionHead, { Accent } from "@/components/SectionHead";
 import { TUKTUKS } from "@/data/vehicles";
 import { PHOTOS } from "@/data/photos";
 
@@ -81,8 +82,19 @@ export default function ThreeWheelersPage() {
       />
 
       <div className="panel-cream">
-        <section className="py-14 md:py-20">
+        <section className="py-20 md:py-28">
           <div className="container-x">
+            <SectionHead
+              eyebrow="The fleet"
+              title={
+                <>
+                  Tuktuks ready to <Accent>head out</Accent>
+                </>
+              }
+              intro="Passenger and cargo models, by the day, the week or the month. Insurance and roadside support included."
+              className="mb-12"
+            />
+
             {/* Presentational only — the full range is listed below. */}
             <AnimateIn
               variant="fadeDown"
@@ -114,13 +126,26 @@ export default function ThreeWheelersPage() {
         </section>
 
         <FeatureGrid
-          title="When a tuktuk beats a bike"
+          eyebrow="Why three wheels"
+          title={
+            <>
+              When a tuktuk <Accent>beats a bike</Accent>
+            </>
+          }
           intro="Two wheels aren't always the answer. These are the trips people come back for a three wheeler for:"
           items={USE_CASES}
           cols={4}
+          background="white"
+          stagger
         />
 
-        <Faq title="About three wheelers" items={FAQS} />
+        <Faq
+          layout="split"
+          eyebrow="Good to know"
+          title="About three wheelers"
+          accent="three wheelers"
+          items={FAQS}
+        />
 
         <Newsletter />
       </div>

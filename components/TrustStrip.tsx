@@ -29,7 +29,9 @@ const TRACK = Array.from({ length: SETS_PER_COPY * 2 }).flatMap(() => INCLUDED);
 
 export default function TrustStrip() {
   return (
-    <section className="pt-14 md:pt-16">
+    /* overflow-x-clip: the full-bleed track's reveal animates rotateX under a
+       perspective and paints past the viewport edge until it settles. */
+    <section className="overflow-x-clip pt-14 md:pt-16">
       <div className="container-x">
         <AnimateIn variant="fadeIn">
           <p className="text-center text-xs font-medium tracking-[0.18em] text-brand-muted">

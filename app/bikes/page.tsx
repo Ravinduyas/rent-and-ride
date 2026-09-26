@@ -5,6 +5,7 @@ import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
+import SectionHead, { Accent } from "@/components/SectionHead";
 import { BIKES } from "@/data/vehicles";
 import { PHOTOS } from "@/data/photos";
 
@@ -74,8 +75,19 @@ export default function BikesPage() {
       />
 
       <div className="panel-cream">
-        <section className="py-14 md:py-20">
+        <section className="py-20 md:py-28">
           <div className="container-x">
+            <SectionHead
+              eyebrow="The fleet"
+              title={
+                <>
+                  Every bike we have <Accent>out right now</Accent>
+                </>
+              }
+              intro="Daily, weekly and monthly rates. Helmets, locks and insurance come as standard on all of them."
+              className="mb-12"
+            />
+
             {/* Presentational only — the full fleet is listed below. */}
             <AnimateIn
               variant="fadeDown"
@@ -107,14 +119,23 @@ export default function BikesPage() {
         </section>
 
         <FeatureGrid
-          title="Which one suits your trip?"
+          eyebrow="Choosing"
+          title={
+            <>
+              Which one suits <Accent>your trip?</Accent>
+            </>
+          }
           intro="The right bike depends less on the badge than on where you're taking it. A rough guide:"
           items={PROFILES}
           cols={3}
+          background="white"
         />
 
         <Faq
+          layout="split"
+          eyebrow="Good to know"
           title="About the bikes"
+          accent="the bikes"
           items={FAQS}
         />
 

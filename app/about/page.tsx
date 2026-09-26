@@ -11,6 +11,7 @@ import PageHeader from "@/components/PageHeader";
 import Newsletter from "@/components/Newsletter";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
+import SectionHead, { Accent } from "@/components/SectionHead";
 
 const PRINCIPLES = [
   {
@@ -98,10 +99,11 @@ export default function AboutPage() {
 
       <div className="panel-cream">
         {/* Story */}
-        <section className="py-16 md:py-24">
+        <section className="overflow-hidden py-20 md:py-28">
           <div className="container-x grid grid-cols-1 items-center gap-14 md:grid-cols-2 md:gap-16">
             <AnimateIn variant="fadeLeft">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
+              {/* Runs off the left edge on wide screens, as on the home page. */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl lg:-ml-24 lg:rounded-l-none xl:-ml-40">
                 <Image
                   src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=80"
                   alt="Our garage in Weligama"
@@ -114,7 +116,15 @@ export default function AboutPage() {
 
             <AnimateIn variant="fadeRight" delay={0.1}>
               <div>
-                <h2 className="section-title max-w-md">Our story</h2>
+                <SectionHead
+                  eyebrow="Our story"
+                  layout="stack"
+                  title={
+                    <>
+                      Three scooters and a <Accent>handwritten ledger</Accent>
+                    </>
+                  }
+                />
                 <div className="mt-5 max-w-md space-y-5 text-sm leading-7 text-brand-muted">
                   <p>
                     We started Rent &amp; Ride in 2017 with three scooters and a
@@ -137,46 +147,41 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Values */}
-        <section className="py-16 md:py-20">
-          <div className="container-x">
-            <AnimateIn variant="fadeUp">
-              <h2 className="section-title text-center">What you get</h2>
-              <p className="section-sub mx-auto max-w-md text-center">
-                The things we include as standard, on every single rental.
-              </p>
-            </AnimateIn>
-
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {VALUES.map(({ Icon, title, body }, i) => (
-                <AnimateIn key={title} variant="fadeUp" delay={i * 0.1}>
-                  <div className="h-full rounded-3xl bg-white p-7 shadow-[0_10px_30px_rgba(46,42,28,0.06)] transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(46,42,28,0.1)]">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-orangeSoft text-brand-orange">
-                      <Icon size={16} />
-                    </span>
-                    <h3 className="mt-5 text-[15px] font-semibold text-brand-dark">
-                      {title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-brand-muted">
-                      {body}
-                    </p>
-                  </div>
-                </AnimateIn>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <FeatureGrid
-          title="How we work"
-          intro="Three habits that shape most of what we do."
-          items={PRINCIPLES}
-          cols={3}
-          numbered
+          eyebrow="Included"
+          title={
+            <>
+              What you get, <Accent>every time</Accent>
+            </>
+          }
+          intro="The things we include as standard, on every single rental."
+          items={VALUES}
+          cols={4}
+          background="white"
+          stagger
         />
 
         <FeatureGrid
-          title="Who you'll actually deal with"
+          eyebrow="How we work"
+          title={
+            <>
+              Three habits that <Accent>shape the rest</Accent>
+            </>
+          }
+          intro="Most of what we do follows from these."
+          items={PRINCIPLES}
+          cols={3}
+          numbered
+          background="dark"
+        />
+
+        <FeatureGrid
+          eyebrow="The crew"
+          title={
+            <>
+              Who you&apos;ll <Accent>actually deal with</Accent>
+            </>
+          }
           intro="It's a small operation, so the people below are usually the same handful of faces."
           items={PEOPLE}
           cols={4}

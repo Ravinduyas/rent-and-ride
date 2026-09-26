@@ -4,6 +4,7 @@ import ContactForm from "@/components/ContactForm";
 import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
+import SectionHead, { Accent } from "@/components/SectionHead";
 
 const NEXT_STEPS = [
   {
@@ -87,13 +88,19 @@ export default function ContactPage() {
           <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-5">
             {/* Details */}
             <div className="lg:col-span-2">
-              <AnimateIn variant="fadeLeft">
-                <h2 className="section-title">Reach us directly</h2>
-                <p className="section-sub max-w-md">
-                  Prefer to chat? Send a WhatsApp message, drop by the garage,
-                  or call the front desk — we answer every enquiry the same day.
-                </p>
-              </AnimateIn>
+              <SectionHead
+                eyebrow="Get in touch"
+                layout="stack"
+                title={
+                  <>
+                    Reach us <Accent>directly</Accent>
+                  </>
+                }
+              />
+              <p className="mt-5 max-w-md text-sm leading-7 text-brand-muted">
+                Prefer to chat? Send a WhatsApp message, drop by the garage, or
+                call the front desk — we answer every enquiry the same day.
+              </p>
 
               <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {DETAILS.map(({ Icon, title, lines }, i) => (
@@ -124,13 +131,26 @@ export default function ContactPage() {
         </section>
 
         <FeatureGrid
-          title="What happens after you send it"
+          eyebrow="Next"
+          title={
+            <>
+              What happens <Accent>after you send it</Accent>
+            </>
+          }
+          intro="No auto-reply, no ticket number. Here's the actual sequence."
           items={NEXT_STEPS}
           cols={3}
           numbered
+          background="white"
         />
 
-        <Faq title="Before you get in touch" items={FAQS} />
+        <Faq
+          layout="split"
+          eyebrow="Before you write"
+          title="Before you get in touch"
+          accent="get in touch"
+          items={FAQS}
+        />
 
         {/* Map */}
         <section className="pb-16 md:pb-24">

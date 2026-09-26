@@ -28,7 +28,12 @@ export default function Destinations() {
   const active = DESTINATIONS[index];
 
   return (
-    <section id="popular" className="py-20 md:py-28">
+    /* overflow-x-clip because the reveal on the full-bleed carousel below
+       animates rotateX under a perspective, which paints the element wider
+       than the viewport until it settles and would otherwise put a horizontal
+       scrollbar on the page at load. Clip rather than hidden: hidden would
+       create a scroll container and break the sticky hero. */
+    <section id="popular" className="overflow-x-clip py-20 md:py-28">
       <div className="container-x">
         <SectionHead
           eyebrow="Where people ride"

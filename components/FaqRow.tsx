@@ -3,14 +3,29 @@
 import { useId, useState } from "react";
 import { HiPlus } from "react-icons/hi";
 
-export default function FaqRow({ q, a }: { q: string; a: string }) {
+export default function FaqRow({
+  q,
+  a,
+  /** Rows sit on cream when the section itself is white. */
+  surface = "white",
+}: {
+  q: string;
+  a: string;
+  surface?: "white" | "cream";
+}) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const panelId = `${id}-panel`;
   const buttonId = `${id}-button`;
 
   return (
-    <div className="faq-item overflow-hidden rounded-2xl bg-white shadow-[0_10px_30px_rgba(46,42,28,0.06)]">
+    <div
+      className={`faq-item overflow-hidden rounded-2xl ${
+        surface === "cream"
+          ? "bg-brand-cream"
+          : "bg-white shadow-[0_10px_30px_rgba(46,42,28,0.06)]"
+      }`}
+    >
       <h3>
         <button
           id={buttonId}

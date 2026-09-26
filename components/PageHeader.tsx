@@ -16,8 +16,13 @@ export default function PageHeader({
   image?: string;
 }) {
   return (
-    // Pinned like the home hero, so the cream body scrolls up over it.
-    <section className="sticky top-0 isolate min-h-[420px] overflow-hidden bg-brand-ink md:min-h-[480px]">
+    /* Pinned like the home hero, so the cream body scrolls up over it.
+       The desktop height is deliberately generous: at 480px this was a 2.8:1
+       letterbox against 3:2 photos and threw away nearly half the image, so
+       subjects came out magnified and cropped through. Mobile stays shorter —
+       there the box is taller than it is wide, so extra height crops width
+       instead and makes things worse. */
+    <section className="sticky top-0 isolate min-h-[420px] overflow-hidden bg-brand-ink md:min-h-[640px]">
       {image && (
         <Image
           src={image}
@@ -39,7 +44,7 @@ export default function PageHeader({
       {/* Bottom padding tracks the lap so the breadcrumbs clear the panel. */}
       <div
         style={{ paddingBottom: "calc(var(--panel-lap) + 2.5rem)" }}
-        className="container-x flex min-h-[420px] flex-col items-center justify-center pt-32 text-center md:min-h-[480px]"
+        className="container-x flex min-h-[420px] flex-col items-center justify-center pt-32 text-center md:min-h-[640px]"
       >
         <AnimateIn variant="fadeUp" delay={0.1}>
           <h1 className="max-w-2xl text-[30px] font-bold leading-[1.2] text-white md:text-[44px]">

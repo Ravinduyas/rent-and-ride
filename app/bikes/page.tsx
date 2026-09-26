@@ -6,20 +6,27 @@ import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
 import { BIKES } from "@/data/vehicles";
+import { PHOTOS } from "@/data/photos";
 
 const PROFILES = [
   {
     Icon: FaCity,
+    image: PHOTOS.scooterTown,
+    alt: "Two riders on a scooter passing a roadside building",
     title: "Short hops around town",
     body: "Beach, market, dinner and back. An automatic scooter is the least effort here — light to park, easy in traffic, and nothing to think about but the throttle.",
   },
   {
     Icon: FaRoute,
+    image: PHOTOS.scooterSunset,
+    alt: "Scooters on a palm-lined coast road at sunset",
     title: "Days out along the coast",
     body: "Once you're covering real distance, a geared bike earns its keep. Steadier at speed on the main road, and far more comfortable after an hour in the saddle.",
   },
   {
     Icon: FaMountain,
+    image: PHOTOS.scooterCoast,
+    alt: "A scooter on a coastal lane with a green headland beyond",
     title: "Heading inland and uphill",
     body: "The climbs into tea country ask more of a bike than the flat coast road does. Take something with torque to spare, and tell us your route so we can check it over first.",
   },

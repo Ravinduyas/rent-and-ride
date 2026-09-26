@@ -1,4 +1,5 @@
 import type { Vehicle } from "@/components/VehicleCard";
+import { PHOTOS } from "./photos";
 
 // Only Unsplash photo IDs verified to be live are used below.
 // Some entries duplicate photos — replace with local /public/images/...
@@ -72,11 +73,13 @@ export const BIKES: Vehicle[] = [
   },
 ];
 
+// These listings used the motorbike photos above, so the three wheeler page
+// was advertising tuktuks with pictures of sport bikes and a pedal bike.
 export const TUKTUKS: Vehicle[] = [
   {
     name: "Bajaj RE 4S",
     type: "Three Wheeler",
-    image: IMG.redBike,
+    image: PHOTOS.tuktukRoad,
     pricePerDay: 28,
     seats: 3,
     transmission: "Manual",
@@ -85,7 +88,7 @@ export const TUKTUKS: Vehicle[] = [
   {
     name: "Bajaj Maxima Z",
     type: "Three Wheeler",
-    image: IMG.harley,
+    image: PHOTOS.tuktukLane,
     pricePerDay: 30,
     seats: 3,
     transmission: "Manual",
@@ -94,7 +97,7 @@ export const TUKTUKS: Vehicle[] = [
   {
     name: "Piaggio Ape City",
     type: "Three Wheeler",
-    image: IMG.ktm,
+    image: PHOTOS.tuktukShops,
     pricePerDay: 26,
     seats: 3,
     transmission: "Manual",
@@ -103,7 +106,7 @@ export const TUKTUKS: Vehicle[] = [
   {
     name: "TVS King Deluxe",
     type: "Three Wheeler",
-    image: IMG.redBike,
+    image: PHOTOS.tuktukLighthouse,
     pricePerDay: 29,
     seats: 3,
     transmission: "Manual",
@@ -112,7 +115,7 @@ export const TUKTUKS: Vehicle[] = [
   {
     name: "Mahindra Alfa",
     type: "Cargo Tuktuk",
-    image: IMG.harley,
+    image: PHOTOS.tuktukShops,
     pricePerDay: 34,
     seats: 2,
     transmission: "Manual",
@@ -121,7 +124,7 @@ export const TUKTUKS: Vehicle[] = [
   {
     name: "Atul Gemini",
     type: "Three Wheeler",
-    image: IMG.bicycle,
+    image: PHOTOS.tuktukRoad,
     pricePerDay: 27,
     seats: 3,
     transmission: "Manual",

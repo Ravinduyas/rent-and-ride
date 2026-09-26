@@ -6,25 +6,34 @@ import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
 import { TUKTUKS } from "@/data/vehicles";
+import { PHOTOS } from "@/data/photos";
 
 const USE_CASES = [
   {
     Icon: FaUsers,
+    image: PHOTOS.tuktukRoad,
+    alt: "A tuktuk and a motorbike on a winding road",
     title: "Travelling as a group",
     body: "A back seat means nobody gets left behind and nobody has to ride solo. It's the difference between one trip together and a convoy of scooters.",
   },
   {
     Icon: FaUmbrella,
+    image: PHOTOS.tuktukLane,
+    alt: "A tuktuk on a narrow lane after dark",
     title: "Riding through the rain",
     body: "The wet season arrives fast and leaves just as quickly. A roof turns a downpour from the end of your plans into something you sit out and carry on through.",
   },
   {
     Icon: FaSuitcaseRolling,
+    image: PHOTOS.tuktukShops,
+    alt: "Tuktuks parked outside shops with luggage on the roof rack",
     title: "Moving with luggage",
     body: "Backpacks, surfboard bags and a week's shopping all fit in ways they never will on two wheels. Handy on the day you change accommodation.",
   },
   {
     Icon: FaBoxOpen,
+    image: PHOTOS.tuktukLighthouse,
+    alt: "A tuktuk parked below the Galle Fort lighthouse",
     title: "Carrying more than people",
     body: "Our cargo models trade the back seat for a flat bed, which is what you want for a market run or moving anything awkward.",
   },

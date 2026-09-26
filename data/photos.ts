@@ -1,0 +1,37 @@
+/**
+ * Photos used in the content sections.
+ *
+ * Every entry below has been opened and looked at, and the comment says what
+ * is actually in the frame. An Unsplash ID that merely loads is not enough —
+ * the search results for "tuk tuk sri lanka" include plenty of photos that
+ * are neither. Check the image before adding to this list.
+ */
+
+const u = (id: string, w = 900) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+export const PHOTOS = {
+  /** Black tuktuk parked below the Galle Fort lighthouse, palms behind. */
+  tuktukLighthouse: u("photo-1704797390325-b057758d8c3d"),
+  /** Green tuktuk and a motorbike on a winding road, Buddhist flag roadside. */
+  tuktukRoad: u("photo-1776331246147-2ddb249b92ec"),
+  /** Two tuktuks outside shops with Sinhala signage, luggage on the roof rack. */
+  tuktukShops: u("photo-1583155381750-1c5d2634bd3f"),
+  /** Green tuktuk on a narrow lane at night, Sri Lankan plate. */
+  tuktukLane: u("photo-1744330589495-2b3c5a3060d9"),
+
+  /** Two riders on a scooter passing a red-roofed roadside building. */
+  scooterTown: u("photo-1785227987935-28a01aeb5a51"),
+  /** Scooters on a palm-lined coast road at golden hour. */
+  scooterSunset: u("photo-1770242214397-3ae822393e4e"),
+  /** Scooter on a coastal lane, green headland and sea beyond. */
+  scooterCoast: u("photo-1769192403325-57d75e6582df"),
+
+  /** Mechanic crouched over a motorbike with a tool roll spread out. */
+  mechanic: u("photo-1636761358757-0a616eb9e17e"),
+
+  /** Dark motorbike in a garage — also used by the vehicle listings. */
+  motorbike: u("photo-1558981403-c5f9899a28bc"),
+  /** White pedal bike against a dark wall. */
+  pedalBike: u("photo-1485965120184-e220f721d03e"),
+} as const;

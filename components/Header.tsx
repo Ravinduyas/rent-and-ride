@@ -45,7 +45,7 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className={`text-sm transition ${
+              className={`py-2 text-sm transition ${
                 isActive(item.href)
                   ? "font-semibold text-white underline decoration-2 underline-offset-[10px]"
                   : "font-normal text-white/80 hover:text-white"

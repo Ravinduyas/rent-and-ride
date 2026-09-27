@@ -111,7 +111,7 @@ export default function AboutPage() {
           <div className="container-x grid grid-cols-1 items-center gap-14 md:grid-cols-2 md:gap-16">
             <AnimateIn variant="fadeLeft">
               {/* Runs off the left edge on wide screens, as on the home page. */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl lg:-ml-24 lg:rounded-l-none xl:-ml-40">
+              <div className="bleed-left relative aspect-[4/3] overflow-hidden rounded-3xl lg:rounded-l-none">
                 <Image
                   src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=80"
                   alt="Our garage in Weligama"

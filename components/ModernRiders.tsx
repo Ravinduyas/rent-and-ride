@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import AnimateIn from "./AnimateIn";
 import SectionHead, { Accent } from "./SectionHead";
+import { PHOTOS } from "@/data/photos";
 
 const FEATURES = [
   { Icon: FaMotorcycle, label: "Browse our fleet" },
@@ -20,21 +21,22 @@ export default function ModernRiders() {
   return (
     <section className="overflow-hidden py-20 md:py-28">
       <div className="container-x grid grid-cols-1 items-center gap-14 md:grid-cols-2 md:gap-16">
-        {/* Photo runs off the left edge of the page on wide screens, so the
-            composition escapes the container instead of sitting inside it. */}
         <AnimateIn variant="fadeLeft">
-          <div className="relative pb-14 pr-6 md:pb-16 lg:-ml-24 xl:-ml-40">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl lg:rounded-l-none">
+          <div className="relative pb-14 md:pb-16">
+            {/* Only the photo bleeds off the left edge. The negative margin used
+                to sit on this wrapper, which dragged the quote card off-screen
+                with it. */}
+            <div className="bleed-left relative aspect-[5/4] overflow-hidden rounded-3xl lg:rounded-l-none">
               <Image
-                src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=1200&q=80"
-                alt="Riders planning a route together"
+                src={PHOTOS.beachRider}
+                alt="A rider on a motorbike on the beach at golden hour"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+                className="object-cover object-[center_55%]"
               />
             </div>
 
-            <div className="absolute bottom-0 left-6 max-w-[280px] rounded-2xl bg-white p-5 shadow-[0_16px_40px_rgba(46,42,28,0.12)]">
+            <div className="absolute bottom-0 left-6 max-w-[min(280px,calc(100%-3rem))] rounded-2xl bg-white p-5 shadow-[0_16px_40px_rgba(46,42,28,0.12)]">
               <p className="text-sm font-semibold leading-6 text-brand-dark">
                 Exceptional rides, every time. Start planning your trip today.
               </p>

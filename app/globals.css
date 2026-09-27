@@ -32,6 +32,24 @@ body {
   @apply mx-auto w-full max-w-container px-6 md:px-10 2xl:max-w-[1320px];
 }
 
+/* Pulls a block in the first column of a .container-x out to the left edge of
+   the viewport, whatever the width: the gutter beside the container plus its
+   2.5rem padding. Leave width unset — a block with auto width grows into the
+   negative margin, whereas w-full would just slide sideways and leave a gap
+   on its right. The half-scrollbar that 100vw overshoots by is clipped by the
+   section. */
+@media (min-width: 1024px) {
+  .bleed-left {
+    margin-left: calc(-1 * (max((100vw - 1200px) / 2, 0px) + 2.5rem));
+  }
+}
+
+@media (min-width: 1536px) {
+  .bleed-left {
+    margin-left: calc(-1 * (max((100vw - 1320px) / 2, 0px) + 2.5rem));
+  }
+}
+
 /* ── Section headings ─────────────────────────────────── */
 
 /* Headings are set in sentence case and carry the brand orange; the

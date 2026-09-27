@@ -35,6 +35,9 @@ export const PHOTOS = {
   /** Someone sat in a workshop cleaning a helmet, bike alongside. */
   helmetPrep: u("photo-1578474005126-89909099fed6"),
 
+  /** Rider sat on a motorbike on the beach at golden hour, surf behind. */
+  beachRider: u("photo-1560199887-55dcf2cc769f", 1200),
+
   /** Row of red and green tuktuks nose-on, local plate visible. */
   tuktukRow: u("photo-1668515977101-61f7abd7a122"),
   /** Two people talking beside a red motorbike at golden hour. */

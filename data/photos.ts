@@ -35,6 +35,17 @@ export const PHOTOS = {
   /** Someone sat in a workshop cleaning a helmet, bike alongside. */
   helmetPrep: u("photo-1578474005126-89909099fed6"),
 
+  /** Rows of scooters with helmets hung on them, in a lot under trees. */
+  scooterHelmets: u("photo-1734313519842-bab001a0cf00"),
+  /** Big lot of parked scooters under tropical trees, white one in front. */
+  scooterLot: u("photo-1716253871008-3ca31dbe93a0"),
+  /** Rider in a black full-face helmet with an orange visor, dark ground. */
+  riderHelmet: u("photo-1611004061856-ccc3cbe944b2"),
+  /** Someone on a phone call, low sun behind, water in the distance. */
+  phoneCall: u("photo-1516055619834-586f8c75d1de"),
+  /** Close-up of a folded paper map, shallow focus. */
+  routeMap: u("photo-1532154066703-3973764c81fe"),
+
   /** Rider sat on a motorbike on the beach at golden hour, surf behind. */
   beachRider: u("photo-1560199887-55dcf2cc769f", 1200),
 

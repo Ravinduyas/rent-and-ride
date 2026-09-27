@@ -11,17 +11,24 @@ import AnimateIn from "@/components/AnimateIn";
 import FeatureGrid from "@/components/FeatureGrid";
 import Faq from "@/components/Faq";
 import { Accent } from "@/components/SectionHead";
+import { PHOTOS } from "@/data/photos";
 
 const STAGES = [
   {
+    image: PHOTOS.routeMap,
+    alt: "A folded paper map",
     title: "Before you arrive",
     body: "We'll talk through what you're planning, suggest a vehicle that fits it, and sort the paperwork and any permit you need — so there's nothing left to arrange once you land.",
   },
   {
+    image: PHOTOS.tuktukRoad,
+    alt: "A tuktuk and a motorbike on a winding road",
     title: "While you're out riding",
     body: "Route advice when you want it and a phone line that's answered when you need it. If something goes wrong on the road, getting you moving again is our problem, not yours.",
   },
   {
+    image: PHOTOS.helmetPrep,
+    alt: "A helmet being cleaned in the workshop",
     title: "When you hand it back",
     body: "Drop it at the garage or have us collect it, wherever you've ended up. We check it over with you there and then, so nothing comes up afterwards.",
   },
@@ -85,18 +92,26 @@ const SERVICES = [
 
 const STEPS = [
   {
+    image: PHOTOS.scooterHelmets,
+    alt: "Rows of scooters with helmets ready on them",
     title: "Pick a vehicle",
     body: "Browse the fleet and choose what fits your trip and your budget.",
   },
   {
+    image: PHOTOS.phoneCall,
+    alt: "Someone making a phone call",
     title: "Send a request",
     body: "Tell us your pickup date and location. We confirm within the hour.",
   },
   {
+    image: PHOTOS.talkingByBike,
+    alt: "Two people talking beside a motorbike",
     title: "Quick paperwork",
     body: "Show your ID and licence, sign the agreement, pay the deposit.",
   },
   {
+    image: PHOTOS.scooterSunset,
+    alt: "Riders on a palm-lined coast road at sunset",
     title: "Ride away",
     body: "Take a short test run with us, then the road is yours.",
   },

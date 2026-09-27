@@ -75,12 +75,13 @@ export default function FeatureGrid({
               delay={(i % cols) * 0.1}
               className={stagger && i % 2 === 1 ? "lg:mt-14" : ""}
             >
+              {/* No overflow-hidden on the card: the step badge deliberately
+                  hangs above its top edge, and clipping cut it to a half
+                  circle. The photo clips itself. */}
               <div
-                className={`group h-full overflow-hidden rounded-3xl transition hover:-translate-y-1 ${
+                className={`group relative h-full rounded-3xl transition hover:-translate-y-1 ${
                   SURFACE[background]
-                } ${numbered ? "relative" : ""} ${image ? "" : "p-7"} ${
-                  numbered ? "pt-9" : ""
-                }`}
+                } ${image ? "" : "p-7"} ${numbered && !image ? "pt-9" : ""}`}
               >
                 {image && (
                   <div className="relative m-3 aspect-[4/3] overflow-hidden rounded-2xl">
@@ -91,14 +92,22 @@ export default function FeatureGrid({
                       sizes={`(max-width: 640px) 100vw, ${Math.round(100 / cols)}vw`}
                       className="object-cover transition duration-500 group-hover:scale-105"
                     />
+                    {/* With a photo, the step number sits on it instead. */}
+                    {numbered && (
+                      <span className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange text-xs font-bold text-white shadow-[0_8px_18px_rgba(238,91,43,0.35)]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    )}
                   </div>
                 )}
 
                 <div className={image ? "px-6 pb-6 pt-2" : ""}>
                   {numbered ? (
-                    <span className="absolute -top-4 left-7 flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange text-xs font-bold text-white shadow-[0_8px_18px_rgba(238,91,43,0.35)]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                    !image && (
+                      <span className="absolute -top-4 left-7 flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange text-xs font-bold text-white shadow-[0_8px_18px_rgba(238,91,43,0.35)]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    )
                   ) : (
                     /* The photo carries the card once there is one, so the
                        icon badge would just be noise. */

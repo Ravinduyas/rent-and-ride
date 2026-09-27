@@ -62,21 +62,29 @@ const PEOPLE = [
 const VALUES = [
   {
     Icon: FaShieldAlt,
+    image: PHOTOS.riderHelmet,
+    alt: "A rider in a full-face helmet",
     title: "Fully insured",
     body: "Every rental is covered by third-party insurance and helmets are included free.",
   },
   {
     Icon: FaTools,
+    image: PHOTOS.scooterLot,
+    alt: "A lot of scooters parked under trees",
     title: "Serviced fleet",
     body: "Each vehicle is checked and serviced between rentals — no surprises mid-trip.",
   },
   {
     Icon: FaMapMarkedAlt,
+    image: PHOTOS.scooterSunset,
+    alt: "Riders on a palm-lined coast road at sunset",
     title: "Island delivery",
     body: "We deliver to hotels, airports and stations across the island, including one-way drops.",
   },
   {
     Icon: FaHeadset,
+    image: PHOTOS.phoneCall,
+    alt: "Someone making a phone call",
     title: "24/7 support",
     body: "Roadside help, paperwork, route advice — message us anytime on WhatsApp.",
   },

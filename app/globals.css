@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #f2eada;
+  --background: #eceee3;
   --foreground: #2e2a1c;
 
   /* How far the cream body laps up over the banner photo above it. The hero's

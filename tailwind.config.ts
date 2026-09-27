@@ -9,15 +9,16 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          // Warm cream + bright orange, per the landing page design.
+          // Pale sage + bright orange. The key keeps its `cream` name so
+          // existing markup doesn't have to change.
           orange: "#EE5B2B",
           orangeDeep: "#D2481C",
           orangeSoft: "#FBEAE1",
           amber: "#F2B33D",
-          cream: "#F2EADA",
+          cream: "#ECEEE3",
           // Sits directly on `cream` (footer social chips), so it has to stay
           // a clear step darker than it.
-          creamDeep: "#EAE0CB",
+          creamDeep: "#DDE1CF",
           ink: "#37321F",
           inkDeep: "#262214",
           inkSoft: "#4C4633",
@@ -25,7 +26,7 @@ const config: Config = {
           muted: "#8E887A",
           // Borders on white cards, but also the footer divider and the
           // carousel's inactive dots, which sit on `cream`.
-          line: "#DFD5C0",
+          line: "#D5DAC6",
 
           // Legacy keys kept so older markup keeps rendering, repointed
           // from the previous navy/silver scheme onto the warm palette.

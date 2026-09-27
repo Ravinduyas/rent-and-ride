@@ -61,12 +61,14 @@ export default function Footer() {
                 <h3 className="text-[13px] font-semibold text-brand-dark">
                   {col.heading}
                 </h3>
-                <ul className="mt-5 space-y-3">
+                {/* min-h-7 gives each link a 28px tap target; the list gap is
+                    reduced to match so the column keeps its old rhythm. */}
+                <ul className="mt-4 space-y-1">
                   {col.links.map((l) => (
                     <li key={l.label}>
                       <Link
                         href={l.href}
-                        className="text-[13px] text-brand-muted transition hover:text-brand-orange"
+                        className="inline-flex min-h-7 items-center text-[13px] text-brand-muted transition hover:text-brand-orange"
                       >
                         {l.label}
                       </Link>

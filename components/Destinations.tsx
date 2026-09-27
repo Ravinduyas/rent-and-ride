@@ -50,7 +50,7 @@ export default function Destinations() {
         <div className="relative mt-12 md:mt-14">
           {/* Card stack. Cards overlap heavily so the off-centre ones show
               only as slivers, and the outermost are cropped by the section. */}
-          <div className="relative mx-auto h-[280px] w-full max-w-container overflow-hidden md:h-[360px]">
+          <div className="relative mx-auto h-[280px] w-full max-w-container overflow-hidden md:h-[360px] 2xl:max-w-[1320px]">
             {DESTINATIONS.map((d, i) => {
               const offset = offsetOf(i);
               const distance = Math.abs(offset);
@@ -133,19 +133,27 @@ export default function Destinations() {
           </p>
         </div>
 
-        <div className="mt-8 flex justify-center gap-2">
+        {/* The visible dot stays small, but each button is a 24px square so it
+            can actually be hit with a thumb. */}
+        <div className="mt-6 flex justify-center">
           {DESTINATIONS.map((d, i) => (
             <button
               key={d.name}
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`Go to ${d.name}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === index
-                  ? "w-7 bg-brand-orange"
-                  : "w-1.5 bg-brand-line hover:bg-brand-orange/50"
-              }`}
-            />
+              aria-current={i === index ? "true" : undefined}
+              className="group flex h-6 min-w-6 items-center justify-center px-1"
+            >
+              <span
+                aria-hidden="true"
+                className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  i === index
+                    ? "w-7 bg-brand-orange"
+                    : "w-1.5 bg-brand-line group-hover:bg-brand-orange/50"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

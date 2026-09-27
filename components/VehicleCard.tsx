@@ -39,13 +39,13 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/45 to-transparent"
         />
 
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[10px] font-medium text-brand-dark backdrop-blur-sm">
+        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-0.5 text-[11px] font-medium text-brand-dark backdrop-blur-sm">
           {vehicle.type}
         </span>
 
         <p className="absolute bottom-3 left-3 flex items-baseline gap-1 rounded-full bg-brand-orange px-3 py-1 text-white shadow-[0_6px_16px_rgba(238,91,43,0.4)]">
           <span className="text-[15px] font-bold">${vehicle.pricePerDay}</span>
-          <span className="text-[10px] font-medium opacity-90">/ day</span>
+          <span className="text-[11px] font-medium opacity-90">/ day</span>
         </p>
       </div>
 
@@ -76,7 +76,7 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
             {vehicle.highlights.map((h, i) => (
               <li
                 key={`${h}-${i}`}
-                className="rounded-full bg-brand-cream px-2 py-0.5 text-[10px] text-brand-muted"
+                className="rounded-full bg-brand-cream px-2 py-0.5 text-[11px] text-brand-muted"
               >
                 {h}
               </li>

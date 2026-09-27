@@ -22,7 +22,9 @@ export default function PageHeader({
        subjects came out magnified and cropped through. Mobile stays shorter —
        there the box is taller than it is wide, so extra height crops width
        instead and makes things worse. */
-    <section className="sticky top-0 isolate min-h-[420px] overflow-hidden bg-brand-ink md:min-h-[640px]">
+    /* Past 2xl a fixed 640px turns back into a letterbox (37% of the photo
+       survives at 2560px), so height follows width there instead. */
+    <section className="sticky top-0 isolate min-h-[420px] overflow-hidden bg-brand-ink md:min-h-[640px] 2xl:min-h-[max(720px,36vw)]">
       {image && (
         <Image
           src={image}
@@ -44,10 +46,10 @@ export default function PageHeader({
       {/* Bottom padding tracks the lap so the breadcrumbs clear the panel. */}
       <div
         style={{ paddingBottom: "calc(var(--panel-lap) + 2.5rem)" }}
-        className="container-x flex min-h-[420px] flex-col items-center justify-center pt-32 text-center md:min-h-[640px]"
+        className="container-x flex min-h-[420px] flex-col items-center justify-center pt-32 text-center md:min-h-[640px] 2xl:min-h-[max(720px,36vw)]"
       >
         <AnimateIn variant="fadeUp" delay={0.1}>
-          <h1 className="max-w-2xl text-[30px] font-bold leading-[1.2] text-white md:text-[44px]">
+          <h1 className="max-w-2xl text-[30px] font-bold leading-[1.2] text-white md:text-[44px] 2xl:max-w-3xl 2xl:text-[56px]">
             {title}
           </h1>
         </AnimateIn>
@@ -69,7 +71,10 @@ export default function PageHeader({
               {crumbs.map((c, i) => (
                 <span key={c.label} className="flex items-center gap-2">
                   {c.href ? (
-                    <Link href={c.href} className="hover:text-white">
+                    <Link
+                      href={c.href}
+                      className="inline-flex min-h-6 items-center hover:text-white"
+                    >
                       {c.label}
                     </Link>
                   ) : (

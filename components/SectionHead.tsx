@@ -43,8 +43,12 @@ export default function SectionHead({
             <span aria-hidden="true" className={`h-px w-10 ${ruleColor}`} />
           </p>
 
+          {/* Stepped scale rather than one jump at md: between 768 and 1023px
+              this often sits in a half-width column, where 54px pushed long
+              words like "handwritten" out of their box. text-balance evens
+              out the line breaks at every size. */}
           <h2
-            className={`mt-5 max-w-[15ch] text-[34px] font-bold leading-[1.02] tracking-[-0.02em] md:text-[54px] ${titleColor}`}
+            className={`mt-5 max-w-[15ch] text-balance text-[32px] font-bold leading-[1.04] tracking-[-0.02em] sm:text-[40px] lg:text-[54px] 2xl:text-[62px] ${titleColor}`}
           >
             {title}
           </h2>

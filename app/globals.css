@@ -25,8 +25,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 1200px holds up to 1535px; past that it left the content an island (47%
+   of a 2560px screen). 1320px uses the space better without pushing the
+   three-up vehicle cards back to the bulky size they were slimmed from. */
 .container-x {
-  @apply mx-auto w-full max-w-container px-6 md:px-10;
+  @apply mx-auto w-full max-w-container px-6 md:px-10 2xl:max-w-[1320px];
 }
 
 /* ── Section headings ─────────────────────────────────── */

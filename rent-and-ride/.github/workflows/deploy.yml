@@ -1,8 +1,5 @@
 name: Deploy to GitHub Pages
 
-# The live site is the Next.js app in rent-and-ride-new/.
-# (rent-and-ride/ holds the previous version and is not deployed.)
-
 on:
   push:
     branches: [main]
@@ -22,9 +19,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: rent-and-ride-new
     steps:
       - uses: actions/checkout@v4
 
@@ -32,7 +26,6 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: rent-and-ride-new/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -47,7 +40,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./rent-and-ride-new/out
+          path: ./out
 
   deploy:
     needs: build

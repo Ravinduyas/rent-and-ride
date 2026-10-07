@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    /* Stops iOS enlarging text after rotating to landscape. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Nothing may push the page sideways on a phone (e.g. a card waiting to
+     slide in from the right). `clip`, unlike `hidden`, keeps the sticky
+     header working. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold transition;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-white shadow-[0_8px_20px_-8px_rgba(166,133,46,0.7)] hover:bg-gold-deep;
+  }
+
+  .btn-whatsapp {
+    @apply btn bg-whatsapp text-white shadow-[0_8px_20px_-8px_rgba(37,211,102,0.7)] hover:brightness-95;
+  }
+
+  .btn-outline {
+    @apply btn border border-gold/60 bg-white/70 text-gold-deep hover:bg-gold-soft;
+  }
+
+  .card {
+    @apply rounded-xl border border-line bg-white shadow-card;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted;
+  }
+
+  .h-section {
+    @apply text-2xl font-semibold tracking-tight text-ink md:text-[28px];
+  }
+
+  .lead {
+    @apply text-sm leading-7 text-ink-muted md:text-[15px];
+  }
+
+  /* 16px on phones: iOS Safari zooms the page into any field smaller than
+     that when it's tapped. */
+  .field {
+    @apply w-full rounded-lg border border-line bg-white px-4 py-3 text-base text-ink md:text-sm placeholder:text-ink-muted/70 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[13px] font-medium text-ink;
+  }
+}
+
+/* ---------- Motion ----------
+   html[data-js] is set by an inline script before first paint, so nothing
+   starts hidden for visitors without JavaScript. html[data-ready] is set when
+   the preloader lifts, so the hero's entrance isn't spent behind it. */
+
+html[data-js] [data-reveal],
+html[data-js] [data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+/* Side entrances only on wider screens; on a phone everything is stacked, so
+   sliding in from the edge would just look like the page shifting. */
+@media (min-width: 768px) {
+  html[data-js] [data-reveal="left"] { transform: translateX(-36px); }
+  html[data-js] [data-reveal="right"] { transform: translateX(36px); }
+}
+html[data-js] [data-reveal="zoom"] { transform: scale(0.94); }
+
+html[data-js][data-ready] [data-reveal].is-visible,
+html[data-js][data-ready] [data-reveal-stagger] > .is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Images fade in once loaded, over a shimmer placeholder. */
+html[data-js] main img {
+  opacity: 0;
+  /* Keeps the hover zoom on card photos animated too. */
+  transition:
+    opacity 0.6s ease,
+    transform 0.5s ease;
+}
+html[data-js] main img.is-loaded {
+  opacity: 1;
+}
+
+.skeleton {
+  background: linear-gradient(100deg, #efebe2 30%, #f8f5ee 50%, #efebe2 70%);
+  background-size: 300% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+.skeleton:has(img.is-loaded) {
+  animation: none;
+  background: #efebe2;
+}
+
+/* ---------- Hero ----------
+   The hero is the first thing anyone sees, so none of it waits for
+   JavaScript: the photo shows the moment it arrives (it is exempt from the
+   image fade-in above) and the text animates in with plain CSS. */
+html[data-js] main img.hero-img {
+  opacity: 1;
+}
+.hero-img {
+  animation: heroSettle 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* The home hero fills the screen below the 72px header. svh is the height
+   with the phone browser's toolbars showing, so the hero doesn't jump as
+   they slide away while scrolling; the vh line is for older browsers.
+   Capped at 960px so huge monitors don't get a cavernous banner. */
+.hero-screen {
+  min-height: min(calc(100vh - 72px), 960px);
+  min-height: min(calc(100svh - 72px), 960px);
+}
+
+/* Phones/tablets: the photo strip at the top of the hero melts into the
+   white the text sits on. */
+@media (max-width: 1023.98px) {
+  .hero-photo {
+    -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent);
+    mask-image: linear-gradient(to bottom, #000 68%, transparent);
+  }
+}
+
+/* Desktop: the photo occupies the right of the hero and dissolves into the
+   white behind the headline. */
+@media (min-width: 1024px) {
+  .hero-photo {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 42%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 42%);
+  }
+}
+
+.hero-intro > * {
+  animation: heroIntro 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-intro > :nth-child(1) { animation-delay: 0.3s; }
+.hero-intro > :nth-child(2) { animation-delay: 0.38s; }
+.hero-intro > :nth-child(3) { animation-delay: 0.46s; }
+.hero-intro > :nth-child(4) { animation-delay: 0.54s; }
+.hero-intro > :nth-child(5) { animation-delay: 0.62s; }
+.hero-intro > :nth-child(n + 6) { animation-delay: 0.7s; }
+
+@keyframes heroIntro {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.page-enter {
+  animation: pageEnter 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.route-bar-loading {
+  animation: routeLoad 8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+.route-bar-done {
+  transform: scaleX(1);
+  opacity: 0;
+  transition:
+    transform 0.2s ease,
+    opacity 0.35s ease 0.15s;
+}
+
+/* A brief brand moment, not a gate: the splash lifts on a fixed CSS timer
+   whether or not the page's scripts or images have finished, so a slow phone
+   connection never sits looking at a logo. The component only removes it
+   from the page afterwards. */
+.preloader {
+  animation: preloaderOut 0.35s ease 0.45s forwards;
+}
+.preloader-bar {
+  animation: preloaderBar 1s ease-in-out infinite;
+}
+.preloader-logo {
+  animation: logoIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -50% 0; }
+}
+@keyframes heroSettle {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes routeLoad {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(0.9); }
+}
+@keyframes preloaderOut {
+  to { opacity: 0; visibility: hidden; }
+}
+@keyframes preloaderBar {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(200%); }
+}
+@keyframes logoIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-js] [data-reveal],
+  html[data-js] [data-reveal-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .page-enter,
+  .hero-img,
+  .hero-intro > *,
+  .skeleton,
+  .preloader-logo,
+  .preloader-bar {
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
+  /* The splash is purely decorative — skip it rather than freeze it. */
+  .preloader { display: none !important; }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Mobile menu drops down rather than appearing abruptly. */
+.mobile-nav {
+  animation: menuDrop 0.25s ease both;
+}
+@keyframes menuDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav { animation: none; }
+}

@@ -9,11 +9,14 @@ export default function PageHero({
   title,
   intro,
   image = PAGE_HERO,
+  imagePosition = "center 75%",
   children,
 }: {
   title: React.ReactNode;
   intro?: string;
   image?: string;
+  /** CSS object-position, so each photo's subject stays in the band. */
+  imagePosition?: string;
   children?: React.ReactNode;
 }) {
   return (
@@ -24,7 +27,8 @@ export default function PageHero({
         fetchPriority="high"
         loading="eager"
         alt=""
-        className="hero-img absolute inset-0 -z-20 h-full w-full object-cover object-[center_75%]"
+        className="hero-img absolute inset-0 -z-20 h-full w-full object-cover"
+        style={{ objectPosition: imagePosition }}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white via-white/85 to-white/10 md:via-white/70 md:to-transparent" />
 

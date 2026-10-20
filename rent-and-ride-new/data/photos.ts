@@ -59,3 +59,98 @@ export const PHOTOS = {
   /** White pedal bike against a dark wall. */
   pedalBike: u("photo-1485965120184-e220f721d03e"),
 } as const;
+
+/**
+ * The business's own photos (public/photos/), made from the originals in
+ * photos-original/ as WebP at 480/800/1200/1600/2000px wide. Reference them
+ * by path without size or extension; lib/img.ts builds the srcset.
+ *
+ * REAL_WIDTHS records each original's width so the srcset never claims a
+ * size bigger than the photo really is.
+ */
+export const REAL = {
+  /** Two riders on red scooters on a palm-lined road. */
+  ridersRedScooters: "/photos/riders-red-scooters",
+  /** Red scooter parked under a tree by the sea, rocks and surf behind. */
+  scooterByTheSea: "/photos/scooter-by-the-sea",
+  /** Blue tuk-tuk on a hill road, a rider posing beside it. */
+  tuktukHillRoad: "/photos/tuktuk-hill-road",
+  /** Couple with a red scooter by the Rent & Ride sign at the shop. */
+  shopSignScooter: "/photos/shop-sign-scooter",
+  /** Three customers inside the shop with the scooters. */
+  customersInShop: "/photos/customers-in-shop",
+  /** The shop floor: scooters and a motorbike lined up, Rent & Ride sign. */
+  shopFleet: "/photos/shop-fleet",
+  /** The shop entrance from the road, red Rent & Ride sign on the left. */
+  shopEntrance: "/photos/shop-entrance",
+  /** Three friends posing with a blue tuk-tuk on the beach. */
+  tuktukBeachFriends: "/photos/tuktuk-beach-friends",
+  /** Rider's selfie with a red scooter on a coastal path. */
+  coastSelfie: "/photos/coast-selfie",
+  /** Two riders on scooters, a grey TVS Ntorq in front. */
+  ntorqRiders: "/photos/ntorq-riders",
+  /** Blue Bajaj RE tuk-tuk in front of a white stupa. */
+  tuktukStupa: "/photos/tuktuk-stupa",
+  /** Couple in open-face helmets, selfie at sunset. */
+  sunsetHelmets: "/photos/sunset-helmets",
+  /** Three friends with a blue tuk-tuk on a sandy beach. */
+  tuktukBeachTrio: "/photos/tuktuk-beach-trio",
+  /** Rider on a black motorbike by the sea, palm trees behind. */
+  riderPalms: "/photos/rider-palms",
+  /** Two riders at a roadside café, scooter parked beside them. */
+  cafeStop: "/photos/cafe-stop",
+  /** Two riders in a red tuk-tuk at the roadside. */
+  redTuktuk: "/photos/red-tuktuk",
+  /** Two friends with a blue tuk-tuk on a garden lawn. */
+  tuktukGarden: "/photos/tuktuk-garden",
+  /** Black motorbike with a helmet on it, parked by the sea. */
+  motorbikeByTheSea: "/photos/motorbike-by-the-sea",
+  /** Two friends by a blue tuk-tuk outside the shop sign. */
+  shopTuktukFriends: "/photos/shop-tuktuk-friends",
+
+  // Fleet product photos (supplied by the business; low resolution, so they
+  // are shown small and never enlarged).
+  /** TVS Apache 160, black, studio shot padded to 4:3 on white. */
+  fleetApache160: "/photos/tvs-apache-160",
+  /** Yamaha FZ 160, black, parked on a paved lot. */
+  fleetFz160: "/photos/yamaha-fz-160",
+  /** Hero Hunk, red, on a paved forecourt. */
+  fleetHunk: "/photos/hero-hunk",
+  /** Honda Dio, black and yellow, against a shutter. */
+  fleetDio: "/photos/honda-dio",
+  /** Honda Navi 110cc, red, rider in a red jacket. */
+  fleetNavi: "/photos/honda-navi",
+  /** TVS Ntorq, grey and black, on a road with pedestrian crossing. */
+  fleetNtorq: "/photos/tvs-ntorq",
+  /** Yamaha Ray ZR, black and red, on a dirt lane. */
+  fleetRayZr: "/photos/yamaha-ray-zr",
+} as const;
+
+export const REAL_WIDTHS: Record<string, number> = {
+  "/photos/riders-red-scooters": 3056,
+  "/photos/scooter-by-the-sea": 3120,
+  "/photos/tuktuk-hill-road": 1536,
+  "/photos/shop-sign-scooter": 3056,
+  "/photos/customers-in-shop": 3056,
+  "/photos/shop-fleet": 1200,
+  "/photos/shop-entrance": 1200,
+  "/photos/tuktuk-beach-friends": 2048,
+  "/photos/coast-selfie": 3024,
+  "/photos/ntorq-riders": 3056,
+  "/photos/tuktuk-stupa": 900,
+  "/photos/sunset-helmets": 1200,
+  "/photos/tuktuk-beach-trio": 3024,
+  "/photos/rider-palms": 704,
+  "/photos/cafe-stop": 3056,
+  "/photos/red-tuktuk": 3056,
+  "/photos/tuktuk-garden": 2048,
+  "/photos/motorbike-by-the-sea": 719,
+  "/photos/shop-tuktuk-friends": 3056,
+  "/photos/tvs-apache-160": 594,
+  "/photos/yamaha-fz-160": 513,
+  "/photos/hero-hunk": 1024,
+  "/photos/honda-dio": 515,
+  "/photos/honda-navi": 678,
+  "/photos/tvs-ntorq": 400,
+  "/photos/yamaha-ray-zr": 522,
+};

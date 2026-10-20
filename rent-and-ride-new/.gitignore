@@ -7,3 +7,6 @@ out
 
 # TypeScript build info
 tsconfig.tsbuildinfo
+
+# Original full-size photos (source for public/photos/, ~32MB); not deployed.
+photos-original/

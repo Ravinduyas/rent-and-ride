@@ -2,7 +2,7 @@ import { HiOutlineUserGroup, HiOutlineShieldCheck, HiOutlineEmojiHappy } from "r
 import PageHero from "@/components/PageHero";
 import { PalmMark } from "@/components/Logo";
 import { GALLERY } from "@/data/content";
-import { PHOTOS } from "@/data/photos";
+import { REAL } from "@/data/photos";
 import { responsive, CARD_WIDTHS } from "@/lib/img";
 
 const VALUES = [
@@ -23,6 +23,8 @@ export default function AboutPage() {
       <PageHero
         title="About Rent & Ride"
         intro="More than just a rental — we're your local riding partner in Weligama. We're here to help travelers explore Sri Lanka with freedom, safety and comfort."
+        image={REAL.customersInShop}
+        imagePosition="center 22%"
       />
 
       <section className="container-x py-10 md:py-16">
@@ -61,10 +63,10 @@ export default function AboutPage() {
         <div data-reveal="right" className="skeleton relative rounded-2xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            {...responsive(PHOTOS.scooterCoast, [...CARD_WIDTHS, 1280], "(min-width: 1024px) 600px, 100vw")}
+            {...responsive(REAL.shopFleet, [...CARD_WIDTHS, 1280], "(min-width: 1024px) 600px, 100vw")}
             loading="lazy"
             decoding="async"
-            alt="A scooter on a coastal lane, green headland and sea beyond"
+            alt="Inside the Rent & Ride shop: scooters and a motorbike ready to go"
             className="aspect-[4/3] w-full rounded-2xl object-cover shadow-lift"
           />
         </div>

@@ -6,11 +6,14 @@ import { MdOutlineTwoWheeler } from "react-icons/md";
 import { RiFileList3Line } from "react-icons/ri";
 import { SiTripadvisor } from "react-icons/si";
 import VehicleCard from "@/components/VehicleCard";
+import FeaturedCarousel from "@/components/FeaturedCarousel";
+import YouTubeShorts from "@/components/YouTubeShorts";
+import { SHORTS, YOUTUBE_SHORTS } from "@/data/shorts";
 import ReviewCard, { Stars } from "@/components/ReviewCard";
 import Social from "@/components/Social";
 import { FEATURED } from "@/data/vehicles";
 import { REVIEWS, GALLERY, HOME_HERO } from "@/data/content";
-import { PHOTOS } from "@/data/photos";
+import { REAL } from "@/data/photos";
 import { SITE } from "@/lib/site";
 import { responsive, HERO_WIDTHS, CARD_WIDTHS } from "@/lib/img";
 
@@ -39,13 +42,13 @@ export default function Home() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             {...responsive(HOME_HERO, HERO_WIDTHS, "(min-width: 1024px) 62vw, 100vw")}
-            alt="A rider on a motorbike on the beach at golden hour"
+            alt="Two riders on red scooters on a palm-lined road"
             // The largest thing on screen: fetch it before anything else.
             fetchPriority="high"
             loading="eager"
             // Absolutely positioned so the (square) photo can't set the
             // strip's height — the strip takes the leftover space instead.
-            className="hero-img absolute inset-0 h-full w-full object-cover object-[center_32%] lg:object-[center_30%]"
+            className="hero-img absolute inset-0 h-full w-full object-cover object-[center_40%]"
           />
           <p
             aria-hidden
@@ -110,21 +113,25 @@ export default function Home() {
 
       {/* Featured vehicles */}
       <section className="container-x py-12 md:py-20">
-        <div data-reveal className="flex flex-wrap items-end justify-between gap-3">
+        <div data-reveal className="flex items-end justify-between gap-3">
           <div>
             <h2 className="h-section">Featured Vehicles</h2>
-            <p className="lead mt-1">
-              Choose from our popular scooters and bikes — perfect for exploring the South Coast.
+            <p className="lead mt-1 hidden sm:block">
+              Our most popular scooters, bikes and tuk-tuks — perfect for exploring the South Coast.
             </p>
           </div>
-          <Link href="/rentals" className="flex min-h-11 items-center gap-1 text-sm font-semibold text-gold-deep hover:underline">
-            View All Vehicles <HiArrowRight />
+          <Link href="/rentals" className="flex min-h-11 shrink-0 items-center gap-1 text-sm font-semibold text-gold-deep hover:underline">
+            View all <span className="hidden sm:inline">vehicles</span> <HiArrowRight />
           </Link>
         </div>
 
-        <ul data-reveal-stagger className="no-scrollbar -mx-4 mt-6 flex snap-x snap-mandatory scroll-px-4 gap-3.5 sm:mt-8 sm:gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0">
+        {/* Phones/tablets: photo-led swipe cards. Desktop: five compact cards. */}
+        <div className="mt-5 lg:hidden">
+          <FeaturedCarousel vehicles={FEATURED} />
+        </div>
+        <ul data-reveal-stagger className="mt-8 hidden grid-cols-5 gap-4 lg:grid">
           {FEATURED.map((v) => (
-            <li key={v.slug} className="w-[62%] max-w-[240px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+            <li key={v.slug}>
               <VehicleCard vehicle={v} compact />
             </li>
           ))}
@@ -135,7 +142,7 @@ export default function Home() {
       <section className="container-x grid gap-5 lg:grid-cols-[2fr_1fr]">
         <div data-reveal="left" className="skeleton relative isolate flex min-h-[230px] sm:min-h-[260px] items-center overflow-hidden rounded-2xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img {...responsive(PHOTOS.scooterSunset, [...CARD_WIDTHS, 1280], "(min-width: 1024px) 800px, 100vw")} alt="" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+          <img {...responsive(REAL.scooterByTheSea, [...CARD_WIDTHS, 1280], "(min-width: 1024px) 800px, 100vw")} alt="" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_72%]" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/80 via-ink/50 to-transparent" />
           <div className="max-w-md p-6 text-white sm:p-8 md:p-10">
             <h2 className="text-2xl font-semibold md:text-3xl">Explore the South Coast</h2>
@@ -150,14 +157,14 @@ export default function Home() {
         </div>
 
         <a
-          href={SITE.social.youtube}
+          href={YOUTUBE_SHORTS}
           target="_blank"
           rel="noopener noreferrer"
           data-reveal="right"
           className="skeleton group relative isolate flex min-h-[200px] items-center sm:min-h-[260px] justify-center overflow-hidden rounded-2xl"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img {...responsive(PHOTOS.scooterTown, CARD_WIDTHS, "(min-width: 1024px) 400px, 100vw")} alt="" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <img {...responsive(REAL.tuktukHillRoad, CARD_WIDTHS, "(min-width: 1024px) 400px, 100vw")} alt="" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_58%] transition duration-500 group-hover:scale-105" />
           <div className="absolute inset-0 -z-10 bg-ink/35" />
           <span className="flex items-center gap-3 font-semibold text-white">
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-gold shadow-lift">
@@ -195,6 +202,19 @@ export default function Home() {
           <a href={SITE.reviews.tripadvisor} target="_blank" rel="noopener noreferrer" className="btn-outline">
             <SiTripadvisor className="text-[#00AF87]" size={18} /> Tripadvisor
           </a>
+        </div>
+      </section>
+
+      {/* YouTube Shorts: thumbnails only until one is tapped */}
+      <section className="container-x pb-12 md:pb-20">
+        <div data-reveal className="flex items-end justify-between gap-3">
+          <div>
+            <h2 className="h-section">Ride Along With Us</h2>
+            <p className="lead mt-1">Short videos from our riders on the roads around Weligama.</p>
+          </div>
+        </div>
+        <div data-reveal className="mt-6 sm:mt-8">
+          <YouTubeShorts shorts={SHORTS} />
         </div>
       </section>
 

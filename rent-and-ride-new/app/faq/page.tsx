@@ -4,11 +4,12 @@ import FaqList from "@/components/FaqList";
 import { PalmMark } from "@/components/Logo";
 import { FAQS } from "@/data/content";
 import { whatsappLink } from "@/lib/site";
+import { REAL } from "@/data/photos";
 
 export const metadata = {
   title: "FAQ — Rent & Ride Weligama",
   description:
-    "Licences, delivery, helmets, weekly rentals, permits, payment and damage — answers to common questions about renting with Rent & Ride.",
+    "Licences, pickup, helmets, weekly rentals, permits, payment and damage — answers to common questions about renting with Rent & Ride.",
 };
 
 export default function FaqPage() {
@@ -17,6 +18,8 @@ export default function FaqPage() {
       <PageHero
         title="Frequently Asked Questions"
         intro="Find quick answers to the most common questions about our rental services."
+        image={REAL.coastSelfie}
+        imagePosition="center 45%"
       />
 
       <section className="container-x grid items-start gap-8 py-12 md:py-16 lg:grid-cols-[1fr_320px]">

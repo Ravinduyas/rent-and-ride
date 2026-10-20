@@ -16,8 +16,9 @@ const QUICK = [
 const SERVICES = [
   { label: "Bike Rental", href: "/rentals/#bikes" },
   { label: "Scooter Rental", href: "/rentals/#scooters" },
+  { label: "Tuk-Tuk Rental", href: "/rentals/#tuktuks" },
   { label: "Driving Permit Assistance", href: "/rentals/#driving-permit" },
-  { label: "Delivery & Pickup", href: "/contact" },
+  { label: "Pickup at Our Shop", href: "/contact" },
   { label: "24/7 Support", href: "/contact" },
   { label: "Free Helmets", href: "/rentals" },
 ];

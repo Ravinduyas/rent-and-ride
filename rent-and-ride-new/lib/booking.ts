@@ -5,7 +5,6 @@ import type { Vehicle } from "@/data/vehicles";
  * No React here, so the rules are easy to read and adjust in one place.
  */
 
-export type Delivery = "shop" | "weligama" | "mirissa" | "ahangama" | "other";
 export type PermitHelp = "yes" | "no" | "have";
 
 export type Booking = {
@@ -13,8 +12,6 @@ export type Booking = {
   pickupDate: string; // YYYY-MM-DD, from <input type="date">
   pickupTime: string; // HH:MM
   returnDate: string; // YYYY-MM-DD
-  delivery: Delivery | "";
-  place: string; // Hotel / guesthouse name, or the address when "other"
   helmets: "1" | "2";
   permit: PermitHelp | "";
   licenceCountry: string;
@@ -27,8 +24,6 @@ export const EMPTY_BOOKING: Booking = {
   pickupDate: "",
   pickupTime: "09:00",
   returnDate: "",
-  delivery: "",
-  place: "",
   helmets: "2",
   permit: "",
   licenceCountry: "",
@@ -36,13 +31,8 @@ export const EMPTY_BOOKING: Booking = {
   notes: "",
 };
 
-export const DELIVERY_OPTIONS: { value: Delivery; label: string; note: string }[] = [
-  { value: "shop", label: "Collect from our shop", note: "Weligama" },
-  { value: "weligama", label: "Deliver in Weligama", note: "Free" },
-  { value: "mirissa", label: "Deliver in Mirissa", note: "Free" },
-  { value: "ahangama", label: "Deliver in Ahangama", note: "Free" },
-  { value: "other", label: "Somewhere else", note: "We'll confirm" },
-];
+/** Every rental is collected from, and returned to, the shop — no delivery. */
+export const PICKUP_TEXT = "Pickup & return at our shop in Weligama";
 
 /** Opening hours are 7:00–21:00, so pickups are offered on the hour within them. */
 export const PICKUP_TIMES = Array.from({ length: 15 }, (_, i) => `${String(7 + i).padStart(2, "0")}:00`);
@@ -87,19 +77,21 @@ export function estimate(v: Vehicle, days: number): number {
   return weeks * v.perWeek + Math.min(rest * v.perDay, v.perWeek);
 }
 
+/** Short spec line, e.g. "Automatic, 125cc" or, for a tuk-tuk, "Manual, 3 seats". */
+export function specs(v: Vehicle, sep = ", "): string {
+  return [v.transmission, v.engine || null, v.kind === "tuktuk" ? `${v.seats} seats` : null]
+    .filter(Boolean)
+    .join(sep);
+}
+
+/** Tuk-tuks don't need helmets, so the flow skips that question for them. */
+export const needsHelmets = (v: Vehicle) => v.kind !== "tuktuk";
+
 export function formatDate(value: string): string {
   const d = parseDate(value);
   return d
     ? d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" })
     : "";
-}
-
-export function deliveryText(b: Booking): string {
-  const opt = DELIVERY_OPTIONS.find((o) => o.value === b.delivery);
-  if (!opt) return "";
-  if (b.delivery === "shop") return "Collect from the shop in Weligama";
-  if (b.delivery === "other") return `Deliver to: ${b.place.trim()}`;
-  return `${opt.label}${b.place.trim() ? ` — ${b.place.trim()}` : ""}`;
 }
 
 export function permitText(b: Booking): string {
@@ -115,12 +107,12 @@ export function bookingMessage(b: Booking, v: Vehicle): string {
   const lines = [
     "Hi Rent & Ride! I'd like to book:",
     "",
-    `🛵 *${v.name}* (${[v.transmission, v.engine === "Electric" ? "Electric" : v.engine].join(", ")})`,
+    `${v.kind === "tuktuk" ? "🛺" : "🛵"} *${v.name}* (${specs(v)})`,
     `📅 Pickup: ${formatDate(b.pickupDate)}, ${b.pickupTime}`,
     `📅 Return: ${formatDate(b.returnDate)}`,
     `⏱️ ${days} ${days === 1 ? "day" : "days"} · est. $${estimate(v, days)}`,
-    `📍 ${deliveryText(b)}`,
-    `⛑️ Helmets: ${b.helmets}`,
+    `📍 ${PICKUP_TEXT}`,
+    ...(needsHelmets(v) ? [`⛑️ Helmets: ${b.helmets}`] : []),
     `🪪 Driving permit help: ${permitText(b)}`,
     "",
     `Name: ${b.name.trim()}`,

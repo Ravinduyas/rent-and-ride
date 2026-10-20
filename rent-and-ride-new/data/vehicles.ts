@@ -1,29 +1,28 @@
-import { PHOTOS } from "./photos";
+import { PHOTOS, REAL } from "./photos";
 
 export type Vehicle = {
   slug: string;
   name: string;
-  kind: "scooter" | "bike";
+  kind: "scooter" | "bike" | "tuktuk";
   transmission: "Automatic" | "Manual";
-  /** Shown as "125cc"; electric models use "Electric". */
+  /** Shown as "125cc"; electric models use "Electric"; empty to omit. */
   engine: string;
-  /** Filter group on the scooters page. */
-  group: "110cc" | "125cc" | "150cc+" | "Electric";
+  /** Filter group within a Rentals section. */
+  group: "110cc" | "125cc" | "150cc+" | "Electric" | "Three Wheeler";
   seats: number;
   perDay: number;
   perWeek: number;
   image: string;
+  /** CSS object-position for the photo when cropped, e.g. "center 75%". */
+  imagePosition?: string;
   note?: string;
 };
 
-// Prices and models come from the redesign mockup. The photos are verified
-// Unsplash placeholders (see data/photos.ts) — swap each for a real photo of
-// that vehicle when the fleet has been shot.
-const BIKE_IMG = {
-  red: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=900&q=80",
-  dark: PHOTOS.motorbike,
-  ktm: "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?auto=format&fit=crop&w=900&q=80",
-};
+// The fleet: the models in the business's own product photos (REAL.fleet* in
+// data/photos.ts). Prices for the Dio, Ray ZR and Ntorq come from the design
+// mockup. The Navi and the three bikes had no price there, so they are
+// ESTIMATES matching the nearest model (Navi = other 110cc scooters; bikes =
+// the old 150–180cc bike rate) — confirm them with the business.
 
 export const SCOOTERS: Vehicle[] = [
   {
@@ -36,7 +35,19 @@ export const SCOOTERS: Vehicle[] = [
     seats: 2,
     perDay: 4,
     perWeek: 25,
-    image: PHOTOS.scooterLot,
+    image: REAL.fleetDio,
+  },
+  {
+    slug: "honda-navi",
+    name: "Honda Navi",
+    kind: "scooter",
+    transmission: "Automatic",
+    engine: "110cc",
+    group: "110cc",
+    seats: 2,
+    perDay: 4,
+    perWeek: 25,
+    image: REAL.fleetNavi,
   },
   {
     slug: "yamaha-ray-zr",
@@ -48,11 +59,11 @@ export const SCOOTERS: Vehicle[] = [
     seats: 2,
     perDay: 5,
     perWeek: 30,
-    image: PHOTOS.scooterHelmets,
+    image: REAL.fleetRayZr,
   },
   {
     slug: "tvs-ntorq-125",
-    name: "Ntorq 125",
+    name: "TVS Ntorq 125",
     kind: "scooter",
     transmission: "Automatic",
     engine: "125cc",
@@ -60,91 +71,124 @@ export const SCOOTERS: Vehicle[] = [
     seats: 2,
     perDay: 5,
     perWeek: 30,
-    image: PHOTOS.scooterTown,
-  },
-  {
-    slug: "tvs-jupiter",
-    name: "TVS Jupiter",
-    kind: "scooter",
-    transmission: "Automatic",
-    engine: "110cc",
-    group: "110cc",
-    seats: 2,
-    perDay: 4,
-    perWeek: 25,
-    image: PHOTOS.scooterCoast,
-  },
-  {
-    slug: "honda-activa",
-    name: "Honda Activa",
-    kind: "scooter",
-    transmission: "Automatic",
-    engine: "110cc",
-    group: "110cc",
-    seats: 2,
-    perDay: 4,
-    perWeek: 25,
-    image: PHOTOS.scooterSunset,
-  },
-  {
-    slug: "electric-scooter",
-    name: "Electric Scooter",
-    kind: "scooter",
-    transmission: "Automatic",
-    engine: "Electric",
-    group: "Electric",
-    seats: 2,
-    perDay: 6,
-    perWeek: 35,
-    image: PHOTOS.scooterLot,
-    note: "Eco-friendly",
+    image: REAL.fleetNtorq,
+    imagePosition: "center 62%",
   },
 ];
 
 export const BIKES: Vehicle[] = [
   {
-    slug: "yamaha-mt-15",
-    name: "Yamaha MT-15",
+    slug: "tvs-apache-160",
+    name: "TVS Apache 160",
     kind: "bike",
     transmission: "Manual",
-    engine: "155cc",
-    group: "150cc+",
-    seats: 2,
-    perDay: 12,
-    perWeek: 75,
-    image: BIKE_IMG.red,
-  },
-  {
-    slug: "bajaj-pulsar-180",
-    name: "Pulsar 180",
-    kind: "bike",
-    transmission: "Manual",
-    engine: "180cc",
+    engine: "160cc",
     group: "150cc+",
     seats: 2,
     perDay: 10,
     perWeek: 60,
-    image: BIKE_IMG.dark,
+    image: REAL.fleetApache160,
   },
   {
-    slug: "royal-enfield-350",
-    name: "Royal Enfield 350",
+    slug: "yamaha-fz-160",
+    name: "Yamaha FZ 160",
     kind: "bike",
     transmission: "Manual",
-    engine: "350cc",
+    engine: "160cc",
     group: "150cc+",
     seats: 2,
-    perDay: 18,
-    perWeek: 110,
-    image: BIKE_IMG.ktm,
+    perDay: 10,
+    perWeek: 60,
+    image: REAL.fleetFz160,
+  },
+  {
+    slug: "hero-hunk",
+    name: "Hero Hunk",
+    kind: "bike",
+    transmission: "Manual",
+    engine: "150cc",
+    group: "150cc+",
+    seats: 2,
+    perDay: 10,
+    perWeek: 60,
+    image: REAL.fleetHunk,
   },
 ];
 
-/** The five cards in the home page "Featured Vehicles" row. */
+// Models, day rates and photos carried over from the previous site's Three
+// Wheelers page; each photo is a verified tuk-tuk shot (see data/photos.ts).
+// The previous site had no weekly rates, so these are set at six days'
+// rental (a day free) — confirm them with the business.
+export const TUKTUKS: Vehicle[] = [
+  {
+    slug: "bajaj-re-4s",
+    name: "Bajaj RE 4S",
+    kind: "tuktuk",
+    transmission: "Manual",
+    engine: "",
+    group: "Three Wheeler",
+    seats: 3,
+    perDay: 28,
+    perWeek: 168,
+    image: REAL.tuktukStupa,
+    imagePosition: "center 78%",
+  },
+  {
+    slug: "bajaj-maxima-z",
+    name: "Bajaj Maxima Z",
+    kind: "tuktuk",
+    transmission: "Manual",
+    engine: "",
+    group: "Three Wheeler",
+    seats: 3,
+    perDay: 30,
+    perWeek: 180,
+    image: PHOTOS.tuktukLane,
+  },
+  {
+    slug: "piaggio-ape-city",
+    name: "Piaggio Ape City",
+    kind: "tuktuk",
+    transmission: "Manual",
+    engine: "",
+    group: "Three Wheeler",
+    seats: 3,
+    perDay: 26,
+    perWeek: 156,
+    image: PHOTOS.tuktukShops,
+  },
+  {
+    slug: "tvs-king-deluxe",
+    name: "TVS King Deluxe",
+    kind: "tuktuk",
+    transmission: "Manual",
+    engine: "",
+    group: "Three Wheeler",
+    seats: 3,
+    perDay: 29,
+    perWeek: 174,
+    image: PHOTOS.tuktukLighthouse,
+  },
+  {
+    slug: "atul-gemini",
+    name: "Atul Gemini",
+    kind: "tuktuk",
+    transmission: "Manual",
+    engine: "",
+    group: "Three Wheeler",
+    seats: 3,
+    perDay: 27,
+    perWeek: 162,
+    image: PHOTOS.tuktukRow,
+  },
+];
+
+/** The five cards in the home page "Featured Vehicles" row: two scooters,
+ *  two bikes and a tuk-tuk, each with a different photo. */
 export const FEATURED: Vehicle[] = [
-  SCOOTERS[2],
-  BIKES[0],
-  BIKES[1],
-  SCOOTERS[1],
-  SCOOTERS[5],
+  SCOOTERS[3], // Ntorq
+  BIKES[1], // Yamaha FZ 160
+  TUKTUKS[0], // Bajaj RE 4S
+  SCOOTERS[2], // Ray ZR
+  BIKES[2], // Hero Hunk
 ];

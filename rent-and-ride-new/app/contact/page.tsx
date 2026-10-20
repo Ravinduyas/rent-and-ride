@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
 import Social from "@/components/Social";
 import { SITE } from "@/lib/site";
+import { REAL } from "@/data/photos";
 
 export const metadata = {
   title: "Contact — Rent & Ride Weligama",
@@ -19,10 +20,20 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero title="Get in Touch" intro="We're here to help you plan your ride." />
+      {/* The shop entrance, so visitors recognise it when they arrive. */}
+      <PageHero
+        title="Get in Touch"
+        intro="We're here to help you plan your ride."
+        image={REAL.shopEntrance}
+        imagePosition="center 45%"
+      />
 
       <section className="container-x grid gap-8 py-10 md:py-16 lg:grid-cols-[1fr_1.15fr]">
-        <div>
+        {/* Desktop: the details stay in view (below the 72px header) while the
+            taller form + map column scrolls past, and let go at its end.
+            self-start stops the grid stretching it, which would leave it
+            nothing to stick within. */}
+        <div className="lg:sticky lg:top-24 lg:self-start">
           <ul data-reveal-stagger className="space-y-5">
             {details.map(({ Icon, lines, href }) => {
               const body = (

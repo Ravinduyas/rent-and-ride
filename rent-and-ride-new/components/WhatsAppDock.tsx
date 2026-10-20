@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa";
 import { whatsappLink } from "@/lib/site";
 
@@ -6,8 +9,12 @@ import { whatsappLink } from "@/lib/site";
  * Phones get just the round button (a full-width bar along the bottom
  * covered too much of a small screen); from lg up it also shows a
  * "Chat with us" label. It sits above the iPhone home indicator.
+ * Hidden on /book, whose own bottom bar ends in "Send on WhatsApp".
  */
 export default function WhatsAppDock() {
+  const pathname = usePathname() ?? "";
+  if (pathname.replace(/\/$/, "").endsWith("/book")) return null;
+
   return (
     <a
       href={whatsappLink()}

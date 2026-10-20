@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MdElectricScooter, MdTwoWheeler } from "react-icons/md";
+import { MdElectricScooter, MdTwoWheeler, MdOutlineElectricRickshaw } from "react-icons/md";
 import { RiFileList3Line } from "react-icons/ri";
 import type { SectionIcon, SectionLink } from "@/lib/sections";
 
 const ICONS: Record<SectionIcon, React.ComponentType<{ size?: number }>> = {
   scooter: MdElectricScooter,
   bike: MdTwoWheeler,
+  tuktuk: MdOutlineElectricRickshaw,
   permit: RiFileList3Line,
 };
 
@@ -44,8 +45,8 @@ export default function SectionTabs({ sections }: { sections: SectionLink[] }) {
       aria-label="On this page"
       className="sticky top-[72px] z-30 border-b border-line bg-white/95 backdrop-blur"
     >
-      {/* Phones: equal-width tabs that always fit on screen (no hidden third
-          tab). Wider screens: natural-width pills. */}
+      {/* Phones: equal-width tabs, icon stacked over a short label, so all
+          four fit even at 320px. Wider screens: natural-width pills. */}
       <ul
         className="container-x grid gap-1.5 py-2.5 sm:flex sm:gap-2"
         style={{ gridTemplateColumns: `repeat(${sections.length}, minmax(0, 1fr))` }}
@@ -59,7 +60,7 @@ export default function SectionTabs({ sections }: { sections: SectionLink[] }) {
                 href={`#${id}`}
                 aria-current={on ? "true" : undefined}
                 onClick={() => setActive(id)}
-                className={`flex min-h-11 items-center justify-center gap-1.5 rounded-full border px-2 text-[13px] font-medium transition sm:gap-2 sm:px-4 sm:text-sm ${
+                className={`flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-xl border px-1 py-1.5 text-[11px] font-medium leading-tight transition sm:min-h-11 sm:flex-row sm:gap-2 sm:rounded-full sm:px-4 sm:py-0 sm:text-sm ${
                   on
                     ? "border-ink bg-ink text-white"
                     : "border-line bg-white text-ink-soft hover:border-gold hover:text-gold-deep"

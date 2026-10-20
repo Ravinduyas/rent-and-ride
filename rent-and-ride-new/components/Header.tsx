@@ -4,9 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import { FaWhatsapp } from "react-icons/fa";
 import Logo from "./Logo";
-import { NAV, whatsappLink } from "@/lib/site";
+import { NAV } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -56,23 +55,16 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* Desktop only: on phones the floating button covers WhatsApp. */}
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn hidden min-h-10 border border-whatsapp/50 px-4 text-[#128C4B] hover:bg-whatsapp/10 lg:inline-flex"
-          >
-            <FaWhatsapp size={16} />
-            WhatsApp
-          </a>
-          {/* From 360px up; narrower phones get it at the top of the menu. */}
-          <Link
-            href="/book"
-            className="btn-gold hidden min-h-10 px-4 min-[360px]:inline-flex"
-          >
-            Book Now
-          </Link>
+          {/* From 360px up; narrower phones get it at the top of the menu.
+              Not shown on the booking page itself. */}
+          {!isActive("/book") && (
+            <Link
+              href="/book"
+              className="btn-gold hidden min-h-10 px-4 min-[360px]:inline-flex"
+            >
+              Book Now
+            </Link>
+          )}
 
           <button
             type="button"

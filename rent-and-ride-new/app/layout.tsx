@@ -8,6 +8,7 @@ import WhatsAppDock from "@/components/WhatsAppDock";
 import Preloader from "@/components/Preloader";
 import RouteProgress from "@/components/RouteProgress";
 import ScrollEffects from "@/components/ScrollEffects";
+import HideOn from "@/components/HideOn";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,7 +34,7 @@ const caveat = Caveat({
 export const metadata: Metadata = {
   title: "Rent & Ride Weligama — Scooter & Bike Rental",
   description:
-    "Scooter and bike rental in Weligama, Mirissa and Ahangama. Free helmets, free delivery, driving permit help and 24/7 WhatsApp support.",
+    "Scooter, bike and tuk-tuk rental in Weligama. Free helmets, driving permit help and 24/7 WhatsApp support.",
   icons: { icon: asset("/logo.svg"), apple: asset("/logo.svg") },
 };
 
@@ -75,7 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ScrollEffects />
         <Header />
         <main className="min-h-[60vh]">{children}</main>
-        <Footer />
+        {/* The booking flow is a focused, app-like screen with its own bottom bar. */}
+        <HideOn paths={["/book"]}>
+          <Footer />
+        </HideOn>
         <WhatsAppDock />
       </body>
     </html>

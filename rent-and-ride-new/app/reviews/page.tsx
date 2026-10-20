@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import ReviewCard, { Stars } from "@/components/ReviewCard";
 import { REVIEWS, GALLERY } from "@/data/content";
 import { SITE } from "@/lib/site";
+import { REAL } from "@/data/photos";
 import { responsive, CARD_WIDTHS } from "@/lib/img";
 
 export const metadata = {
@@ -17,6 +18,8 @@ export default function ReviewsPage() {
       <PageHero
         title={<>Real Reviews<br />from Real Travelers</>}
         intro="See what our guests say about their experience with Rent & Ride Weligama."
+        image={REAL.tuktukBeachFriends}
+        imagePosition="center 25%"
       />
 
       <section className="container-x grid gap-6 py-12 md:py-16 lg:grid-cols-[1.4fr_1fr]">

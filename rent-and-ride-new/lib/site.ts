@@ -21,16 +21,18 @@ export const SITE = {
   mapsUrl: "https://share.google/vUnRZFHCK86CnzJaj",
   /** From Google Maps → Share → Embed a map (the satellite view). */
   mapsEmbed:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3270.6534585844706!2d80.4495022!3d5.969076799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae11500045c2d49%3A0x57fb73ada527d340!2sRent%20%26%20Ride%20Weligama%20%F0%9F%9B%B5!5e1!3m2!1sen!2slk!4v1791350984192!5m2!1sen!2slk",
-  /** Replace "#" with the real profile URLs. */
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26165.227668675765!2d80.4134533108398!3d5.969076800000017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae11500045c2d49%3A0x57fb73ada527d340!2sRent%20%26%20Ride%20Weligama%20%F0%9F%9B%B5!5e1!3m2!1sen!2slk!4v1792468952788!5m2!1sen!2slk",
+  // All four accounts use the handle "rentandrideweligama".
   social: {
-    instagram: "#",
-    facebook: "#",
-    youtube: "#",
-    tiktok: "#",
+    instagram: "https://www.instagram.com/rentandrideweligama/",
+    facebook: "https://www.facebook.com/rentandrideweligama",
+    youtube: "https://www.youtube.com/@rentandrideweligama",
+    tiktok: "https://www.tiktok.com/@rentandrideweligama",
   },
   reviews: {
-    google: "#",
+    // Google search for the business, which shows its reviews panel. Only the
+    // query is kept — the original link's session parameters were dropped.
+    google: "https://www.google.com/search?q=rent+and+ride+weligama+google+review",
     tripadvisor:
       "https://www.tripadvisor.in/Attraction_Review-g612380-d34441088-Reviews-Rent_Ride_Weligama_Bike_Scooter_TukTuk_Rental_Service-Weligama_Matara_Southern_P.html",
   },

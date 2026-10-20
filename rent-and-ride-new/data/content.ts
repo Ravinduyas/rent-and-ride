@@ -1,4 +1,4 @@
-import { PHOTOS } from "./photos";
+import { REAL } from "./photos";
 
 export type Review = {
   name: string;
@@ -25,7 +25,7 @@ export const REVIEWS: Review[] = [
     origin: "India",
     source: "Google",
     when: "3 weeks ago",
-    text: "Best rental experience in Sri Lanka! The scooter was perfect and delivery was on time.",
+    text: "Best rental experience in Sri Lanka! The scooter was perfect and pickup was quick and easy.",
   },
   {
     name: "Lukas",
@@ -44,8 +44,8 @@ export const FAQS: Faq[] = [
     a: "Yes. You need a valid licence from your home country that covers motorcycles, plus a Sri Lankan recognition permit. We can arrange the permit for you — see the Driving Permit section of our Rentals page.",
   },
   {
-    q: "Can you deliver the scooter?",
-    a: "Yes. We deliver free to hotels and guesthouses in Weligama, Mirissa and Ahangama, and collect it again at the end of your rental.",
+    q: "Where do I collect the vehicle?",
+    a: "From our shop in Weligama — every rental is picked up and returned there. We're open daily, 7:00 AM to 9:00 PM. Message us on WhatsApp if you need directions.",
   },
   {
     q: "Do you provide helmets?",
@@ -69,22 +69,21 @@ export const FAQS: Faq[] = [
   },
 ];
 
-/** "Follow Our Journey" strip and the gallery on the About page. */
+/** "Follow Our Journey" strip, the About gallery and (first four) the
+ *  Reviews page: real customers and rides from the business's own photos. */
 export const GALLERY = [
-  { src: PHOTOS.scooterCoast, alt: "A scooter on a coastal lane above the sea" },
-  { src: PHOTOS.scooterSunset, alt: "Scooters on a palm-lined coast road at sunset" },
-  { src: PHOTOS.scooterTown, alt: "Two riders on a scooter passing a roadside building" },
-  { src: PHOTOS.beachRider, alt: "A rider on a motorbike on the beach at golden hour" },
-  { src: PHOTOS.scooterHelmets, alt: "Rows of scooters with helmets hung on them" },
-  { src: PHOTOS.tuktukRoad, alt: "A tuktuk and a motorbike on a winding road" },
-  { src: PHOTOS.talkingByBike, alt: "Two people talking beside a motorbike" },
-  { src: PHOTOS.tuktukLighthouse, alt: "A tuktuk below the Galle Fort lighthouse" },
+  { src: REAL.sunsetHelmets, alt: "Two riders in helmets, smiling at sunset" },
+  { src: REAL.tuktukBeachTrio, alt: "Three friends with a blue tuk-tuk on the beach" },
+  { src: REAL.riderPalms, alt: "A rider on a black motorbike by the sea, palm trees behind" },
+  { src: REAL.cafeStop, alt: "Two riders at a roadside café with their scooter" },
+  { src: REAL.redTuktuk, alt: "Two riders in a red tuk-tuk" },
+  { src: REAL.tuktukGarden, alt: "Two friends with a blue tuk-tuk on a garden lawn" },
+  { src: REAL.motorbikeByTheSea, alt: "A black motorbike parked by the sea" },
+  { src: REAL.shopTuktukFriends, alt: "Two friends with a tuk-tuk outside the Rent & Ride shop" },
 ];
 
-/** Home hero: rider on a motorbike on the beach at golden hour. */
-export const HOME_HERO =
-  "https://images.unsplash.com/photo-1560199887-55dcf2cc769f?auto=format&fit=crop&w=2000&q=80";
+/** Home hero: two riders on red scooters on a palm-lined road. */
+export const HOME_HERO = REAL.ridersRedScooters;
 
-/** Inner page banners: two palms on a beach, sea along the bottom. */
-export const PAGE_HERO =
-  "https://images.unsplash.com/photo-1520454974749-611b7248ffdb?auto=format&fit=crop&w=2000&h=900&q=80";
+/** Default inner-page banner; pages pass their own where it fits. */
+export const PAGE_HERO = REAL.scooterByTheSea;

@@ -22,7 +22,9 @@ export default function ReviewCard({
         <div>
           <p className="flex flex-wrap items-center gap-x-2 text-sm">
             <span className="font-semibold text-ink">{r.name}</span>
-            <span className="text-xs text-ink-muted">{r.origin} · {r.when}</span>
+            {(r.origin || r.when) && (
+              <span className="text-xs text-ink-muted">{[r.origin, r.when].filter(Boolean).join(" · ")}</span>
+            )}
           </p>
           <Stars className="mt-1" />
           <p className="mt-2 text-[13px] leading-6 text-ink-soft">{r.text}</p>
@@ -40,7 +42,7 @@ export default function ReviewCard({
       <Stars className="mt-2" />
       <p className="mt-3 flex-1 text-[13px] leading-6 text-ink-soft">{r.text}</p>
       <p className="mt-4 text-[13px] font-medium text-ink">
-        – {r.name}, {r.origin}
+        – {r.name}{r.origin && `, ${r.origin}`}
       </p>
     </article>
   );

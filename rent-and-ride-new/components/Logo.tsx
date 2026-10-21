@@ -2,7 +2,7 @@ import Link from "next/link";
 import { asset } from "@/lib/asset";
 
 /**
- * The business logo (public/logo.svg: green roundel with the R&R monogram)
+ * The business logo (public/logo.png: black roundel, white scooter and R&R monogram)
  * with the name set beside it. The roundel has the name inside it too, but
  * at header size that lettering is too small to read, so the wordmark next
  * to it carries the name.
@@ -24,11 +24,11 @@ export default function Logo({
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset("/logo.svg")}
+        src={asset("/logo.png")}
         alt=""
         width={52}
         height={52}
-        className="h-12 w-12 shrink-0 rounded-full shadow-[0_2px_8px_-2px_rgba(11,38,26,0.45)] lg:h-[52px] lg:w-[52px]"
+        className="h-12 w-12 shrink-0 rounded-full shadow-[0_2px_8px_-2px_rgba(0,0,0,0.45)] lg:h-[52px] lg:w-[52px]"
       />
       <span className="flex flex-col">
         <span className={`font-serif text-[17px] font-semibold tracking-[0.02em] ${ink}`}>

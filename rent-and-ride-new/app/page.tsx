@@ -9,7 +9,8 @@ import VehicleCard from "@/components/VehicleCard";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import YouTubeShorts from "@/components/YouTubeShorts";
 import { SHORTS, YOUTUBE_SHORTS } from "@/data/shorts";
-import ReviewCard, { Stars } from "@/components/ReviewCard";
+import { Stars } from "@/components/ReviewCard";
+import ReviewSlider from "@/components/ReviewSlider";
 import Social from "@/components/Social";
 import { FEATURED } from "@/data/vehicles";
 import { REVIEWS, GALLERY, HOME_HERO } from "@/data/content";
@@ -187,13 +188,7 @@ export default function Home() {
           </a>
         </div>
 
-        <ul data-reveal-stagger className="mt-6 grid gap-4 sm:mt-8 md:grid-cols-3 md:gap-5">
-          {REVIEWS.map((r) => (
-            <li key={r.name}>
-              <ReviewCard review={r} />
-            </li>
-          ))}
-        </ul>
+        <ReviewSlider reviews={REVIEWS} />
 
         <div data-reveal className="mt-6 grid gap-3 sm:mt-8 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
           <Link href="/reviews" className="btn-gold">

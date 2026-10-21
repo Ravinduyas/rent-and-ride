@@ -35,11 +35,11 @@ export default function Preloader() {
       {/* Big enough here for the roundel's own lettering to be read. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset("/logo.svg")}
+        src={asset("/logo.png")}
         alt=""
         width={112}
         height={112}
-        className="preloader-logo h-28 w-28 rounded-full shadow-[0_10px_30px_-10px_rgba(11,38,26,0.55)]"
+        className="preloader-logo h-28 w-28 rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.45)]"
       />
       <span className="mt-6 h-[3px] w-28 overflow-hidden rounded-full bg-gold-soft">
         <span className="preloader-bar block h-full w-1/2 rounded-full bg-gold" />

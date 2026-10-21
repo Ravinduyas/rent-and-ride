@@ -2,37 +2,38 @@ import { REAL } from "./photos";
 
 export type Review = {
   name: string;
-  origin: string;
+  origin?: string;
   source: "Google" | "Tripadvisor";
-  when: string;
+  when?: string;
   text: string;
 };
 
-// PLACEHOLDER REVIEWS taken from the redesign mockup. Replace these with
-// genuine reviews copied from the Google and Tripadvisor listings before the
-// site goes live — publishing invented reviews is not allowed by either
-// platform and is misleading to customers.
+// Genuine guest reviews. Origin and date aren't recorded, so they're optional.
 export const REVIEWS: Review[] = [
   {
-    name: "Sarah",
-    origin: "United Kingdom",
+    name: "Matilda O'Neill",
     source: "Google",
-    when: "2 weeks ago",
-    text: "Amazing service! The bikes were in great condition and the staff were super friendly. Highly recommend!",
+    text: "Fantastic!! We could not recommend this business more!! The service was fast and reliable and they went above and beyond to accommodate me and my husband renting a tuk tuk. It was also the best condition tuk tuk of our trip. We even ended up having dinner with their lovely family. We felt very lucky to have decided to use this business as it was an absolute highlight of our trip.",
   },
   {
-    name: "Rohan",
-    origin: "India",
+    name: "Marion Portal",
     source: "Google",
-    when: "3 weeks ago",
-    text: "Best rental experience in Sri Lanka! The scooter was perfect and pickup was quick and easy.",
+    text: "We rented a Tuktuk for 5 days and I was a dreammmm! The family running the business is so lovely and very helpful, we could contact them at any given moment if there was a problem. They gave me a quick lesson to explain how the Tuktuk works, and then off we went! I 100% recommend this place. Thank you again !!!",
   },
   {
-    name: "Lukas",
-    origin: "Germany",
+    name: "Mohammed Pitolwala",
     source: "Google",
-    when: "1 month ago",
-    text: "Very professional and helpful. Got our driving permit sorted quickly. Will definitely rent again!",
+    text: "The scooter is great and the owner is so kind and friendly. We will definitely come back to rent from her. We highly recommend her to anyone.",
+  },
+  {
+    name: "Tommi Lampila",
+    source: "Google",
+    text: "Very good bike rental and good condition bike. Price is very reasonable. Owner is very good and friendly. Super service. Highly recommended!",
+  },
+  {
+    name: "Gary Siva",
+    source: "Google",
+    text: "Kanishka was incredibly helpful and reliable when providing a scooter. The scooter was excellent and ran well also very reasonably priced. She and her husband were very friendly trustworthy. I’d highly recommend their service.",
   },
 ];
 

@@ -2,8 +2,9 @@ import { PAGE_HERO } from "@/data/content";
 import { responsive, HERO_WIDTHS } from "@/lib/img";
 
 /**
- * Banner used at the top of every inner page: a beach photo that fades to
- * white on the left, where the heading sits.
+ * Banner used at the top of every inner page: the photo at full colour with a
+ * dark scrim on the left (not a white fade, which washes the photo out) and
+ * white text over it.
  */
 export default function PageHero({
   title,
@@ -20,7 +21,7 @@ export default function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-white">
+    <section className="relative isolate overflow-hidden bg-ink">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         {...responsive(image, HERO_WIDTHS, "100vw")}
@@ -30,14 +31,14 @@ export default function PageHero({
         className="hero-img absolute inset-0 -z-20 h-full w-full object-cover"
         style={{ objectPosition: imagePosition }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white via-white/85 to-white/10 md:via-white/70 md:to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/40 to-black/5 md:via-black/30 md:to-transparent" />
 
       <div className="container-x py-10 md:py-20">
         <div className="hero-intro max-w-xl">
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-ink md:text-[44px]">
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.45)] md:text-[44px]">
             {title}
           </h1>
-          {intro && <p className="lead mt-4 max-w-md text-ink-soft">{intro}</p>}
+          {intro && <p className="lead mt-4 max-w-md !text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">{intro}</p>}
           {children}
         </div>
       </div>

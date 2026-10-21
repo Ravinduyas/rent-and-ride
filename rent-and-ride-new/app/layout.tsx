@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   title: "Rent & Ride Weligama — Scooter & Bike Rental",
   description:
     "Scooter, bike and tuk-tuk rental in Weligama. Free helmets, driving permit help and 24/7 WhatsApp support.",
-  icons: { icon: asset("/logo.svg"), apple: asset("/logo.svg") },
+  icons: { icon: asset("/logo.png"), apple: asset("/logo.png") },
 };
 
 export const viewport: Viewport = {

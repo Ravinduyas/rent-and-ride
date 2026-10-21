@@ -69,7 +69,7 @@ export const PHOTOS = {
  * size bigger than the photo really is.
  */
 export const REAL = {
-  /** Two riders on red scooters on a palm-lined road. */
+  /** Two riders on red scooters on a palm-lined road (AI-recreated from the original to remove a building and a rough wall). */
   ridersRedScooters: "/photos/riders-red-scooters",
   /** Red scooter parked under a tree by the sea, rocks and surf behind. */
   scooterByTheSea: "/photos/scooter-by-the-sea",
@@ -127,7 +127,7 @@ export const REAL = {
 } as const;
 
 export const REAL_WIDTHS: Record<string, number> = {
-  "/photos/riders-red-scooters": 3056,
+  "/photos/riders-red-scooters": 1254,
   "/photos/scooter-by-the-sea": 3120,
   "/photos/tuktuk-hill-road": 1536,
   "/photos/shop-sign-scooter": 3056,

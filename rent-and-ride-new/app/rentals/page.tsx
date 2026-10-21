@@ -19,7 +19,7 @@ const SECTIONS: SectionLink[] = [
 export const metadata = {
   title: "Scooter, Bike & Tuk-Tuk Rental in Weligama — Rent & Ride",
   description:
-    "Rent a scooter from $4/day, a motorbike from $10/day or a tuk-tuk from $26/day in Weligama, with free helmets and help getting your Sri Lankan driving permit.",
+    "Rent a scooter from $4/day, a motorbike from $10/day or a tuk-tuk for $28/day in Weligama, with free helmets and help getting your Sri Lankan driving permit.",
 };
 
 export default function RentalsPage() {
@@ -49,7 +49,7 @@ export default function RentalsPage() {
       <VehicleBrowser
         id="tuktuks"
         title="Tuk-Tuks"
-        intro="Sri Lanka's three-wheelers — seats three, shade from the sun, and the local way to get around."
+        intro="The Bajaj RE 4S — seats three, shade from the sun, and the local way to get around."
         vehicles={TUKTUKS}
       />
       <RentalInfo noun="Ride" />

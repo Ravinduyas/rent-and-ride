@@ -1,4 +1,4 @@
-import { PHOTOS, REAL } from "./photos";
+import { REAL } from "./photos";
 
 export type Vehicle = {
   slug: string;
@@ -115,10 +115,10 @@ export const BIKES: Vehicle[] = [
   },
 ];
 
-// Models, day rates and photos carried over from the previous site's Three
-// Wheelers page; each photo is a verified tuk-tuk shot (see data/photos.ts).
-// The previous site had no weekly rates, so these are set at six days'
-// rental (a day free) — confirm them with the business.
+// The business rents a single tuk-tuk model, the Bajaj RE 4S. Day rate and
+// photo come from the previous site / the business's own photo. The previous
+// site had no weekly rate, so it is set at six days' rental (a day free) —
+// confirm it with the business.
 export const TUKTUKS: Vehicle[] = [
   {
     slug: "bajaj-re-4s",
@@ -132,54 +132,6 @@ export const TUKTUKS: Vehicle[] = [
     perWeek: 168,
     image: REAL.tuktukStupa,
     imagePosition: "center 78%",
-  },
-  {
-    slug: "bajaj-maxima-z",
-    name: "Bajaj Maxima Z",
-    kind: "tuktuk",
-    transmission: "Manual",
-    engine: "",
-    group: "Three Wheeler",
-    seats: 3,
-    perDay: 30,
-    perWeek: 180,
-    image: PHOTOS.tuktukLane,
-  },
-  {
-    slug: "piaggio-ape-city",
-    name: "Piaggio Ape City",
-    kind: "tuktuk",
-    transmission: "Manual",
-    engine: "",
-    group: "Three Wheeler",
-    seats: 3,
-    perDay: 26,
-    perWeek: 156,
-    image: PHOTOS.tuktukShops,
-  },
-  {
-    slug: "tvs-king-deluxe",
-    name: "TVS King Deluxe",
-    kind: "tuktuk",
-    transmission: "Manual",
-    engine: "",
-    group: "Three Wheeler",
-    seats: 3,
-    perDay: 29,
-    perWeek: 174,
-    image: PHOTOS.tuktukLighthouse,
-  },
-  {
-    slug: "atul-gemini",
-    name: "Atul Gemini",
-    kind: "tuktuk",
-    transmission: "Manual",
-    engine: "",
-    group: "Three Wheeler",
-    seats: 3,
-    perDay: 27,
-    perWeek: 162,
-    image: PHOTOS.tuktukRow,
   },
 ];
 

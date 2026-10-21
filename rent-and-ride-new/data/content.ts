@@ -83,6 +83,16 @@ export const GALLERY = [
   { src: REAL.shopTuktukFriends, alt: "Two friends with a tuk-tuk outside the Rent & Ride shop" },
 ];
 
+/** Home "Follow Our Journey" grid: the gallery plus four more, so wide screens
+ *  fill six columns by two rows. */
+export const HOME_GALLERY = [
+  ...GALLERY,
+  { src: REAL.tuktukBeachFriends, alt: "Three friends posing with a blue tuk-tuk on the beach" },
+  { src: REAL.coastSelfie, alt: "A rider's selfie with a red scooter on a coastal path" },
+  { src: REAL.ntorqRiders, alt: "Two riders on scooters, a grey TVS Ntorq in front" },
+  { src: REAL.scooterByTheSea, alt: "A red scooter parked under a tree by the sea" },
+];
+
 /** Home hero: two riders on red scooters on a palm-lined road. */
 export const HOME_HERO = REAL.ridersRedScooters;
 

@@ -11,9 +11,10 @@ import YouTubeShorts from "@/components/YouTubeShorts";
 import { SHORTS, YOUTUBE_SHORTS } from "@/data/shorts";
 import { Stars } from "@/components/ReviewCard";
 import ReviewSlider from "@/components/ReviewSlider";
+import ReviewDeck from "@/components/ReviewDeck";
 import Social from "@/components/Social";
 import { FEATURED } from "@/data/vehicles";
-import { REVIEWS, GALLERY, HOME_HERO } from "@/data/content";
+import { REVIEWS, HOME_GALLERY, HOME_HERO } from "@/data/content";
 import { REAL } from "@/data/photos";
 import { SITE } from "@/lib/site";
 import { responsive, HERO_WIDTHS, CARD_WIDTHS } from "@/lib/img";
@@ -94,11 +95,33 @@ export default function Home() {
 
       {/* Feature strip, overlapping the hero */}
       <section className="container-x relative z-10 -mt-10 md:-mt-16">
-        <ul data-reveal-stagger className="card grid grid-cols-2 gap-y-1 py-2 sm:grid-cols-3 sm:gap-y-0 sm:py-0 lg:grid-cols-5 lg:divide-x lg:divide-line">
-          {FEATURES.map(({ Icon, title, sub }, i) => (
+        {/* Phones: one endless row that drifts on its own (the list is doubled
+            and slid by exactly half, so it loops with no jump). */}
+        <div className="card overflow-hidden sm:hidden" role="region" aria-label="Why choose us">
+          <ul className="feature-marquee flex w-max">
+            {[...FEATURES, ...FEATURES].map(({ Icon, title, sub }, i) => (
+              <li
+                key={i}
+                aria-hidden={i >= FEATURES.length || undefined}
+                className="flex shrink-0 items-center gap-3 border-r border-line px-5 py-3.5"
+              >
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold">
+                  <Icon size={22} />
+                </span>
+                <span className="whitespace-nowrap">
+                  <span className="block text-[0.8125rem] font-semibold leading-snug text-ink">{title}</span>
+                  <span className="block text-xs leading-snug text-ink-muted">{sub}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <ul data-reveal-stagger className="card hidden grid-cols-3 sm:grid lg:grid-cols-5 lg:divide-x lg:divide-line">
+          {FEATURES.map(({ Icon, title, sub }) => (
             <li
               key={title}
-              className={`flex items-center gap-3 px-3.5 py-2.5 text-left sm:flex-col sm:gap-0 sm:px-4 sm:py-6 sm:text-center ${i === 4 ? "col-span-2 sm:col-span-1" : ""}`}
+              className="flex flex-col items-center px-4 py-6 text-center"
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold sm:h-12 sm:w-12">
                 <Icon size={22} />
@@ -188,7 +211,13 @@ export default function Home() {
           </a>
         </div>
 
-        <ReviewSlider reviews={REVIEWS} />
+        {/* Phones: a swipeable deck of cards. Larger screens: the drifting row. */}
+        <div className="sm:hidden">
+          <ReviewDeck reviews={REVIEWS} />
+        </div>
+        <div className="hidden sm:block">
+          <ReviewSlider reviews={REVIEWS} />
+        </div>
 
         <div data-reveal className="mt-6 grid gap-3 sm:mt-8 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
           <Link href="/reviews" className="btn-gold">
@@ -224,12 +253,13 @@ export default function Home() {
             <Social />
           </div>
 
-          <ul data-reveal-stagger className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:grid-cols-4 sm:gap-3 lg:grid-cols-8">
-            {GALLERY.map((g, i) => (
-              // Six on phones (two even rows of three), all eight from sm up.
-              <li key={g.src} className={`skeleton aspect-square overflow-hidden rounded-lg sm:rounded-xl ${i >= 6 ? "hidden sm:block" : ""}`}>
+          <ul data-reveal-stagger className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:grid-cols-4 sm:gap-3 lg:grid-cols-6">
+            {HOME_GALLERY.map((g, i) => (
+              // Always two even rows: six on phones (3 across), eight on tablets (4
+              // across), twelve from lg up (6 across).
+              <li key={g.src} className={`skeleton aspect-square overflow-hidden rounded-lg sm:rounded-xl ${i >= 8 ? "hidden lg:block" : i >= 6 ? "hidden sm:block" : ""}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img {...responsive(g.src, [240, 400, 600], "(min-width: 1024px) 150px, (min-width: 640px) 25vw, 33vw")} alt={g.alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 hover:scale-105" />
+                <img {...responsive(g.src, [240, 400, 600], "(min-width: 1024px) 200px, (min-width: 640px) 25vw, 33vw")} alt={g.alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 hover:scale-105" />
               </li>
             ))}
           </ul>

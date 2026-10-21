@@ -293,3 +293,16 @@ html[data-js] main img.hero-img {
 @media (prefers-reduced-motion: reduce) {
   .mobile-nav { animation: none; }
 }
+
+/* Home feature strip on phones: slides to the right forever. The list is
+   rendered twice, so moving it by half its width loops seamlessly. */
+.feature-marquee {
+  animation: featureMarquee 28s linear infinite;
+}
+@keyframes featureMarquee {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .feature-marquee { animation: none; }
+}

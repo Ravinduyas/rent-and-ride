@@ -34,7 +34,7 @@ export default function Header() {
         scrolled ? "border-line shadow-[0_6px_24px_-12px_rgba(20,23,26,0.25)]" : "border-line/70"
       }`}
     >
-      <div className="container-x flex h-[72px] items-center justify-between gap-6">
+      <div className="container-x flex h-[4.5rem] items-center justify-between gap-6">
         <Logo />
 
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
@@ -43,7 +43,7 @@ export default function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`rounded-md px-3 py-2 text-[13px] transition ${
+              className={`rounded-md px-3 py-2 text-[0.8125rem] transition ${
                 isActive(item.href)
                   ? "font-semibold text-gold-deep underline decoration-gold decoration-2 underline-offset-[10px]"
                   : "text-ink-soft hover:text-gold-deep"

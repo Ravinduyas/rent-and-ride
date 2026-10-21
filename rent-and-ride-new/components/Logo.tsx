@@ -28,13 +28,13 @@ export default function Logo({
         alt=""
         width={52}
         height={52}
-        className="h-12 w-12 shrink-0 rounded-full shadow-[0_2px_8px_-2px_rgba(0,0,0,0.45)] lg:h-[52px] lg:w-[52px]"
+        className="h-12 w-12 shrink-0 rounded-full shadow-[0_2px_8px_-2px_rgba(0,0,0,0.45)] lg:h-[3.25rem] lg:w-[3.25rem]"
       />
       <span className="flex flex-col">
-        <span className={`font-serif text-[17px] font-semibold tracking-[0.02em] ${ink}`}>
+        <span className={`font-serif text-[1.0625rem] font-semibold tracking-[0.02em] ${ink}`}>
           Rent &amp; Ride
         </span>
-        <span className="mt-1 text-[9.5px] font-semibold tracking-[0.32em] text-gold">
+        <span className="mt-1 text-[0.59375rem] font-semibold tracking-[0.32em] text-gold">
           WELIGAMA
         </span>
       </span>

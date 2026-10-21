@@ -75,6 +75,8 @@ export const REAL = {
   scooterByTheSea: "/photos/scooter-by-the-sea",
   /** Blue tuk-tuk on a hill road, a rider posing beside it. */
   tuktukHillRoad: "/photos/tuktuk-hill-road",
+  /** Wide crop of the same photo for banners: her face stays in view at any width. */
+  tuktukHillRoadWide: "/photos/tuktuk-hill-road-wide",
   /** Couple with a red scooter by the Rent & Ride sign at the shop. */
   shopSignScooter: "/photos/shop-sign-scooter",
   /** Three customers inside the shop with the scooters. */
@@ -130,6 +132,7 @@ export const REAL_WIDTHS: Record<string, number> = {
   "/photos/riders-red-scooters": 1254,
   "/photos/scooter-by-the-sea": 3120,
   "/photos/tuktuk-hill-road": 1536,
+  "/photos/tuktuk-hill-road-wide": 1536,
   "/photos/shop-sign-scooter": 3056,
   "/photos/customers-in-shop": 3056,
   "/photos/shop-fleet": 1200,

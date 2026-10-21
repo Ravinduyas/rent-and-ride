@@ -12,7 +12,7 @@ export default function RentalInfo({ noun = "Scooter" }: { noun?: string }) {
         </span>
         <div>
           <p className="font-semibold text-ink">Free Helmets with Every Rental</p>
-          <p className="mt-0.5 text-[13px] text-ink-muted">Your safety is our priority.</p>
+          <p className="mt-0.5 text-[0.8125rem] text-ink-muted">Your safety is our priority.</p>
         </div>
       </div>
 
@@ -24,7 +24,7 @@ export default function RentalInfo({ noun = "Scooter" }: { noun?: string }) {
         />
         <div className="card p-6">
           <h3 className="font-semibold text-ink">Need a different duration?</h3>
-          <p className="mt-2 text-[13px] leading-6 text-ink-muted">
+          <p className="mt-2 text-[0.8125rem] leading-6 text-ink-muted">
             Weekly and monthly rental options are available.
           </p>
           <Link href="/contact" className="btn-gold mt-5">
@@ -42,7 +42,7 @@ function InfoCard({ title, items }: { title: string; items: string[] }) {
       <h3 className="font-semibold text-ink">{title}</h3>
       <ul className="mt-3 space-y-2">
         {items.map((i) => (
-          <li key={i} className="flex items-center gap-2 text-[13px] text-ink-soft">
+          <li key={i} className="flex items-center gap-2 text-[0.8125rem] text-ink-soft">
             <HiCheckCircle className="shrink-0 text-gold" size={16} />
             {i}
           </li>

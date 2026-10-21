@@ -47,7 +47,7 @@ export default function ReviewsPage() {
             </h2>
             <Stars />
           </div>
-          <p className="mt-2 text-[13px] text-ink-muted">Traveler photos from the road.</p>
+          <p className="mt-2 text-[0.8125rem] text-ink-muted">Traveler photos from the road.</p>
           <ul className="mt-5 grid grid-cols-2 gap-3">
             {GALLERY.slice(0, 4).map((g) => (
               <li key={g.src} className="skeleton aspect-[4/3] overflow-hidden rounded-lg">

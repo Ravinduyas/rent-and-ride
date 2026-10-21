@@ -31,11 +31,14 @@ export default function PageHero({
         className="hero-img absolute inset-0 -z-20 h-full w-full object-cover"
         style={{ objectPosition: imagePosition }}
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/40 to-black/5 md:via-black/30 md:to-transparent" />
+      {/* Phones: the text spans the whole banner, so darken it evenly. Wider
+          screens: darken only the left, where the text sits. */}
+      <div className="absolute inset-0 -z-10 bg-black/55 md:hidden" />
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black/70 via-black/35 to-transparent md:block" />
 
-      <div className="container-x py-10 md:py-20">
+      <div className="container-x py-12 md:py-20 lg:py-24">
         <div className="hero-intro max-w-xl">
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.45)] md:text-[44px]">
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.45)] md:text-[2.75rem]">
             {title}
           </h1>
           {intro && <p className="lead mt-4 max-w-md !text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">{intro}</p>}

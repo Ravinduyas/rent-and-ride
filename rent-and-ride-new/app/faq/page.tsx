@@ -28,7 +28,7 @@ export default function FaqPage() {
         <aside data-reveal="right" className="card flex flex-col items-center p-8 text-center lg:sticky lg:top-24">
           <PalmMark className="h-10 w-10 text-gold" />
           <h2 className="mt-3 font-semibold text-ink">Still have questions?</h2>
-          <p className="mt-2 text-[13px] leading-6 text-ink-muted">
+          <p className="mt-2 text-[0.8125rem] leading-6 text-ink-muted">
             Chat with us on WhatsApp and we&apos;ll be happy to help!
           </p>
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn-whatsapp mt-5 w-full sm:w-auto">

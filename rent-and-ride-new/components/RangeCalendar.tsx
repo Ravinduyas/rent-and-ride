@@ -77,7 +77,7 @@ export default function RangeCalendar({
         </button>
       </div>
 
-      <div className="mt-1 grid grid-cols-7 text-center text-[11px] font-medium uppercase tracking-wide text-ink-muted">
+      <div className="mt-1 grid grid-cols-7 text-center text-[0.6875rem] font-medium uppercase tracking-wide text-ink-muted">
         {WEEKDAYS.map((w) => (
           <span key={w} className="py-1.5">
             {w}

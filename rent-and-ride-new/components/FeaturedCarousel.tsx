@@ -64,7 +64,7 @@ export default function FeaturedCarousel({ vehicles }: { vehicles: Vehicle[] }) 
               />
               <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/10" />
 
-              <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink backdrop-blur">
+              <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-wide text-ink backdrop-blur">
                 {KIND[v.kind]}
               </span>
               <span className="absolute right-3 top-3 rounded-full bg-gold px-3 py-1 text-sm font-semibold text-white shadow">
@@ -96,7 +96,7 @@ export default function FeaturedCarousel({ vehicles }: { vehicles: Vehicle[] }) 
             aria-label={`Show ${v.name}`}
             onClick={() => goTo(i)}
             // 44px tall tap area around a small dot.
-            className="flex h-11 items-center px-1"
+            className="flex h-11 items-center px-2"
           >
             <span className={`block h-2 rounded-full transition-all ${i === active ? "w-6 bg-gold" : "w-2 bg-line"}`} />
           </button>

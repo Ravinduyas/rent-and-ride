@@ -50,7 +50,7 @@ export default function FaqList({ items }: { items: Faq[] }) {
                   )}
                 </button>
               </h3>
-              <div id={id} hidden={!isOpen} className="px-5 pb-5 text-[13px] leading-6 text-ink-muted">
+              <div id={id} hidden={!isOpen} className="px-5 pb-5 text-[0.8125rem] leading-6 text-ink-muted">
                 {f.a}
               </div>
             </li>

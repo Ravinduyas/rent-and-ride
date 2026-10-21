@@ -66,10 +66,15 @@ export default function VehicleBrowser({
         )}
       </div>
 
-      <ul data-reveal-stagger className="mt-5 grid grid-cols-1 gap-3.5 sm:mt-6 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+      <ul
+        data-reveal-stagger
+        className={`mt-5 grid grid-cols-1 gap-3.5 sm:mt-6 sm:gap-5 lg:gap-6 ${
+          shown.length === 1 ? "max-w-4xl" : "sm:grid-cols-2 lg:grid-cols-3"
+        }`}
+      >
         {shown.map((v) => (
           <li key={v.slug}>
-            <VehicleCard vehicle={v} />
+            <VehicleCard vehicle={v} wide={shown.length === 1} />
           </li>
         ))}
       </ul>

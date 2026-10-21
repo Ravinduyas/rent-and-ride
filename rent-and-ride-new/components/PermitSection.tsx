@@ -42,7 +42,7 @@ export default function PermitSection({ id }: { id: string }) {
                 <Icon size={24} />
               </span>
               <h3 className="mt-4 font-semibold text-ink">{title}</h3>
-              <p className="mt-2 text-[13px] leading-6 text-ink-muted">{body}</p>
+              <p className="mt-2 text-[0.8125rem] leading-6 text-ink-muted">{body}</p>
             </li>
           ))}
         </ol>

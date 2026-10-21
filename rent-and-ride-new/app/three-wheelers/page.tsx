@@ -17,8 +17,8 @@ export default function ThreeWheelersPage() {
       <PageHero
         title={<>Tuk-Tuk Rental<br />in Weligama</>}
         intro="The Bajaj RE 4S — seats three, shade from the sun, and the local way to get around."
-        image={REAL.tuktukHillRoad}
-        imagePosition="center 67%"
+        image={REAL.tuktukHillRoadWide}
+        imagePosition="center 52%"
       />
       <VehicleBrowser id="tuktuks" title="Tuk-Tuks" vehicles={TUKTUKS} />
       <RentalInfo noun="Tuk-Tuk" />

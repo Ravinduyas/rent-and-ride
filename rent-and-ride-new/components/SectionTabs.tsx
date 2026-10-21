@@ -43,7 +43,7 @@ export default function SectionTabs({ sections }: { sections: SectionLink[] }) {
   return (
     <nav
       aria-label="On this page"
-      className="sticky top-[72px] z-30 border-b border-line bg-white/95 backdrop-blur"
+      className="sticky top-[4.5rem] z-30 border-b border-line bg-white/95 backdrop-blur"
     >
       {/* Phones: equal-width tabs, icon stacked over a short label, so all
           four fit even at 320px. Wider screens: natural-width pills. */}
@@ -60,7 +60,7 @@ export default function SectionTabs({ sections }: { sections: SectionLink[] }) {
                 href={`#${id}`}
                 aria-current={on ? "true" : undefined}
                 onClick={() => setActive(id)}
-                className={`flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-xl border px-1 py-1.5 text-[11px] font-medium leading-tight transition sm:min-h-11 sm:flex-row sm:gap-2 sm:rounded-full sm:px-4 sm:py-0 sm:text-sm ${
+                className={`flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-xl border px-1 py-1.5 text-[0.6875rem] font-medium leading-tight transition sm:min-h-11 sm:flex-row sm:gap-2 sm:rounded-full sm:px-4 sm:py-0 sm:text-sm ${
                   on
                     ? "border-ink bg-ink text-white"
                     : "border-line bg-white text-ink-soft hover:border-gold hover:text-gold-deep"

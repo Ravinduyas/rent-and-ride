@@ -27,7 +27,7 @@ export default function ReviewCard({
             )}
           </p>
           <Stars className="mt-1" />
-          <p className="mt-2 text-[13px] leading-6 text-ink-soft">{r.text}</p>
+          <p className="mt-2 text-[0.8125rem] leading-6 text-ink-soft">{r.text}</p>
         </div>
       </article>
     );
@@ -40,8 +40,8 @@ export default function ReviewCard({
         {r.source}
       </p>
       <Stars className="mt-2" />
-      <p className="mt-3 flex-1 text-[13px] leading-6 text-ink-soft">{r.text}</p>
-      <p className="mt-4 text-[13px] font-medium text-ink">
+      <p className="mt-3 flex-1 text-[0.8125rem] leading-6 text-ink-soft">{r.text}</p>
+      <p className="mt-4 text-[0.8125rem] font-medium text-ink">
         – {r.name}{r.origin && `, ${r.origin}`}
       </p>
     </article>

@@ -25,7 +25,7 @@ const SERVICES = [
 
 const HEAD = "text-sm font-semibold text-white";
 // 44px tall on touch screens, tighter where there's a mouse.
-const LINK = "inline-flex min-h-11 items-center text-sm text-white/60 transition hover:text-gold lg:min-h-8 lg:text-[13px]";
+const LINK = "inline-flex min-h-11 items-center text-sm text-white/60 transition hover:text-gold lg:min-h-8 lg:text-[0.8125rem]";
 
 export default function Footer() {
   // Bottom padding on phones keeps the last line clear of the floating
@@ -35,7 +35,7 @@ export default function Footer() {
       <div data-reveal-stagger className="container-x grid grid-cols-2 gap-10 py-14 md:grid-cols-4 lg:grid-cols-[1.1fr_0.8fr_1fr_1.4fr_1.3fr]">
         <div className="col-span-2 md:col-span-4 lg:col-span-1">
           <Logo tone="light" />
-          <p className="mt-5 max-w-[230px] text-[13px] leading-6 text-white/60">
+          <p className="mt-5 max-w-[230px] text-[0.8125rem] leading-6 text-white/60">
             Scooter and bike rentals in Weligama, Mirissa and Ahangama.
           </p>
           <Social size="sm" className="mt-5" />
@@ -65,7 +65,7 @@ export default function Footer() {
 
         <div className="col-span-2 md:col-span-1">
           <h3 className={HEAD}>Contact Info</h3>
-          <ul className="mt-4 space-y-3 text-[13px] text-white/60">
+          <ul className="mt-4 space-y-3 text-[0.8125rem] text-white/60">
             <li className="flex gap-3">
               <FaPhoneAlt className="mt-1 shrink-0 text-gold" size={12} />
               <a href={SITE.phoneHref} className="-my-3 inline-block py-3 hover:text-gold lg:my-0 lg:py-0">

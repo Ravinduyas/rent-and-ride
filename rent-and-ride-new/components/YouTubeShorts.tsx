@@ -186,13 +186,13 @@ export default function YouTubeShorts({ shorts }: { shorts: Short[] }) {
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                   <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-black/20" />
-                  <span className="absolute left-2.5 top-2.5 flex items-center gap-1 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white backdrop-blur">
+                  <span className="absolute left-2.5 top-2.5 flex items-center gap-1 rounded-full bg-black/55 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wide text-white backdrop-blur">
                     <FaYoutube className="text-[#FF0000]" size={12} /> Shorts
                   </span>
                   <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow-lift transition group-hover:scale-110">
                     <FaPlay className="ml-0.5" size={16} />
                   </span>
-                  <span className="absolute inset-x-0 bottom-0 line-clamp-3 p-3 text-[13px] font-medium leading-snug text-white">
+                  <span className="absolute inset-x-0 bottom-0 line-clamp-3 p-3 text-[0.8125rem] font-medium leading-snug text-white">
                     {s.title}
                   </span>
                 </a>

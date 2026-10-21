@@ -11,6 +11,19 @@
     text-size-adjust: 100%;
   }
 
+  /* Large screens: scale the whole interface (type, spacing and the content
+     width are all rem) so a 1920px monitor doesn't get a small column of tiny
+     text with empty margins. */
+  @media (min-width: 1536px) {
+    html { font-size: 17px; }
+  }
+  @media (min-width: 1920px) {
+    html { font-size: 18.5px; }
+  }
+  @media (min-width: 2560px) {
+    html { font-size: 22px; }
+  }
+
   /* Nothing may push the page sideways on a phone (e.g. a card waiting to
      slide in from the right). `clip`, unlike `hidden`, keeps the sticky
      header working. */
@@ -58,11 +71,11 @@
   }
 
   .h-section {
-    @apply text-2xl font-semibold tracking-tight text-ink md:text-[28px];
+    @apply text-2xl font-semibold tracking-tight text-ink md:text-[1.75rem];
   }
 
   .lead {
-    @apply text-sm leading-7 text-ink-muted md:text-[15px];
+    @apply text-sm leading-7 text-ink-muted md:text-[0.9375rem];
   }
 
   /* 16px on phones: iOS Safari zooms the page into any field smaller than
@@ -72,7 +85,7 @@
   }
 
   .label {
-    @apply mb-1.5 block text-[13px] font-medium text-ink;
+    @apply mb-1.5 block text-[0.8125rem] font-medium text-ink;
   }
 }
 
@@ -143,8 +156,8 @@ html[data-js] main img.hero-img {
    they slide away while scrolling; the vh line is for older browsers.
    Capped at 960px so huge monitors don't get a cavernous banner. */
 .hero-screen {
-  min-height: min(calc(100vh - 72px), 960px);
-  min-height: min(calc(100svh - 72px), 960px);
+  min-height: min(calc(100vh - 4.5rem), 960px);
+  min-height: min(calc(100svh - 4.5rem), 960px);
 }
 
 /* Phones/tablets: the photo strip at the top of the hero melts into the
@@ -160,8 +173,8 @@ html[data-js] main img.hero-img {
    white behind the headline. */
 @media (min-width: 1024px) {
   .hero-photo {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 42%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 42%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 30%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 30%);
   }
 }
 

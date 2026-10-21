@@ -6,7 +6,7 @@
 
 /** Space a jump-linked section leaves above itself: header (72px) + the
  *  pinned section tabs (~70px on phones) + breathing room. */
-export const SECTION_OFFSET = "scroll-mt-[160px]";
+export const SECTION_OFFSET = "scroll-mt-[10rem]";
 
 export type SectionIcon = "scooter" | "bike" | "tuktuk" | "permit";
 

@@ -39,7 +39,7 @@ export default function Home() {
             hero fits the screen exactly.
             Desktop: the photo fills the right ~62% behind the layout and
             dissolves into the white behind the heading. Masks: globals.css. */}
-        <div className="hero-photo relative min-h-[160px] flex-1 overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:-z-20 lg:min-h-0 lg:w-[62%] lg:flex-none">
+        <div className="hero-photo relative min-h-[17rem] flex-1 sm:min-h-[26rem] md:min-h-[32rem] overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:-z-20 lg:min-h-0 lg:w-[62%] lg:flex-none">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             {...responsive(HOME_HERO, HERO_WIDTHS, "(min-width: 1024px) 62vw, 100vw")}
@@ -49,12 +49,12 @@ export default function Home() {
             loading="eager"
             // Absolutely positioned so the (square) photo can't set the
             // strip's height — the strip takes the leftover space instead.
-            className="hero-img absolute inset-0 h-full w-full object-cover object-[center_40%]"
+            className="hero-img absolute inset-0 h-full w-full object-cover object-[center_18%] lg:object-[center_40%]"
           />
           <p
             aria-hidden
             // Top right is open sky in this photo, clear of the rider.
-            className="pointer-events-none absolute right-4 top-4 rotate-[-6deg] text-right font-script text-[24px] leading-[0.95] text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] sm:right-8 sm:top-6 sm:text-3xl lg:hidden"
+            className="pointer-events-none absolute right-4 top-3 rotate-[-6deg] text-right font-script text-[1.5rem] leading-[0.95] text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] sm:right-8 sm:top-6 sm:text-3xl lg:hidden"
           >
             Your next adventure
             <br />
@@ -65,7 +65,7 @@ export default function Home() {
         {/* Desktop: this block takes the full height and centres the text,
             leaving room at the bottom for the overlapping feature strip. */}
         <div className="container-x relative pb-16 pt-1 sm:pt-4 md:pb-28 lg:flex lg:flex-1 lg:items-center lg:pb-24 lg:pt-10">
-          <div data-reveal="right" style={{ "--reveal-delay": "600ms" } as React.CSSProperties} className="pointer-events-none absolute right-8 top-10 hidden lg:block">
+          <div data-reveal="right" style={{ "--reveal-delay": "600ms" } as React.CSSProperties} className="pointer-events-none absolute right-8 top-10 hidden 2xl:block">
             <p className="rotate-[-6deg] font-script text-4xl leading-none text-white drop-shadow-md">
               Your next
               <br />
@@ -79,7 +79,7 @@ export default function Home() {
               for JavaScript to download before it can appear. */}
           <div className="hero-intro max-w-xl">
             <p className="eyebrow">Bike &amp; Scooter Rental in Weligama</p>
-            <h1 className="mt-3 text-[40px] font-semibold md:mt-4 leading-[1.08] tracking-tight text-ink md:text-6xl">
+            <h1 className="mt-3 text-[2.5rem] font-semibold md:mt-4 leading-[1.08] tracking-tight text-ink md:text-6xl">
               Ride More.
               <br />
               <span className="text-gold">Worry Less.</span>
@@ -104,7 +104,7 @@ export default function Home() {
                 <Icon size={22} />
               </span>
               <span className="min-w-0">
-                <span className="block text-[13px] font-semibold leading-snug text-ink sm:mt-3">{title}</span>
+                <span className="block text-[0.8125rem] font-semibold leading-snug text-ink sm:mt-3">{title}</span>
                 <span className="block text-xs leading-snug text-ink-muted">{sub}</span>
               </span>
             </li>

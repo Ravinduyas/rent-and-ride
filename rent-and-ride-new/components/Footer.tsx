@@ -7,20 +7,20 @@ import { SITE } from "@/lib/site";
 
 const QUICK = [
   { label: "Home", href: "/" },
-  { label: "Rentals", href: "/rentals" },
+  { label: "Scooters & Bikes", href: "/scooters" },
   { label: "About Us", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
 
 const SERVICES = [
-  { label: "Bike Rental", href: "/rentals/#bikes" },
-  { label: "Scooter Rental", href: "/rentals/#scooters" },
-  { label: "Tuk-Tuk Rental", href: "/rentals/#tuktuks" },
-  { label: "Driving Permit Assistance", href: "/rentals/#driving-permit" },
+  { label: "Bike Rental", href: "/scooters/#bikes" },
+  { label: "Scooter Rental", href: "/scooters" },
+  { label: "Tuk-Tuk Rental", href: "/three-wheelers" },
+  { label: "Driving Permit Assistance", href: "/scooters/#driving-permit" },
   { label: "Pickup at Our Shop", href: "/contact" },
   { label: "24/7 Support", href: "/contact" },
-  { label: "Free Helmets", href: "/rentals" },
+  { label: "Free Helmets", href: "/scooters" },
 ];
 
 const HEAD = "text-sm font-semibold text-white";

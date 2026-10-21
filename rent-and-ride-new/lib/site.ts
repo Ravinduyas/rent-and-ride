@@ -44,8 +44,8 @@ export function whatsappLink(message = "Hi Rent & Ride! I'd like to rent a scoot
 
 export const NAV = [
   { label: "Home", href: "/" },
-  // Scooters, bikes and the driving permit share one page.
-  { label: "Rentals", href: "/rentals" },
+  { label: "Scooters & Bikes", href: "/scooters" },
+  { label: "Tuk-Tuks", href: "/three-wheelers" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
   { label: "FAQ", href: "/faq" },

@@ -120,7 +120,7 @@ export default function Home() {
               Our most popular scooters, bikes and tuk-tuks — perfect for exploring the South Coast.
             </p>
           </div>
-          <Link href="/rentals" className="flex min-h-11 shrink-0 items-center gap-1 text-sm font-semibold text-gold-deep hover:underline">
+          <Link href="/scooters" className="flex min-h-11 shrink-0 items-center gap-1 text-sm font-semibold text-gold-deep hover:underline">
             View all <span className="hidden sm:inline">vehicles</span> <HiArrowRight />
           </Link>
         </div>

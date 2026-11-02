@@ -13,6 +13,7 @@ export type Booking = {
   pickupTime: string; // HH:MM
   returnDate: string; // YYYY-MM-DD
   helmets: "1" | "2";
+  extras: string[]; // Extra ids, see EXTRAS
   permit: PermitHelp | "";
   licenceCountry: string;
   name: string;
@@ -25,11 +26,40 @@ export const EMPTY_BOOKING: Booking = {
   pickupTime: "09:00",
   returnDate: "",
   helmets: "2",
+  extras: [],
   permit: "",
   licenceCountry: "",
   name: "",
   notes: "",
 };
+
+/**
+ * Optional add-ons offered in the booking flow. PLACEHOLDERS: confirm what
+ * the shop really offers and the prices before relying on them. `per` says
+ * whether the price is charged once per rental or for every day of it.
+ */
+export type Extra = {
+  id: string;
+  label: string; // small caps tag above the title
+  title: string;
+  desc: string;
+  price: number; // USD; 0 = free
+  per: "rental" | "day";
+  icon: "phone" | "helmet" | "bag";
+};
+
+export const EXTRAS: Extra[] = [
+  { id: "phone-holder", label: "Accessory", title: "Phone holder", desc: "Handlebar mount so you can follow the map hands-free.", price: 2, per: "rental", icon: "phone" },
+  { id: "child-helmet", label: "Safety", title: "Child helmet", desc: "Small-size helmet for a young passenger.", price: 0, per: "rental", icon: "helmet" },
+  { id: "top-box", label: "Carry", title: "Luggage box", desc: "A lockable box on the back for bags and shopping.", price: 1, per: "day", icon: "bag" },
+];
+
+/** Cost of the chosen extras for a rental of `days` days, in USD. */
+export function extrasTotal(ids: string[], days: number): number {
+  return EXTRAS.filter((e) => ids.includes(e.id)).reduce((sum, e) => sum + (e.per === "day" ? e.price * days : e.price), 0);
+}
+
+export const priceText = (e: Extra) => (e.price === 0 ? "Free" : `$${e.price}${e.per === "day" ? "/day" : ""}`);
 
 /** Every rental is collected from, and returned to, the shop — no delivery. */
 export const PICKUP_TEXT = "Pickup & return at our shop in Weligama";
@@ -110,9 +140,10 @@ export function bookingMessage(b: Booking, v: Vehicle): string {
     `${v.kind === "tuktuk" ? "🛺" : "🛵"} *${v.name}* (${specs(v)})`,
     `📅 Pickup: ${formatDate(b.pickupDate)}, ${b.pickupTime}`,
     `📅 Return: ${formatDate(b.returnDate)}`,
-    `⏱️ ${days} ${days === 1 ? "day" : "days"} · est. $${estimate(v, days)}`,
+    `⏱️ ${days} ${days === 1 ? "day" : "days"} · est. $${estimate(v, days) + extrasTotal(b.extras, days)}`,
     `📍 ${PICKUP_TEXT}`,
     ...(needsHelmets(v) ? [`⛑️ Helmets: ${b.helmets}`] : []),
+    ...(b.extras.length ? [`➕ Extras: ${EXTRAS.filter((e) => b.extras.includes(e.id)).map((e) => e.title).join(", ")}`] : []),
     `🪪 Driving permit help: ${permitText(b)}`,
     "",
     `Name: ${b.name.trim()}`,

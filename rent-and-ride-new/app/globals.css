@@ -151,6 +151,25 @@ html[data-js] main img.hero-img {
   animation: heroSettle 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Hero slideshow: every photo is stacked; the active one fades in over the
+   others and drifts from a slight zoom to rest while it's showing. The zoom
+   restarts each time a slide becomes active. Without JavaScript only the
+   first slide exists and is active, so it simply shows. */
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.hero-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+.hero-slide .hero-img {
+  animation: none;
+}
+.hero-slide.is-active .hero-img {
+  animation: heroDrift 7.5s cubic-bezier(0.2, 0.6, 0.3, 1) both;
+}
+
 /* The home hero fills the screen below the 72px header. svh is the height
    with the phone browser's toolbars showing, so the hero doesn't jump as
    they slide away while scrolling; the vh line is for older browsers.
@@ -232,6 +251,10 @@ html[data-js] main img.hero-img {
   from { transform: scale(1.08); }
   to { transform: scale(1); }
 }
+@keyframes heroDrift {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
+}
 @keyframes pageEnter {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
@@ -261,6 +284,8 @@ html[data-js] main img.hero-img {
   }
   .page-enter,
   .hero-img,
+  .hero-slide .hero-img,
+  .hero-slide.is-active .hero-img,
   .hero-intro > *,
   .skeleton,
   .preloader-logo,
@@ -279,6 +304,45 @@ html[data-js] main img.hero-img {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+/* FAQ answers: the panel's height animates between 0 and its content's height
+   (grid rows 0fr → 1fr), with the text fading in a beat behind it. Collapsed
+   panels are visibility:hidden once the close finishes, so their text can't
+   be tabbed into or read out. */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.faq-panel.is-open {
+  grid-template-rows: 1fr;
+}
+.faq-panel > div {
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s ease,
+    visibility 0s linear 0.4s;
+}
+.faq-panel.is-open > div {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.35s ease 0.1s,
+    transform 0.4s ease 0.05s,
+    visibility 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-panel,
+  .faq-panel > div {
+    transition: none;
   }
 }
 

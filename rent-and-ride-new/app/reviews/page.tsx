@@ -40,7 +40,10 @@ export default function ReviewsPage() {
           </a>
         </div>
 
-        <div data-reveal="right" className="card p-6 md:p-8">
+        {/* Desktop: stays in view (below the 72px header) while the long review
+            list scrolls past, and lets go when that list ends. self-start stops
+            the grid stretching it, which would leave nothing to stick within. */}
+        <div data-reveal="right" className="card p-6 md:p-8 lg:sticky lg:top-24 lg:self-start">
           <div className="flex items-center justify-between gap-4">
             <h2 className="flex items-center gap-2 font-semibold text-ink">
               <SiTripadvisor className="text-[#00AF87]" size={20} /> Tripadvisor

@@ -1,4 +1,5 @@
 import { REAL } from "./photos";
+import { SCOOTERS, BIKES, TUKTUKS } from "./vehicles";
 
 export type Review = {
   name: string;
@@ -39,10 +40,20 @@ export const REVIEWS: Review[] = [
 
 export type Faq = { q: string; a: string };
 
+const cheapest = (list: { perDay: number }[]) => Math.min(...list.map((v) => v.perDay));
+
 export const FAQS: Faq[] = [
   {
     q: "Do I need a driving license?",
     a: "Yes. You need a valid licence from your home country that covers motorcycles, plus a Sri Lankan recognition permit. We can arrange the permit for you — see the Driving Permit section of our Rentals page.",
+  },
+  {
+    q: "Which vehicles can I rent, and what do they cost?",
+    a: `Scooters start at $${cheapest(SCOOTERS)} a day, bikes at $${cheapest(BIKES)} a day, and our tuk-tuk is $${TUKTUKS[0].perDay} a day. Renting by the week is cheaper than paying day by day. See the Rentals page for every model and price.`,
+  },
+  {
+    q: "How do I book?",
+    a: "Press Book Now, choose your vehicle and dates, and send the booking to us on WhatsApp. We reply to confirm availability and the final price. Nothing is charged online.",
   },
   {
     q: "Where do I collect the vehicle?",
@@ -59,6 +70,10 @@ export const FAQS: Faq[] = [
   {
     q: "Do you provide driving permit assistance?",
     a: "Yes. Send us a copy of your licence and passport and we'll handle the paperwork for the Sri Lankan permit.",
+  },
+  {
+    q: "Can I rent a tuk-tuk?",
+    a: "Yes. Our Bajaj RE 4S seats three people and is a great way to see the south coast with friends or family. Message us on WhatsApp and we'll tell you what licence you need and arrange a time to collect it.",
   },
   {
     q: "What are the payment options?",
@@ -93,8 +108,18 @@ export const HOME_GALLERY = [
   { src: REAL.scooterByTheSea, alt: "A red scooter parked under a tree by the sea" },
 ];
 
-/** Home hero: two riders on red scooters on a palm-lined road. */
-export const HOME_HERO = REAL.ridersRedScooters;
+/**
+ * Home hero slideshow, shown in this order, each for a few seconds.
+ * `position` is the CSS object-position that keeps the people and the shop
+ * sign in frame when the photo is cropped to the hero's shape.
+ * (The old hero photo, REAL.ridersRedScooters, is still in public/photos but
+ * no longer used here.)
+ */
+export const HERO_SLIDES = [
+  { src: REAL.heroFriendsTuktuk, alt: "Three friends beside a blue tuk-tuk and the Rent & Ride sign", position: "center 30%" },
+  { src: REAL.heroRidersNtorq, alt: "Two riders on scooters at the roadside outside the Rent & Ride shop", position: "center 50%" },
+  { src: REAL.heroCoupleScooter, alt: "A couple with a red scooter in front of the Rent & Ride sign", position: "center 45%" },
+];
 
 /** Default inner-page banner; pages pass their own where it fits. */
 export const PAGE_HERO = REAL.scooterByTheSea;

@@ -110,6 +110,14 @@ export const REAL = {
   /** Two friends by a blue tuk-tuk outside the shop sign. */
   shopTuktukFriends: "/photos/shop-tuktuk-friends",
 
+  // Home hero slideshow (three photos taken outside the shop, by its sign).
+  /** Three friends laughing beside a blue tuk-tuk and the Rent & Ride sign. */
+  heroFriendsTuktuk: "/photos/hero-friends-tuktuk",
+  /** Two riders on scooters at the roadside, the sign beside them. */
+  heroRidersNtorq: "/photos/hero-riders-ntorq",
+  /** A couple with a red scooter on the road in front of the shop sign. */
+  heroCoupleScooter: "/photos/hero-couple-scooter",
+
   // Fleet product photos (supplied by the business; low resolution, so they
   // are shown small and never enlarged).
   /** TVS Apache 160, black, studio shot padded to 4:3 on white. */
@@ -149,6 +157,9 @@ export const REAL_WIDTHS: Record<string, number> = {
   "/photos/tuktuk-garden": 2048,
   "/photos/motorbike-by-the-sea": 719,
   "/photos/shop-tuktuk-friends": 3056,
+  "/photos/hero-friends-tuktuk": 1280,
+  "/photos/hero-riders-ntorq": 1600,
+  "/photos/hero-couple-scooter": 1600,
   "/photos/tvs-apache-160": 594,
   "/photos/yamaha-fz-160": 513,
   "/photos/hero-hunk": 1024,

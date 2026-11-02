@@ -14,10 +14,11 @@ import ReviewSlider from "@/components/ReviewSlider";
 import ReviewDeck from "@/components/ReviewDeck";
 import Social from "@/components/Social";
 import { FEATURED } from "@/data/vehicles";
-import { REVIEWS, HOME_GALLERY, HOME_HERO } from "@/data/content";
+import { REVIEWS, HOME_GALLERY, HERO_SLIDES } from "@/data/content";
+import HeroSlider from "@/components/HeroSlider";
 import { REAL } from "@/data/photos";
 import { SITE } from "@/lib/site";
-import { responsive, HERO_WIDTHS, CARD_WIDTHS } from "@/lib/img";
+import { responsive, CARD_WIDTHS } from "@/lib/img";
 
 const FEATURES = [
   { Icon: MdOutlineTwoWheeler, title: "Wide Range", sub: "of Vehicles" },
@@ -41,17 +42,9 @@ export default function Home() {
             Desktop: the photo fills the right ~62% behind the layout and
             dissolves into the white behind the heading. Masks: globals.css. */}
         <div className="hero-photo relative min-h-[17rem] flex-1 sm:min-h-[26rem] md:min-h-[32rem] overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:-z-20 lg:min-h-0 lg:w-[62%] lg:flex-none">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            {...responsive(HOME_HERO, HERO_WIDTHS, "(min-width: 1024px) 62vw, 100vw")}
-            alt="Two riders on red scooters on a palm-lined road"
-            // The largest thing on screen: fetch it before anything else.
-            fetchPriority="high"
-            loading="eager"
-            // Absolutely positioned so the (square) photo can't set the
-            // strip's height — the strip takes the leftover space instead.
-            className="hero-img absolute inset-0 h-full w-full object-cover object-[center_18%] lg:object-[center_40%]"
-          />
+          {/* Crossfading slideshow: the first photo is in the page from the
+              start; the others load once the page has settled. */}
+          <HeroSlider slides={HERO_SLIDES} />
           <p
             aria-hidden
             // Top right is open sky in this photo, clear of the rider.

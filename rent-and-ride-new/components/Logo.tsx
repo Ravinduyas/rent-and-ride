@@ -2,8 +2,10 @@ import Link from "next/link";
 import { asset } from "@/lib/asset";
 
 /**
- * The business logo (public/logo.png: black roundel, white scooter and R&R monogram)
- * with the name set beside it. The roundel has the name inside it too, but
+ * The business logo with the name set beside it. The artwork has no background
+ * of its own: logo-dark.png (dark line art) for light backgrounds and
+ * logo-light.png (white line art) for dark ones. public/logo.png, the solid
+ * black roundel, is kept for the browser-tab icon. The roundel has the name inside it too, but
  * at header size that lettering is too small to read, so the wordmark next
  * to it carries the name.
  */
@@ -24,11 +26,11 @@ export default function Logo({
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset("/logo.png")}
+        src={asset(tone === "dark" ? "/logo-dark.png" : "/logo-light.png")}
         alt=""
-        width={52}
-        height={52}
-        className="h-12 w-12 shrink-0 rounded-full shadow-[0_2px_8px_-2px_rgba(0,0,0,0.45)] lg:h-[3.25rem] lg:w-[3.25rem]"
+        width={56}
+        height={56}
+        className="h-[3.25rem] w-[3.25rem] shrink-0 lg:h-14 lg:w-14"
       />
       <span className="flex flex-col">
         <span className={`font-serif text-[1.0625rem] font-semibold tracking-[0.02em] ${ink}`}>

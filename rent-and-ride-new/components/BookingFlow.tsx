@@ -4,7 +4,8 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa";
-import { HiCheck, HiArrowLeft, HiArrowRight, HiOutlineLocationMarker } from "react-icons/hi";
+import { HiCheck, HiArrowLeft, HiArrowRight, HiOutlineLocationMarker, HiOutlineDeviceMobile, HiOutlineShoppingBag } from "react-icons/hi";
+import { FaHelmetSafety } from "react-icons/fa6";
 import { SCOOTERS, BIKES, TUKTUKS, type Vehicle } from "@/data/vehicles";
 import { SITE, whatsappLink } from "@/lib/site";
 import { responsive } from "@/lib/img";
@@ -22,6 +23,9 @@ import {
   bookingMessage,
   specs,
   needsHelmets,
+  EXTRAS,
+  extrasTotal,
+  priceText,
 } from "@/lib/booking";
 
 const GROUPS = [
@@ -30,7 +34,9 @@ const GROUPS = [
   { id: "tuktuk", label: "Tuk-Tuks", list: TUKTUKS },
 ] as const;
 const ALL: Vehicle[] = [...SCOOTERS, ...BIKES, ...TUKTUKS];
-const STEPS = ["Vehicle", "Dates", "Details", "Review"] as const;
+const STEPS = ["Vehicle", "Dates", "Details", "Extras", "Review"] as const;
+const LAST = STEPS.length - 1;
+const EXTRA_ICONS = { phone: HiOutlineDeviceMobile, helmet: FaHelmetSafety, bag: HiOutlineShoppingBag } as const;
 // sessionStorage, so a refresh mid-booking doesn't lose what was entered.
 const DRAFT_KEY = "rr-booking-draft";
 
@@ -43,7 +49,7 @@ const shortDate = (v: string) =>
   v ? new Date(`${v}T00:00`).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" }) : "";
 
 /**
- * Four clean screens — vehicle, dates, details, review — with a slim
+ * Five clean screens — vehicle, dates, details, optional extras, review — with a slim
  * progress row at the top and the next action pinned to the bottom of the
  * screen. The last step hands the booking to WhatsApp.
  */
@@ -92,7 +98,9 @@ export default function BookingFlow() {
 
   const vehicle = ALL.find((v) => v.slug === b.vehicle);
   const days = rentalDays(b.pickupDate, b.returnDate);
-  const total = vehicle && days ? estimate(vehicle, days) : 0;
+  const total = vehicle && days ? estimate(vehicle, days) + extrasTotal(b.extras, days) : 0;
+  const toggleExtra = (id: string) =>
+    setB((prev) => ({ ...prev, extras: prev.extras.includes(id) ? prev.extras.filter((x) => x !== id) : [...prev.extras, id] }));
 
   function validate(s: number): Record<string, string> {
     const e: Record<string, string> = {};
@@ -165,8 +173,22 @@ export default function BookingFlow() {
           ? { main: `Pickup ${shortDate(b.pickupDate)}`, sub: "Now tap your return day" }
           : { main: vehicle?.name ?? "", sub: "Tap your pickup day" };
 
+  // The next action: in the bottom bar on phones, in the summary panel on desktop.
+  const cta = (extra = "") =>
+    step < LAST ? (
+      <button type="button" onClick={() => go(step + 1)} className={`btn-gold min-h-12 shrink-0 px-6 ${extra}`}>
+        Continue <HiArrowRight />
+      </button>
+    ) : (
+      <button type="button" onClick={send} className={`btn-whatsapp min-h-12 shrink-0 px-5 ${extra}`}>
+        <FaWhatsapp size={20} /> Send on WhatsApp
+      </button>
+    );
+
   return (
-    <div data-flow className="mx-auto max-w-2xl pb-28">
+    <div data-flow className="mx-auto max-w-2xl pb-28 lg:grid lg:max-w-5xl lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start lg:gap-8 lg:pb-4">
+      {/* On desktop the steps sit in a white panel beside the summary. */}
+      <div className="lg:rounded-2xl lg:border lg:border-line lg:bg-white lg:p-8 lg:shadow-card">
       {/* Top row: back, step count, progress */}
       <div className="flex min-h-11 items-center justify-between">
         {step > 0 ? (
@@ -176,15 +198,36 @@ export default function BookingFlow() {
         ) : (
           <span className="text-sm font-medium text-ink-soft">Book your ride</span>
         )}
-        <span className="text-xs font-medium text-ink-muted">
+        <span className="text-xs font-medium text-ink-muted sm:hidden">
           Step {step + 1} of {STEPS.length} · {STEPS[step]}
         </span>
       </div>
-      <div className="mt-1 grid grid-cols-4 gap-1.5" aria-hidden>
+      {/* Progress: bars on phones; bars with step names (finished ones
+          clickable) on wider screens. */}
+      <ol className="mt-1 grid grid-cols-5 gap-1.5">
         {STEPS.map((s, i) => (
-          <span key={s} className={`h-1 rounded-full transition-colors ${i <= step ? "bg-gold" : "bg-line"}`} />
+          <li key={s}>
+            <button
+              type="button"
+              disabled={i >= step}
+              onClick={() => go(i)}
+              aria-current={i === step ? "step" : undefined}
+              className="group block w-full text-left disabled:cursor-default"
+            >
+              <span className={`block h-1 rounded-full transition-colors ${i <= step ? "bg-gold" : "bg-line"}`} />
+              <span
+                className={`mt-1.5 hidden text-[0.6875rem] font-medium sm:block ${
+                  i === step ? "text-ink" : i < step ? "text-gold-deep group-hover:underline" : "text-ink-muted"
+                }`}
+              >
+                <span className="sr-only">Step {i + 1}: </span>
+                {s}
+              </span>
+              <span className="sr-only sm:hidden">{s}</span>
+            </button>
+          </li>
         ))}
-      </div>
+      </ol>
 
       <div className="mt-5 [@media(max-height:700px)]:mt-3">
         {/* 1. Vehicle */}
@@ -206,7 +249,7 @@ export default function BookingFlow() {
               ))}
             </div>
             <ErrorText msg={errors.vehicle} />
-            <div className="mt-4 grid gap-2 sm:grid-cols-2 sm:gap-2.5">
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 sm:gap-2.5 lg:grid-cols-1">
               {GROUPS.find((g) => g.id === group)!.list.map((v) => (
                 <VehicleOption key={v.slug} v={v} checked={b.vehicle === v.slug} onChange={() => set("vehicle", v.slug)} />
               ))}
@@ -264,7 +307,7 @@ export default function BookingFlow() {
         {step === 2 && vehicle && (
           <section>
             <StepHeading ref={headingRef} title="A few details" />
-            <div className="mt-4 grid gap-5">
+            <div className="mt-4 grid gap-4">
               <Field label="Your name" error={errors.name}>
                 <input value={b.name} onChange={(e) => set("name", e.target.value)} autoComplete="name" className="field" />
               </Field>
@@ -319,11 +362,56 @@ export default function BookingFlow() {
           </section>
         )}
 
-        {/* 4. Review */}
+        {/* 4. Extras (all optional) */}
         {step === 3 && vehicle && (
           <section>
+            <StepHeading ref={headingRef} title="Any extras?" />
+            <p className="mt-1 text-sm text-ink-muted">Optional. Add what you like, or just continue.</p>
+            {/* Each row is one big toggle: tap anywhere on it to add or remove. */}
+            <ul className="mt-4 grid gap-2">
+              {EXTRAS.map((x) => {
+                const Icon = EXTRA_ICONS[x.icon];
+                const on = b.extras.includes(x.id);
+                return (
+                  <li key={x.id}>
+                    <button
+                      type="button"
+                      onClick={() => toggleExtra(x.id)}
+                      aria-pressed={on}
+                      className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition ${
+                        on ? "border-gold bg-gold-soft" : "border-line bg-white hover:border-gold/60"
+                      }`}
+                    >
+                      <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition ${on ? "bg-gold text-white" : "bg-gold-soft text-gold"}`}>
+                        <Icon size={19} />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="flex items-baseline gap-2">
+                          <span className="font-semibold text-ink">{x.title}</span>
+                          <span className="text-sm font-semibold text-gold-deep">{priceText(x)}</span>
+                        </span>
+                        <span className="block text-xs leading-5 text-ink-muted">{x.desc}</span>
+                      </span>
+                      <span
+                        aria-hidden
+                        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 transition ${on ? "border-gold bg-gold text-white" : "border-line"}`}
+                      >
+                        {on && <HiCheck size={14} />}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        )}
+
+        {/* 5. Review */}
+        {step === LAST && vehicle && (
+          <section>
             <StepHeading ref={headingRef} title="Check your booking" />
-            <div className="mt-4 flex items-center gap-3">
+            {/* Desktop already shows the vehicle in the summary beside this. */}
+            <div className="mt-4 flex items-center gap-3 lg:hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img {...responsive(vehicle.image, [160, 320], "72px")} alt="" className="h-14 w-[72px] shrink-0 rounded-lg object-cover" style={vehicle.imagePosition ? { objectPosition: vehicle.imagePosition } : undefined} />
               <div className="min-w-0 flex-1">
@@ -337,45 +425,96 @@ export default function BookingFlow() {
             <dl className="mt-4 divide-y divide-line rounded-xl border border-line bg-white">
               <Row label="Dates" onEdit={() => go(1)}>
                 {formatDate(b.pickupDate)}, {b.pickupTime}
-                <br />→ {formatDate(b.returnDate)}
-                <span className="block text-ink-muted">{days} {days === 1 ? "day" : "days"}</span>
+                <br />→ {formatDate(b.returnDate)}{" "}
+                <span className="text-ink-muted">· {days} {days === 1 ? "day" : "days"}</span>
               </Row>
-              <Row label="Pickup">{PICKUP_TEXT}</Row>
               <Row label="Name" onEdit={() => go(2)}>{b.name}</Row>
               <Row label="Permit" onEdit={() => go(2)}>{permitText(b)}</Row>
               {needsHelmets(vehicle) && <Row label="Helmets" onEdit={() => go(2)}>{b.helmets}</Row>}
+              {b.extras.length > 0 && (
+                <Row label="Extras" onEdit={() => go(3)}>
+                  {EXTRAS.filter((x) => b.extras.includes(x.id)).map((x) => `${x.title} (${priceText(x)})`).join(", ")}
+                </Row>
+              )}
               {b.notes.trim() && <Row label="Notes" onEdit={() => go(2)}>{b.notes}</Row>}
             </dl>
-            <p className="mt-3 text-xs text-ink-muted">
-              Nothing is charged now. We&apos;ll confirm availability and the final price on WhatsApp.
+            <p className="mt-3 text-xs leading-5 text-ink-muted">
+              {PICKUP_TEXT}.<span className="lg:hidden"> Nothing is charged now. We&apos;ll confirm availability and the final price on WhatsApp.</span>
             </p>
           </section>
         )}
       </div>
+      </div>
 
-      {/* Bottom action bar, pinned to the screen. Portalled to <body>: the
-          page-enter wrapper animates transform, and a transformed ancestor
-          would turn "fixed" into "scroll with the page". */}
+      {/* Desktop: a summary that stays beside the steps and fills in as you go. */}
+      <aside aria-label="Your booking" className="hidden lg:sticky lg:top-24 lg:block">
+        <div className="card overflow-hidden">
+          {vehicle ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={vehicle.slug}
+              {...responsive(vehicle.image, [480, 800], "20rem")}
+              alt=""
+              className="aspect-[16/10] w-full object-cover"
+              style={vehicle.imagePosition ? { objectPosition: vehicle.imagePosition } : undefined}
+            />
+          ) : (
+            <div className="flex aspect-[16/10] items-center justify-center bg-paper px-6 text-center text-sm text-ink-muted">
+              Pick a scooter, bike or tuk-tuk to start.
+            </div>
+          )}
+          <div className="p-5">
+            <p className="eyebrow">Your booking</p>
+            <p className="mt-1 text-lg font-semibold leading-tight text-ink">{vehicle?.name ?? "No vehicle yet"}</p>
+            {vehicle && (
+              <p className="mt-0.5 text-xs text-ink-muted">
+                {specs(vehicle)} · ${vehicle.perDay}/day · ${vehicle.perWeek}/week
+              </p>
+            )}
+            <dl className="mt-4 space-y-2 text-sm">
+              <SummaryRow label="Pickup">{b.pickupDate ? `${shortDate(b.pickupDate)}, ${b.pickupTime}` : "—"}</SummaryRow>
+              <SummaryRow label="Return">{b.returnDate ? shortDate(b.returnDate) : "—"}</SummaryRow>
+              {days > 0 && <SummaryRow label="Length">{days} {days === 1 ? "day" : "days"}</SummaryRow>}
+              {b.extras.length > 0 && (
+                <SummaryRow label="Extras">{EXTRAS.filter((x) => b.extras.includes(x.id)).map((x) => x.title).join(", ")}</SummaryRow>
+              )}
+            </dl>
+            <div className="mt-4 flex items-baseline justify-between border-t border-line pt-4">
+              <span className="text-sm text-ink-muted">Estimated total</span>
+              <span className="text-2xl font-semibold text-gold-deep">{total ? `$${total}` : "—"}</span>
+            </div>
+            {cta("mt-4 w-full")}
+            <p className="mt-3 text-center text-xs leading-5 text-ink-muted">
+              Nothing is charged now. We confirm availability and the final price on WhatsApp.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      {/* Bottom action bar on phones and tablets, pinned to the screen.
+          Portalled to <body>: the page-enter wrapper animates transform, and a
+          transformed ancestor would turn "fixed" into "scroll with the page". */}
       {ready && createPortal(
-      <div data-booking-bar className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur">
+      <div data-booking-bar className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
         <div className="mx-auto flex max-w-2xl items-center justify-between gap-4 px-4 py-3">
           <div className="min-w-0" aria-live="polite">
             <p className="truncate font-semibold text-ink">{summary.main}</p>
             {summary.sub && <p className="truncate text-xs text-ink-muted">{summary.sub}</p>}
           </div>
-          {step < 3 ? (
-            <button type="button" onClick={() => go(step + 1)} className="btn-gold min-h-12 shrink-0 px-6">
-              Continue <HiArrowRight />
-            </button>
-          ) : (
-            <button type="button" onClick={send} className="btn-whatsapp min-h-12 shrink-0 px-5">
-              <FaWhatsapp size={20} /> Send on WhatsApp
-            </button>
-          )}
+          {cta()}
         </div>
       </div>,
       document.body
       )}
+    </div>
+  );
+}
+
+function SummaryRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex justify-between gap-4">
+      <dt className="text-ink-muted">{label}</dt>
+      <dd className="text-right font-medium text-ink">{children}</dd>
     </div>
   );
 }
@@ -440,7 +579,7 @@ function VehicleOption({ v, checked, onChange }: { v: Vehicle; checked: boolean;
 
 function Row({ label, onEdit, children }: { label: string; onEdit?: () => void; children: React.ReactNode }) {
   return (
-    <div className="flex items-start gap-3 px-4 py-3">
+    <div className="flex items-start gap-3 px-4 py-2.5">
       <dt className="w-16 shrink-0 pt-0.5 text-xs font-medium uppercase tracking-wide text-ink-muted">{label}</dt>
       <dd className="min-w-0 flex-1 text-sm text-ink">{children}</dd>
       {onEdit ? (

@@ -32,14 +32,14 @@ export default function Preloader() {
       aria-hidden
       className="preloader pointer-events-none fixed inset-0 z-[70] flex flex-col items-center justify-center bg-white"
     >
-      {/* Big enough here for the roundel's own lettering to be read. */}
+      {/* Big enough here for the logo's own lettering to be read. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={asset("/logo.png")}
+        src={asset("/logo-dark.png")}
         alt=""
-        width={112}
-        height={112}
-        className="preloader-logo h-28 w-28 rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.45)]"
+        width={128}
+        height={128}
+        className="preloader-logo h-32 w-32"
       />
       <span className="mt-6 h-[3px] w-28 overflow-hidden rounded-full bg-gold-soft">
         <span className="preloader-bar block h-full w-1/2 rounded-full bg-gold" />

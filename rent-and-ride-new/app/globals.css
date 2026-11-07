@@ -170,13 +170,19 @@ html[data-js] main img.hero-img {
   animation: heroDrift 7.5s cubic-bezier(0.2, 0.6, 0.3, 1) both;
 }
 
-/* The home hero fills the screen below the 72px header. svh is the height
-   with the phone browser's toolbars showing, so the hero doesn't jump as
-   they slide away while scrolling; the vh line is for older browsers.
-   Capped at 960px so huge monitors don't get a cavernous banner. */
+/* The home hero fills the screen, less just enough room for the whole
+   feature strip (which overlaps its bottom edge) to show on the first screen
+   too. The header floats over the hero top; the text block is padded to
+   clear it. svh is the height with the phone browser toolbars showing, so
+   the hero does not jump as they slide away; the vh line is for older
+   browsers. Capped so huge monitors do not get a cavernous banner. */
 .hero-screen {
-  min-height: min(calc(100vh - 4.5rem), 960px);
-  min-height: min(calc(100svh - 4.5rem), 960px);
+  --strip-room: 2rem;
+  min-height: min(calc(100vh - var(--strip-room)), calc(960px + 4.5rem));
+  min-height: min(calc(100svh - var(--strip-room)), calc(960px + 4.5rem));
+}
+@media (min-width: 640px) {
+  .hero-screen { --strip-room: 5.25rem; }
 }
 
 /* Phones/tablets: the photo strip at the top of the hero melts into the
@@ -206,6 +212,19 @@ html[data-js] main img.hero-img {
 .hero-intro > :nth-child(4) { animation-delay: 0.54s; }
 .hero-intro > :nth-child(5) { animation-delay: 0.62s; }
 .hero-intro > :nth-child(n + 6) { animation-delay: 0.7s; }
+
+/* The feature strip under the hero rises in just after the headline, card
+   by card (desktop) or as one bar (phones). */
+.hero-features-card,
+.hero-features > * {
+  animation: heroIntro 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-features-card { animation-delay: 0.8s; }
+.hero-features > :nth-child(1) { animation-delay: 0.8s; }
+.hero-features > :nth-child(2) { animation-delay: 0.9s; }
+.hero-features > :nth-child(3) { animation-delay: 1s; }
+.hero-features > :nth-child(4) { animation-delay: 1.1s; }
+.hero-features > :nth-child(5) { animation-delay: 1.2s; }
 
 @keyframes heroIntro {
   from { opacity: 0; transform: translateY(18px); }
@@ -287,6 +306,8 @@ html[data-js] main img.hero-img {
   .hero-slide .hero-img,
   .hero-slide.is-active .hero-img,
   .hero-intro > *,
+  .hero-features > *,
+  .hero-features-card,
   .skeleton,
   .preloader-logo,
   .preloader-bar {
@@ -408,4 +429,11 @@ html[data-menu-open] [data-whatsapp-dock] {
 }
 @media (prefers-reduced-motion: reduce) {
   .feature-marquee { animation: none; }
+}
+
+/* Header at the top of a photo page: frosted glass. */
+.glass-bar {
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.18);
 }

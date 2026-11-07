@@ -12,6 +12,7 @@ import {
   HiOutlinePhone,
   HiOutlineChevronRight,
   HiOutlineClock,
+  HiOutlineIdentification,
 } from "react-icons/hi";
 import { MdTwoWheeler, MdElectricRickshaw } from "react-icons/md";
 import Logo from "./Logo";
@@ -22,11 +23,17 @@ const NAV_ICONS: Record<string, typeof HiOutlineHome> = {
   "/": HiOutlineHome,
   "/scooters": MdTwoWheeler,
   "/three-wheelers": MdElectricRickshaw,
+  "/driving-permit": HiOutlineIdentification,
   "/about": HiOutlineInformationCircle,
   "/reviews": HiOutlineStar,
   "/faq": HiOutlineQuestionMarkCircle,
   "/contact": HiOutlinePhone,
 };
+
+// Pages that open with a photo banner: there the header starts out
+// see-through over the photo and turns solid white once the page scrolls.
+// "/" is the home hero; the rest use PageHero (dark photo, white text).
+const OVER_PHOTO = ["/", "/about", "/contact", "/faq", "/reviews", "/scooters", "/three-wheelers", "/driving-permit"];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -66,29 +73,57 @@ export default function Header() {
     return href === "/" ? path === "/" : path.startsWith(href);
   };
 
+  const path = pathname.replace(/\/$/, "") || "/";
+  const overPhoto = OVER_PHOTO.includes(path);
+  const isHome = path === "/";
+  // See-through only at the very top of a photo page, and never with the menu open.
+  const clear = overPhoto && !scrolled && !open;
+  // While clear, text is white over the photo, except on the desktop home
+  // page, whose header sits over the white left half of the hero.
+  const whiteText = clear && !isHome;
+
   return (
     <>
     {/* Fixed rather than sticky, so it stays pinned in every browser whatever
-        its parents do; this spacer keeps its 4.5rem in the page flow. */}
-    <div aria-hidden className="h-[4.5rem]" />
+        its parents do. Photo pages slide their banner up under it; every other
+        page gets this spacer to keep its 4.5rem in the page flow. */}
+    {!overPhoto && <div aria-hidden className="h-[4.5rem]" />}
     <header
-      className={`fixed inset-x-0 top-0 z-40 border-b bg-white/95 backdrop-blur transition-shadow duration-300 ${
-        scrolled || open ? "border-line shadow-[0_6px_24px_-12px_rgba(20,23,26,0.25)]" : "border-line/70"
+      data-clear={clear || undefined}
+      className={`fixed inset-x-0 top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
+        clear
+          ? // Frosted glass over the photo: it blurs what is behind, so the links
+          // stay readable. Lighter glass on the desktop home page (dark text).
+          isHome
+            ? "glass-bar border-white/25 bg-white/10 lg:border-white/50 lg:bg-white/45"
+            : "glass-bar border-white/20 bg-white/10"
+          : `bg-white/95 backdrop-blur ${scrolled || open ? "border-line shadow-[0_6px_24px_-12px_rgba(20,23,26,0.25)]" : "border-line/70"}`
       }`}
     >
+      {/* A soft shade at the top of the photo keeps the header readable. */}
+      {overPhoto && (
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b to-transparent transition-opacity duration-300 ${
+            isHome ? "from-black/45 lg:from-white/80" : "from-black/50"
+          } ${clear ? "opacity-100" : "opacity-0"}`}
+        />
+      )}
       <div className="container-x flex h-[4.5rem] items-center justify-between gap-3">
-        <Logo />
+        <Logo tone={clear ? (isHome ? "light-until-lg" : "light") : "dark"} />
 
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex xl:gap-1">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`rounded-md px-3 py-2 text-[0.8125rem] transition ${
+              className={`whitespace-nowrap rounded-md px-2 py-2 text-[0.8125rem] transition xl:px-3 ${
                 isActive(item.href)
-                  ? "font-semibold text-gold-deep underline decoration-gold decoration-2 underline-offset-[10px]"
-                  : "text-ink-soft hover:text-gold-deep"
+                  ? `font-semibold underline decoration-gold decoration-2 underline-offset-[10px] ${whiteText ? "text-white" : "text-gold-deep"}`
+                  : whiteText
+                    ? "text-white/90 [text-shadow:0_1px_6px_rgba(0,0,0,0.35)] hover:text-white"
+                    : "text-ink-soft hover:text-gold-deep"
               }`}
             >
               {item.label}
@@ -115,7 +150,11 @@ export default function Header() {
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
             className={`relative flex h-10 w-10 items-center justify-center rounded-full transition lg:hidden ${
-              open ? "bg-ink text-white" : "bg-gold-soft text-gold-deep hover:bg-gold/20"
+              open
+                ? "bg-ink text-white"
+                : clear
+                  ? "bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
+                  : "bg-gold-soft text-gold-deep hover:bg-gold/20"
             }`}
           >
             <span aria-hidden className="relative block h-3.5 w-[18px]">

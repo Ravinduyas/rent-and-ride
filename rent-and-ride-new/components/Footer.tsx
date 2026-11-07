@@ -17,7 +17,7 @@ const SERVICES = [
   { label: "Bike Rental", href: "/scooters/#bikes" },
   { label: "Scooter Rental", href: "/scooters" },
   { label: "Tuk-Tuk Rental", href: "/three-wheelers" },
-  { label: "Driving Permit Assistance", href: "/scooters/#driving-permit" },
+  { label: "Driving Permit Assistance", href: "/driving-permit" },
   { label: "Pickup at Our Shop", href: "/contact" },
   { label: "24/7 Support", href: "/contact" },
   { label: "Free Helmets", href: "/scooters" },

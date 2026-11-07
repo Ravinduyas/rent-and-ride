@@ -2,7 +2,6 @@ import PageHero from "@/components/PageHero";
 import SectionTabs from "@/components/SectionTabs";
 import VehicleBrowser from "@/components/VehicleBrowser";
 import RentalInfo from "@/components/RentalInfo";
-import PermitSection from "@/components/PermitSection";
 import { SCOOTERS, BIKES } from "@/data/vehicles";
 import type { SectionLink } from "@/lib/sections";
 import { REAL } from "@/data/photos";
@@ -11,7 +10,6 @@ import { REAL } from "@/data/photos";
 const SECTIONS: SectionLink[] = [
   { id: "scooters", label: "Scooters", icon: "scooter" },
   { id: "bikes", label: "Bikes", icon: "bike" },
-  { id: "driving-permit", label: "Driving Permit", short: "Permit", icon: "permit" },
 ];
 
 export const metadata = {
@@ -43,7 +41,6 @@ export default function ScootersAndBikesPage() {
         vehicles={BIKES}
       />
       <RentalInfo noun="Ride" />
-      <PermitSection id="driving-permit" />
     </>
   );
 }

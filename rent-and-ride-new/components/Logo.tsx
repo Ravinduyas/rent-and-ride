@@ -13,26 +13,40 @@ export default function Logo({
   tone = "dark",
   className = "",
 }: {
-  tone?: "dark" | "light";
+  /** "light-until-lg": white on phones and tablets, dark from desktop up
+   *  (the header over the home hero, whose photo is only behind it on phones). */
+  tone?: "dark" | "light" | "light-until-lg";
   className?: string;
 }) {
-  const ink = tone === "dark" ? "text-ink" : "text-white";
+  const ink = tone === "dark" ? "text-ink" : tone === "light" ? "text-white" : "text-white lg:text-ink";
+  const size = "h-11 w-11 shrink-0 min-[360px]:h-[3.25rem] min-[360px]:w-[3.25rem] lg:h-14 lg:w-14";
+  // Over a photo the gold "WELIGAMA" needs a touch of shadow to stay readable.
+  const shade = tone === "dark" ? "" : tone === "light" ? "drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]" : "max-lg:drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)]";
 
   return (
     <Link
       href="/"
       aria-label="Rent & Ride Weligama — home"
-      className={`inline-flex min-w-0 items-center gap-2 leading-none min-[360px]:gap-2.5 ${className}`}
+      className={`inline-flex min-w-0 items-center gap-2 leading-none transition-colors min-[360px]:gap-2.5 ${className}`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={asset(tone === "dark" ? "/logo-dark.png" : "/logo-light.png")}
-        alt=""
-        width={56}
-        height={56}
-        className="h-11 w-11 shrink-0 min-[360px]:h-[3.25rem] min-[360px]:w-[3.25rem] lg:h-14 lg:w-14"
-      />
-      <span className="flex flex-col">
+      {tone === "light-until-lg" ? (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={asset("/logo-light.png")} alt="" width={56} height={56} className={`${size} ${shade} lg:hidden`} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={asset("/logo-dark.png")} alt="" width={56} height={56} className={`${size} hidden lg:block`} />
+        </>
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={asset(tone === "dark" ? "/logo-dark.png" : "/logo-light.png")}
+          alt=""
+          width={56}
+          height={56}
+          className={`${size} ${shade}`}
+        />
+      )}
+      <span className={`flex flex-col ${shade}`}>
         <span className={`whitespace-nowrap font-serif text-[0.9375rem] font-semibold min-[360px]:text-[1.0625rem] tracking-[0.02em] ${ink}`}>
           Rent &amp; Ride
         </span>

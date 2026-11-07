@@ -17,21 +17,18 @@ const STEPS = [
   {
     Icon: HiOutlineBadgeCheck,
     title: "Ride legally",
-    body: "Carry the permit with your licence whenever you ride. We'll hand it over with your scooter or bike.",
+    body: "Carry the permit with your licence whenever you ride. We'll hand it over with your scooter, bike or tuk-tuk.",
   },
 ];
 
-/** Driving permit section of the Rentals page. */
+/** The how-it-works steps and WhatsApp prompt on the Driving Permit page. */
 export default function PermitSection({ id }: { id: string }) {
   return (
     <section id={id} className={`bg-white py-12 md:py-20 ${SECTION_OFFSET}`}>
       <div className="container-x">
         <div data-reveal>
-          <h2 className="h-section">Driving Permit Assistance</h2>
-          <p className="lead mt-1 max-w-xl">
-            To ride in Sri Lanka you need your home licence plus a local permit.
-            We sort it out for you.
-          </p>
+          <h2 className="h-section">How it works</h2>
+          <p className="lead mt-1 max-w-xl">Three simple steps, all handled over WhatsApp.</p>
         </div>
 
         <ol data-reveal-stagger className="mt-6 grid gap-4 sm:mt-8 md:grid-cols-3 md:gap-5">

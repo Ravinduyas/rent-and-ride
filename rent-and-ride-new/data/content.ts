@@ -45,7 +45,7 @@ const cheapest = (list: { perDay: number }[]) => Math.min(...list.map((v) => v.p
 export const FAQS: Faq[] = [
   {
     q: "Do I need a driving license?",
-    a: "Yes. You need a valid licence from your home country that covers motorcycles, plus a Sri Lankan recognition permit. We can arrange the permit for you — see the Driving Permit section of our Rentals page.",
+    a: "Yes. You need a valid licence from your home country that covers motorcycles, plus a Sri Lankan recognition permit. We can arrange the permit for you — see our Driving Permit page.",
   },
   {
     q: "Which vehicles can I rent, and what do they cost?",

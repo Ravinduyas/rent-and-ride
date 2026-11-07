@@ -46,6 +46,7 @@ export const NAV = [
   { label: "Home", href: "/" },
   { label: "Scooters & Bikes", href: "/scooters" },
   { label: "Tuk-Tuks", href: "/three-wheelers" },
+  { label: "Driving Permit", href: "/driving-permit" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
   { label: "FAQ", href: "/faq" },

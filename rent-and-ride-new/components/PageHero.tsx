@@ -36,7 +36,8 @@ export default function PageHero({
       <div className="absolute inset-0 -z-10 bg-black/55 md:hidden" />
       <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black/70 via-black/35 to-transparent md:block" />
 
-      <div className="container-x py-12 md:py-20 lg:py-24">
+      {/* The top padding includes the 4.5rem header, which sits over the banner. */}
+      <div className="container-x pb-12 pt-[7.5rem] md:pb-20 md:pt-[9.5rem] lg:pb-24 lg:pt-[10.5rem]">
         <div className="hero-intro max-w-xl">
           <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.45)] md:text-[2.75rem]">
             {title}

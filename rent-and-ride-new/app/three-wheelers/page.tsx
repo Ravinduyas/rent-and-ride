@@ -1,7 +1,6 @@
 import PageHero from "@/components/PageHero";
 import VehicleBrowser from "@/components/VehicleBrowser";
 import RentalInfo from "@/components/RentalInfo";
-import PermitSection from "@/components/PermitSection";
 import { TUKTUKS } from "@/data/vehicles";
 import { REAL } from "@/data/photos";
 
@@ -22,7 +21,6 @@ export default function ThreeWheelersPage() {
       />
       <VehicleBrowser id="tuktuks" title="Tuk-Tuks" vehicles={TUKTUKS} />
       <RentalInfo noun="Tuk-Tuk" />
-      <PermitSection id="driving-permit" />
     </>
   );
 }

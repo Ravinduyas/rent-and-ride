@@ -48,7 +48,7 @@ export default function Home() {
           <p
             aria-hidden
             // Top right is open sky in this photo, clear of the rider.
-            className="pointer-events-none absolute right-4 top-3 rotate-[-6deg] text-right font-script text-[1.5rem] leading-[0.95] text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] sm:right-8 sm:top-6 sm:text-3xl lg:hidden"
+            className="pointer-events-none absolute right-4 top-[5.5rem] rotate-[-6deg] text-right font-script text-[1.5rem] leading-[0.95] text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] sm:right-8 sm:top-24 sm:text-3xl lg:hidden"
           >
             Your next adventure
             <br />
@@ -58,8 +58,8 @@ export default function Home() {
 
         {/* Desktop: this block takes the full height and centres the text,
             leaving room at the bottom for the overlapping feature strip. */}
-        <div className="container-x relative pb-16 pt-1 sm:pt-4 md:pb-28 lg:flex lg:flex-1 lg:items-center lg:pb-24 lg:pt-10">
-          <div data-reveal="right" style={{ "--reveal-delay": "600ms" } as React.CSSProperties} className="pointer-events-none absolute right-8 top-10 hidden 2xl:block">
+        <div className="container-x relative pb-16 pt-1 sm:pb-24 sm:pt-4 md:pb-28 lg:flex lg:flex-1 lg:items-center lg:pb-24 lg:pt-[7rem]">
+          <div data-reveal="right" style={{ "--reveal-delay": "600ms" } as React.CSSProperties} className="pointer-events-none absolute right-8 top-28 hidden 2xl:block">
             <p className="rotate-[-6deg] font-script text-4xl leading-none text-white drop-shadow-md">
               Your next
               <br />
@@ -86,11 +86,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Feature strip, overlapping the hero */}
-      <section className="container-x relative z-10 -mt-10 md:-mt-16">
+      {/* Feature strip, overlapping the hero. Part of the first screen, so it
+          animates in with the hero on load (CSS, .hero-features) rather than
+          waiting for a scroll reveal. */}
+      <section className="container-x relative z-10 -mt-10 sm:-mt-[4.5rem] md:-mt-16">
         {/* Phones: one endless row that drifts on its own (the list is doubled
             and slid by exactly half, so it loops with no jump). */}
-        <div className="card overflow-hidden sm:hidden" role="region" aria-label="Why choose us">
+        <div className="hero-features-card card overflow-hidden sm:hidden" role="region" aria-label="Why choose us">
           <ul className="feature-marquee flex w-max">
             {[...FEATURES, ...FEATURES].map(({ Icon, title, sub }, i) => (
               <li
@@ -110,11 +112,11 @@ export default function Home() {
           </ul>
         </div>
 
-        <ul data-reveal-stagger className="card hidden grid-cols-3 sm:grid lg:grid-cols-5 lg:divide-x lg:divide-line">
+        <ul className="hero-features card hidden sm:grid sm:grid-cols-5 sm:divide-x sm:divide-line">
           {FEATURES.map(({ Icon, title, sub }) => (
             <li
               key={title}
-              className="flex flex-col items-center px-4 py-6 text-center"
+              className="flex flex-col items-center px-2 py-6 text-center lg:px-4"
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold sm:h-12 sm:w-12">
                 <Icon size={22} />

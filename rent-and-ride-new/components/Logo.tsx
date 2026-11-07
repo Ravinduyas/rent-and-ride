@@ -22,7 +22,7 @@ export default function Logo({
     <Link
       href="/"
       aria-label="Rent & Ride Weligama — home"
-      className={`inline-flex items-center gap-2.5 leading-none ${className}`}
+      className={`inline-flex min-w-0 items-center gap-2 leading-none min-[360px]:gap-2.5 ${className}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -30,10 +30,10 @@ export default function Logo({
         alt=""
         width={56}
         height={56}
-        className="h-[3.25rem] w-[3.25rem] shrink-0 lg:h-14 lg:w-14"
+        className="h-11 w-11 shrink-0 min-[360px]:h-[3.25rem] min-[360px]:w-[3.25rem] lg:h-14 lg:w-14"
       />
       <span className="flex flex-col">
-        <span className={`font-serif text-[1.0625rem] font-semibold tracking-[0.02em] ${ink}`}>
+        <span className={`whitespace-nowrap font-serif text-[0.9375rem] font-semibold min-[360px]:text-[1.0625rem] tracking-[0.02em] ${ink}`}>
           Rent &amp; Ride
         </span>
         <span className="mt-1 text-[0.59375rem] font-semibold tracking-[0.32em] text-gold">

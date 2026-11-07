@@ -21,7 +21,8 @@ export default function WhatsAppDock() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 flex items-center gap-3 lg:bottom-6 lg:right-6"
+      data-whatsapp-dock
+      className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 flex items-center gap-3 transition-opacity lg:bottom-6 lg:right-6"
     >
       <span className="hidden rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink shadow-lift lg:inline">
         Chat with us
